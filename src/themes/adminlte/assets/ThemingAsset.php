@@ -1,6 +1,6 @@
 <?php
 
-namespace rbacp\themes\adminlte\assets;
+namespace rbacpt\themes\adminlte\assets;
 
 use yii\web\AssetBundle;
 
@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 
 class ThemingAsset extends AssetBundle
 {
-    public $sourcePath = '@rbacp/themes/adminlte/assets';
+    public $sourcePath = '@rbacpt/themes/adminlte/assets';
     //public $baseUrl = '@web';
     public $css = [
         'css/custom.css',
@@ -23,8 +23,8 @@ class ThemingAsset extends AssetBundle
 
     public $depends = [
         'yii\web\YiiAsset',
-        '\rbacp\themes\adminlte\assets\common\AdminLte',
-        '\rbacp\themes\adminlte\assets\common\Html5shiv'
+        '\rbacpt\themes\adminlte\assets\common\AdminLte',
+        '\rbacpt\themes\adminlte\assets\common\Html5shiv'
     ];
 
     public $skin = 'skin-blue';

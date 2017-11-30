@@ -1,6 +1,6 @@
 <?php
 
-namespace rbacp\themes\adminlte\widgets;
+namespace rbacpt\themes\adminlte\widgets;
 
 /**
  * Alert widget renders a message from session flash. All flash messages are displayed
@@ -49,7 +49,7 @@ class Alert extends \yii\bootstrap\Widget
             /* assign unique id to each alert box */
             $this->options['id'] = $this->getId() . '-' . $type;
 
-            echo \rbacp\themes\adminlte\widgets\covers\Alert::widget(
+            echo \rbacpt\themes\adminlte\widgets\covers\Alert::widget(
                 [
                     'type' => $type,
                     'body' => $message,

@@ -1,6 +1,6 @@
 <?php
 
-namespace rbacp\themes\adminlte\assets\common;
+namespace rbacpt\themes\adminlte\assets\common;
 
 use yii\web\AssetBundle;
 
@@ -22,7 +22,7 @@ class AdminLte extends AssetBundle
         'yii\web\JqueryAsset',
         'yii\jui\JuiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        '\rbacp\themes\adminlte\assets\common\FontAwesome',
-        '\rbacp\themes\adminlte\assets\common\JquerySlimScroll',
+        '\rbacpt\themes\adminlte\assets\common\FontAwesome',
+        '\rbacpt\themes\adminlte\assets\common\JquerySlimScroll',
     ];
 }

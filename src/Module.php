@@ -33,7 +33,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        \Yii::setAlias('@rbacp', '@vendor/myzero1/yii2-rbacp/src');
+        \Yii::setAlias('@yiiTrbacp', '@vendor/myzero1/yii2-rbacp/src');
         $app->attachBehavior('captchaValidateBehavior',[
                 'class' => \myzero1\rbacp\behaviors\CaptchaValidateBehavior::class,
             ]
@@ -49,10 +49,10 @@ class Module extends \yii\base\Module implements BootstrapInterface
         parent::init();
 
         // custom initialization code goes here
-        \Yii::$app->view->theme = new \yii\base\Theme([
-            'pathMap' => ['@app/views' => '@rbacp/themes/adminlte/views'],
-            // 'baseUrl' => '@web/themes/admin',
-        ]);
+        // \Yii::$app->view->theme = new \yii\base\Theme([
+        //     'pathMap' => ['@app/views' => '@rbacp/themes/adminlte/views'],
+        //     // 'baseUrl' => '@web/themes/admin',
+        // ]);
     }
 
 }

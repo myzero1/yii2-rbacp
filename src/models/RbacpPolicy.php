@@ -1,6 +1,6 @@
 <?php
 
-namespace rbacp\models;
+namespace rbacpt\models;
 
 use Yii;
 

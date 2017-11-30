@@ -7,8 +7,8 @@
  * @var string $content Content
  */
 
-use rbacp\themes\adminlte\assets\ThemingAsset;
-use rbacp\themes\adminlte\widgets\Alert;
+use rbacpt\themes\adminlte\assets\ThemingAsset;
+use rbacpt\themes\adminlte\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
@@ -32,7 +32,7 @@ $profile = [
     'profileUrl' => '#',
 ];
 
-$skin = \Yii::$app->assetManager->bundles['rbacp\themes\adminlte\assets\ThemingAsset']->skin;
+$skin = \Yii::$app->assetManager->bundles['rbacpt\themes\adminlte\assets\ThemingAsset']->skin;
 
 ?>
 

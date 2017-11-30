@@ -6,33 +6,33 @@
  * @var \yii\web\View $this View
  */
 
-use rbacp\themes\adminlte\widgets\Menu;
+use rbacpt\themes\adminlte\widgets\Menu;
 
     $items = [
         [
-            'label' => Yii::t('app', '产品管理后台首页1'),
+            'label' => Yii::t('app', '产品管理后台首页'),
             'url' => Yii::$app->homeUrl,
             'icon' => 'fa-dashboard',
             'active' => Yii::$app->request->url === Yii::$app->homeUrl
         ],
         [
-            'label' => Yii::t('app', '产品管理1'),
+            'label' => Yii::t('app', '产品管理'),
             'url' => '#',
             'icon' => ' fa-cubes',
             'visible' => true,
             'items' => [
                 [
-                    'label' => Yii::t('app', '产品列表1'),
+                    'label' => Yii::t('app', '产品列表'),
                     'url' => ['/product/index'],
                     'visible' => true
                 ],
                 [
-                    'label' => Yii::t('app', '升级列表1'),
+                    'label' => Yii::t('app', '升级列表'),
                     'url' => ['/upgrade/index'],
                     'visible' => true
                 ],
                 [
-                    'label' => Yii::t('app', '公告列表1'),
+                    'label' => Yii::t('app', '公告列表'),
                     'url' => ['/affiche/index'],
                     'visible' => true
                 ],
