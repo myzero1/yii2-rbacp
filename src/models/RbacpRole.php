@@ -5,28 +5,27 @@ namespace myzero1\rbacp\models;
 use Yii;
 
 /**
- * This is the model class for table "rbacp_policy".
+ * This is the model class for table "rbacp_role".
  *
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $rules
- * @property integer $scope
- * @property string $sku
- * @property integer $type
- * @property integer $privilege_id
+ * @property string $policy_ids
+ * @property string $privilege_ids
+ * @property string $policy_datas
  * @property integer $status
  * @property integer $created
  * @property integer $updated
+ * @property integer $author
  */
-class RbacpPolicy extends \yii\db\ActiveRecord
+class RbacpRole extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'rbacp_policy';
+        return 'rbacp_role';
     }
 
     /**
@@ -35,11 +34,11 @@ class RbacpPolicy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'rules', 'sku', 'type', 'privilege_id', 'created', 'updated'], 'required'],
-            [['scope', 'type', 'privilege_id', 'status', 'created', 'updated'], 'integer'],
-            [['name', 'sku'], 'string', 'max' => 255],
+            [['name', 'created', 'author'], 'required'],
+            [['status', 'created', 'updated', 'author'], 'integer'],
+            [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 500],
-            [['rules'], 'string', 'max' => 1000],
+            [['policy_ids', 'privilege_ids', 'policy_datas'], 'string', 'max' => 1000],
         ];
     }
 
@@ -52,14 +51,13 @@ class RbacpPolicy extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
-            'rules' => 'Rules',
-            'scope' => 'Scope',
-            'sku' => 'Sku',
-            'type' => 'Type',
-            'privilege_id' => 'Privilege ID',
+            'policy_ids' => 'Policy Ids',
+            'privilege_ids' => 'Privilege Ids',
+            'policy_datas' => 'Policy Datas',
             'status' => 'Status',
             'created' => 'Created',
             'updated' => 'Updated',
+            'author' => 'Author',
         ];
     }
 }

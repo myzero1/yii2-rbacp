@@ -6,7 +6,7 @@
  * @var \yii\web\View $this View
  */
 
-use myzero1\rbacp\themes\adminlte\widgets\Menu;
+use rbacpt\themes\adminlte\widgets\Menu;
 
     $items = [
         [

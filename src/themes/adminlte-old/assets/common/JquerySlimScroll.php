@@ -1,6 +1,6 @@
 <?php
 
-namespace myzero1\rbacp\themes\adminlte\assets\common;
+namespace rbacpt\themes\adminlte\assets\common;
 
 use yii\web\AssetBundle;
 

@@ -3,16 +3,16 @@
 namespace myzero1\rbacp\controllers;
 
 use Yii;
-use myzero1\rbacp\models\RbacpPolicy;
-use myzero1\rbacp\models\search\RbacpPolicySearch;
+use myzero1\rbacp\models\RbacpRole;
+use myzero1\rbacp\models\search\RbacpRoleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RbacpPolicyController implements the CRUD actions for RbacpPolicy model.
+ * RbacpRoleController implements the CRUD actions for RbacpRole model.
  */
-class RbacpPolicyController extends Controller
+class RbacpRoleController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Lists all RbacpPolicy models.
+     * Lists all RbacpRole models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RbacpPolicySearch();
+        $searchModel = new RbacpRoleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Displays a single RbacpPolicy model.
+     * Displays a single RbacpRole model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Creates a new RbacpPolicy model.
+     * Creates a new RbacpRole model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new RbacpPolicy();
+        $model = new RbacpRole();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Updates an existing RbacpPolicy model.
+     * Updates an existing RbacpRole model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Deletes an existing RbacpPolicy model.
+     * Deletes an existing RbacpRole model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class RbacpPolicyController extends Controller
     }
 
     /**
-     * Finds the RbacpPolicy model based on its primary key value.
+     * Finds the RbacpRole model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return RbacpPolicy the loaded model
+     * @return RbacpRole the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = RbacpPolicy::findOne($id)) !== null) {
+        if (($model = RbacpRole::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

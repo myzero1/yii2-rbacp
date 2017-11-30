@@ -1,16 +1,16 @@
 <?php
 
-namespace rbacpt\models;
+namespace myzero1\rbacp\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use rbacpt\models\RbacpPolicy;
+use myzero1\rbacp\models\RbacpUserView;
 
 /**
- * RbacpPolicySearch represents the model behind the search form about `rbacpt\models\RbacpPolicy`.
+ * RbacpUserViewSearch represents the model behind the search form about `myzero1\rbacp\models\RbacpUserView`.
  */
-class RbacpPolicySearch extends RbacpPolicy
+class RbacpUserViewSearch extends RbacpUserView
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class RbacpPolicySearch extends RbacpPolicy
     public function rules()
     {
         return [
-            [['id', 'scope', 'type', 'privilege_id', 'status', 'created', 'updated'], 'integer'],
-            [['name', 'description', 'rules', 'sku'], 'safe'],
+            [['id'], 'integer'],
+            [['username'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class RbacpPolicySearch extends RbacpPolicy
      */
     public function search($params)
     {
-        $query = RbacpPolicy::find();
+        $query = RbacpUserView::find();
 
         // add conditions that should always apply here
 
@@ -60,18 +60,9 @@ class RbacpPolicySearch extends RbacpPolicy
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'scope' => $this->scope,
-            'type' => $this->type,
-            'privilege_id' => $this->privilege_id,
-            'status' => $this->status,
-            'created' => $this->created,
-            'updated' => $this->updated,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'rules', $this->rules])
-            ->andFilterWhere(['like', 'sku', $this->sku]);
+        $query->andFilterWhere(['like', 'username', $this->username]);
 
         return $dataProvider;
     }

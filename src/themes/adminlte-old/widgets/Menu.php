@@ -1,6 +1,6 @@
 <?php
 
-namespace myzero1\rbacp\themes\adminlte\widgets;
+namespace rbacpt\themes\adminlte\widgets;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
