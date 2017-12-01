@@ -26,7 +26,7 @@ class Bootstrap implements BootstrapInterface
     {
         // $this->addAliases($app);
         // $this->addRules($app);
-        // $this->addTranslations($app);
+        $this->addTranslations($app);
         // $this->addBehaviors($app);
         $this->addCustom($app);
         // $this->rewriteLibs($app);
@@ -54,31 +54,19 @@ class Bootstrap implements BootstrapInterface
 
     private function addTranslations($app){
         $aParseNamespace = $this->parseNamespace();
-        $sTranslationKey = $aParseNamespace[2];
-        if ( !isset( $app->i18n->translations[$sTranslationKey] ) ) {
-            $app->i18n->translations[$sTranslationKey] = [
+        if ( !isset( $app->i18n->translations['rbacp'] ) ) {
+            $app->i18n->translations['rbacp'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@' . $sTranslationKey .'/messages',
+                'basePath' => 'messages',
                 'forceTranslation' => true,
                 'fileMap' => [
-                    $sTranslationKey => $sTranslationKey . '.php',
-                    $sTranslationKey . '_init' => $sTranslationKey . '_init.php',
-                ],
-            ];
-
-            $app->i18n->translations[$sTranslationKey . '_init'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@' . $sTranslationKey .'/messages',
-                'forceTranslation' => true,
-                'fileMap' => [
-                    $sTranslationKey . '_init' => $sTranslationKey . '_init.php',
+                    'rbacp' => 'rbacp.php',
                 ],
             ];
         }
     }
 
     private function addCustom($app){
-        var_dump($this->parseNamespace());exit;
         $app->setModule($this->moduleName,
                 [
                     'class' => 'myzero1\rbacp\Module'
