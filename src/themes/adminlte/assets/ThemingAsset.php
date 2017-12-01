@@ -18,7 +18,7 @@ class ThemingAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/custom.js',
+        'js/custom5.js',
     ];
 
     public $depends = [

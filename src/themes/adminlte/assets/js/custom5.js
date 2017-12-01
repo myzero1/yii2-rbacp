@@ -1,10 +1,5 @@
 /*---------custom.----------------*/
 /*---------for rbacp-role,start.----------------*/
-$('input').iCheck({
-	checkboxClass: 'icheckbox_minimal',
-	radioClass: 'iradio_minimal',
-	increaseArea: '20%' // optional
-});
 
 $('.privilege-item input').on('ifClicked', function(event){ //ifCreated 事件应该在插件初始化之前绑定
 	var privilege_id = $(this).parents('.privilege-item').attr('privilege_id');
