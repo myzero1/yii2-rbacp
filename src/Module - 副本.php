@@ -49,6 +49,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         parent::init();
 
         // custom initialization code goes here
+
         \Yii::$app->view->theme = new \yii\base\Theme([
             'pathMap' => ['@app/views' => '@vendor/myzero1/yii2-rbacp/src/themes/adminlte/views'],
             'baseUrl' => '@web/themes/adminlte',
