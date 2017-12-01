@@ -4,7 +4,7 @@ namespace myzero1\rbacp\controllers;
 
 use Yii;
 use myzero1\rbacp\models\RbacpPolicy;
-use myzero1\rbacp\models\search\RbacpPolicySearch;
+use myzero1\rbacp\models\RbacpPolicySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -66,8 +66,9 @@ class RbacpPolicyController extends Controller
         $model = new RbacpPolicy();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
+            // var_dump($model->errors);exit;
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -85,7 +86,7 @@ class RbacpPolicyController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

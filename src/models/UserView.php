@@ -1,5 +1,5 @@
 <?php
-namespace myzero1\rbacp\models;
+namespace myzero1\myzero1\rbacp\models;
 
 use Yii;
 use yii\base\Model;

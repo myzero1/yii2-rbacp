@@ -1,6 +1,6 @@
 <?php
 
-namespace myzero1\rbacp\controllers;
+namespace myzero1\myzero1\rbacp\controllers;
 
 use yii\web\Controller;
 
@@ -57,7 +57,7 @@ class DefaultController extends Controller
      */
     public function actionMigrateUp()
     {
-        $model = new \myzero1\rbacp\models\UserView();
+        $model = new \myzero1\myzero1\rbacp\models\UserView();
         $message = '';
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {

@@ -15,7 +15,7 @@ use Yii;
  * @property integer $created
  * @property integer $updated
  */
-class RbacpPrivilege extends \yii\db\ActiveRecord
+class RbacpPrivilege extends RbacpActiveRecord
 {
     /**
      * @inheritdoc
@@ -32,9 +32,12 @@ class RbacpPrivilege extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'url', 'created', 'updated'], 'required'],
-            [['status', 'created', 'updated'], 'integer'],
+            [['id', 'status', 'created', 'updated'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['description', 'url'], 'string', 'max' => 500],
+
+            [['name'], '\myzero1\rbacp\components\validators\NoSpecialStrValidator', 'min' => 6, 'max'=>180],
+
         ];
     }
 
@@ -44,13 +47,13 @@ class RbacpPrivilege extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'url' => 'Url',
-            'status' => 'Status',
-            'created' => 'Created',
-            'updated' => 'Updated',
+            'id' => Yii::t('rbacp', 'ID'),
+            'name' => Yii::t('rbacp', '名称'),
+            'description' => Yii::t('rbacp', '描述'),
+            'url' => Yii::t('rbacp', 'Uri'),
+            'status' => Yii::t('rbacp', '状态'),
+            'created' => Yii::t('rbacp', '创建时间'),
+            'updated' => Yii::t('rbacp', '更新时间'),
         ];
     }
 }

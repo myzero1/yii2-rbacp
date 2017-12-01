@@ -4,7 +4,7 @@ namespace myzero1\rbacp\controllers;
 
 use Yii;
 use myzero1\rbacp\models\RbacpPrivilege;
-use myzero1\rbacp\models\search\RbacpPrivilegeSearch;
+use myzero1\rbacp\models\RbacpPrivilegeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,9 +64,15 @@ class RbacpPrivilegeController extends Controller
     public function actionCreate()
     {
         $model = new RbacpPrivilege();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->created = $model->updated = time();
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,8 +90,15 @@ class RbacpPrivilegeController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updated = time();
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,

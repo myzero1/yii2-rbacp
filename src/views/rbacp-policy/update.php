@@ -3,13 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model rbacpt\models\RbacpPolicy */
+/* @var $model custom_components\modules\myzero1\rbacp\models\RbacpRole */
 
-$this->title = 'Update Rbacp Policy: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Rbacp Policies', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
-$sBoxTile = $this->title;
+$this->title = Yii::t('rbacp', '修改策略');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('rbacp', '策略管理'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+$sBoxTile = Yii::t('rbacp', '修改策略：{name}', ['name' => $model->name]);
 ?>
 <div class="rbacp-policy-update">
 

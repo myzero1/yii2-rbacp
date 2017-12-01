@@ -14,7 +14,7 @@ use Yii;
  * @property integer $created
  * @property integer $updated
  */
-class RbacpUservRole extends \yii\db\ActiveRecord
+class RbacpUservRole extends RbacpActiveRecord
 {
     /**
      * @inheritdoc
@@ -31,7 +31,7 @@ class RbacpUservRole extends \yii\db\ActiveRecord
     {
         return [
             [['role_id', 'userv_id', 'created', 'updated'], 'required'],
-            [['role_id', 'userv_id', 'status', 'created', 'updated'], 'integer'],
+            [['id', 'role_id', 'userv_id', 'status', 'created', 'updated'], 'integer'],
         ];
     }
 

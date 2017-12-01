@@ -4,7 +4,7 @@ namespace myzero1\rbacp\controllers;
 
 use Yii;
 use myzero1\rbacp\models\RbacpRole;
-use myzero1\rbacp\models\search\RbacpRoleSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +35,16 @@ class RbacpRoleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RbacpRoleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => RbacpRole::find()->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表']),
+            'sort' => [
+                'defaultOrder' => [
+                    'updated' => SORT_DESC,
+                ]
+            ],
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -65,11 +70,41 @@ class RbacpRoleController extends Controller
     {
         $model = new RbacpRole();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if (!is_null($model->rbacp_privilege_ids)) {
+                $model->privilege_ids = implode(',', $model->twoD2OneD($model->rbacp_privilege_ids));
+            } else {
+                $model->privilege_ids = '';
+            }
+
+            if (!is_null($model->rbacp_policy_ids)) {
+                $model->policy_ids = implode(',', $model->twoD2OneD($model->rbacp_policy_ids));
+            } else {
+                $model->policy_ids = '';
+            }
+
+            if (!is_null($model->rbacp_policy_datas)) {
+                $model->policy_datas = json_encode($model->rbacp_policy_datas);
+            } else {
+                $model->policy_datas = json_encode(array());
+            }
+
+            $model->created = $model->updated = time();
+            $model->author = Yii::$app->user->id;
+
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                    'aPrivilegePolicys' => $model->getPrivilegePolicy(),
+                ]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'aPrivilegePolicys' => $model->getPrivilegePolicy(),
             ]);
         }
     }
@@ -83,12 +118,43 @@ class RbacpRoleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->updated = time();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (!is_null($model->rbacp_privilege_ids)) {
+                $model->privilege_ids = implode(',', $model->twoD2OneD($model->rbacp_privilege_ids));
+            } else {
+                $model->privilege_ids = '';
+            }
+
+            if (!is_null($model->rbacp_policy_ids)) {
+                $model->policy_ids = implode(',', $model->twoD2OneD($model->rbacp_policy_ids));
+            } else {
+                $model->policy_ids = '';
+            }
+
+            if (!is_null($model->rbacp_policy_datas)) {
+                $model->policy_datas = json_encode($model->rbacp_policy_datas);
+            } else {
+                $model->policy_datas = json_encode(array());
+            }
+
+            $model->updated = time();
+
+            // var_dump($model);exit;
+
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                    'aPrivilegePolicys' => $model->getPrivilegePolicy(),
+                ]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'aPrivilegePolicys' => $model->getPrivilegePolicy(),
             ]);
         }
     }
@@ -101,9 +167,28 @@ class RbacpRoleController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+// $connection  = Yii::$app->db;
+// $sql     = "select * from hd_article where aid<".$aid." order by aid desc limit 1";
+// $command = $connection->createCommand($sql);
+// $res     = $command->queryAll($sql);
+        $sSqlQuery = "
+            SELECT
+                *
+            FROM
+                `rbacp_userv_role`
+            WHERE
+                role_id = {$id}
+            AND status = 1
+        ";
+        $mResult = Yii::$app->db->createCommand($sSqlQuery)->queryAll();
+        if (count($mResult)==0) {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        } else {
+            Yii::$app->session->setFlash('error', \Yii::t('rbacp', '有其他用户正在使用不能删除'));
+            return $this->redirect(['index']);
+        }
     }
 
     /**
@@ -115,7 +200,8 @@ class RbacpRoleController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = RbacpRole::findOne($id)) !== null) {
+        // if (($model = RbacpRole::findOne($id)) !== null) {
+        if (($model = RbacpRole::find()->where(['id' => $id])->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model rbacpt\models\RbacpPolicySearch */
+/* @var $model custom_components\modules\myzero1\rbacp\models\RbacpUserViewSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="rbacp-policy-search">
+<div class="rbacp-user-view-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,31 +19,30 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'description') ?>
+    <?= $form->field($model, 'sku') ?>
 
-    <?= $form->field($model, 'rules') ?>
+    <?= $form->field($model, 'type')->dropDownList(
+            \myzero1\rbacp\models\RbacpPolicy::type(),
+            ['prompt' => Yii::t('rbacp', '请选择')]
+        )
+    ?>
 
-    <?php // echo $form->field($model, 'scope') ?>
+    <?= $form->field($model, 'scope')->dropDownList(
+            \myzero1\rbacp\models\RbacpPolicy::scope(),
+            ['prompt' => Yii::t('rbacp', '请选择')]
+        )
+    ?>
 
-    <?php // echo $form->field($model, 'sku') ?>
-
-    <?php // echo $form->field($model, 'type') ?>
-
-    <?php // echo $form->field($model, 'privilege_id') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created') ?>
-
-    <?php // echo $form->field($model, 'updated') ?>
+    <?= $form->field($model, 'status')->dropDownList(
+            \myzero1\rbacp\models\RbacpPolicy::status(),
+            ['prompt' => Yii::t('rbacp', '请选择')]
+        )
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary  btn-sm']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default  btn-sm']) ?>
+        <?= Html::submitButton(Yii::t('rbacp', '搜索'), ['class' => 'btn btn-primary btn-sm']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
