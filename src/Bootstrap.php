@@ -1,6 +1,6 @@
 <?php
 
-namespace custom_components\modules\rbacp;
+namespace myzero1\rbacp;
 
 use yii\base\BootstrapInterface;
 
@@ -12,13 +12,24 @@ class Bootstrap implements BootstrapInterface
     /**
      * @inheritdoc
      */
+    public $moduleName = 'rbacp';
+
+    /**
+     * @inheritdoc
+     */
+    public $moduleParams = [];
+
+    /**
+     * @inheritdoc
+     */
     public function bootstrap($app)
     {
-        $this->addAliases($app);
-        $this->addRules($app);
-        $this->addTranslations($app);
+        // $this->addAliases($app);
+        // $this->addRules($app);
+        // $this->addTranslations($app);
+        // $this->addBehaviors($app);
         $this->addCustom($app);
-        $this->rewriteLibs($app);
+        // $this->rewriteLibs($app);
     }
 
     private function addAliases($app){
@@ -67,20 +78,12 @@ class Bootstrap implements BootstrapInterface
     }
 
     private function addCustom($app){
-        $aParseNamespace = $this->parseNamespace();
-        if ( $aParseNamespace[1] == 'modules' ) {
-            $app->setModule($aParseNamespace[2],
-                    [
-                        'class' => $aParseNamespace[2] . '\Module'
-                    ]
-                );
-        } else {
-            $app->set($aParseNamespace[2],
-                    [
-                        'class' => $aParseNamespace[2] . '\Component'
-                    ]
-                );
-        }
+        var_dump($this->parseNamespace());exit;
+        $app->setModule($this->moduleName,
+                [
+                    'class' => 'myzero1\rbacp\Module'
+                ]
+            );
     }
 
     private function rewriteLibs($app){
