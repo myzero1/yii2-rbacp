@@ -24,54 +24,22 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        // $this->addAliases($app);
-        // $this->addRules($app);
-        $this->addTranslations($app);
-        // $this->addBehaviors($app);
-        $this->addCustom($app);
-        // $this->rewriteLibs($app);
+        $this->addConfig($app);
+        $this->addBehaviors($app);
+        $this->rewriteLibs($app);
     }
 
-    private function addAliases($app){
-        $aParseNamespace = $this->parseNamespace();
-        if ( $aParseNamespace[1] == 'modules' ) {
-            $aAliases = ['@' . $aParseNamespace[2] => __DIR__,];
-        } else {
-            $aAliases = ['@' . $aParseNamespace[2] => __DIR__,];
-        }
-        $app->setAliases ( $aAliases );
-    }
-
-    private function addRules($app){
+    private function addConfig($app){
         $aConfig = require(__DIR__ . '/main.php');
-        if (isset($aConfig['params']['urlManager']['rules'])) {
-            $app->urlManager->addRules(
-                $aConfig['params']['urlManager']['rules'],
-                false
-            );
-        }
+
+        $app->params['rbacp'] = $aConfig['params'];
     }
 
-    private function addTranslations($app){
-        $aParseNamespace = $this->parseNamespace();
-        if ( !isset( $app->i18n->translations['rbacp'] ) ) {
-            $app->i18n->translations['rbacp'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => 'messages',
-                'forceTranslation' => true,
-                'fileMap' => [
-                    'rbacp' => 'rbacp.php',
-                ],
-            ];
-        }
-    }
-
-    private function addCustom($app){
-        $app->setModule($this->moduleName,
-                [
-                    'class' => 'myzero1\rbacp\Module'
-                ]
-            );
+    private function addBehaviors($app){
+        $app->attachBehavior ( 'GlobalAccessBehavior', [
+            'class' => '\myzero1\rbacp\behaviors\GlobalAccessBehavior',
+            'rules' => $app->params['rbacp']['accessRules']        
+        ]);
     }
 
     private function rewriteLibs($app){
@@ -79,11 +47,5 @@ class Bootstrap implements BootstrapInterface
         \Yii::$classMap['yii\db\QueryTrait'] = '@rbacp/components/libs/QueryTrait.php';
         \Yii::$classMap['yii\grid\GridView'] = '@rbacp/components/libs/GridView.php';
         \Yii::$classMap['yii\helpers\BaseHtml'] = '@rbacp/components/libs/BaseHtml.php';
-    }
-
-    private function parseNamespace(){
-        $nameNamespace = get_class( $this );
-        $aParseNamespace = explode( '\\', $nameNamespace );
-        return $aParseNamespace;
     }
 }
