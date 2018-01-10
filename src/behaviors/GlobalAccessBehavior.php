@@ -47,7 +47,7 @@ class GlobalAccessBehavior extends Behavior
      */
     public function beforeAction()
     {
-        if (Yii::$app->params['rbacp']['develop']==Yii::$app->user->identity->id) {
+        if (Yii::$app->params['rbacp']['develop']==Yii::$app->usersidentity->id) {
             # Can use very function.
             Yii::$app->controller->attachBehavior('access', [
                 'class' => $this->accessControlFilter,
@@ -67,6 +67,8 @@ class GlobalAccessBehavior extends Behavior
                 ]);
             } else {
                 # rbac logic
+                // 不判断权限的url
+                // 用rbac判断权限
             }
         }
     }
