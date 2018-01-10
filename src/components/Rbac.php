@@ -8,7 +8,7 @@ namespace myzero1\rbacp\components;
  * @author qinxuanwu
  *
  */
-class Rbacp extends Component
+class Rbacp  extends Component
 {
     /**
      * 请求权限，功能权限中基于请求粒度的权限，这里包括了获取数据和提交数据的请求
