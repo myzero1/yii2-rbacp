@@ -47,10 +47,27 @@ class GlobalAccessBehavior extends Behavior
      */
     public function beforeAction()
     {
-        Yii::$app->controller->attachBehavior('access', [
-            'class' => $this->accessControlFilter,
-            'denyCallback' => $this->denyCallback,
-            'rules'=> $this->rules
-        ]);
+        if (Yii::$app->params['rbacp']['develop']==Yii::$app->user->identity->id) {
+            # Can use very function.
+            Yii::$app->controller->attachBehavior('access', [
+                'class' => $this->accessControlFilter,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
+            ]);
+        } else {
+            if (Yii::$app->params['rbacp']['model'] == 'normal') {
+                Yii::$app->controller->attachBehavior('access', [
+                    'class' => $this->accessControlFilter,
+                    'denyCallback' => $app->params['rbacp']['denyCallback'],
+                    'rules' => $app->params['rbacp']['accessRules']
+                ]);
+            } else {
+                # rbac logic
+            }
+        }
     }
 }

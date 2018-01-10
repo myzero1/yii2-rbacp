@@ -11,11 +11,12 @@ return [
     // ],
     'params' => [
         'model' => 'normal',//normal,rbac,rbacp
-        'develop' => 1,//the id of the developer
-        'accessRules' => [//the acess rules
+        'develop' => 1,//The id of the developer
+        'denyCallback' => '',// It is will working,when model==normal
+        'accessRules' => [// It is will working,when model==normal
         ],
 
-        
+
 
 
         'controllerNamespace' => 'rbacp\controllers\backend',

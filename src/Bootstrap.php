@@ -37,8 +37,7 @@ class Bootstrap implements BootstrapInterface
 
     private function addBehaviors($app){
         $app->attachBehavior ( 'GlobalAccessBehavior', [
-            'class' => '\myzero1\rbacp\behaviors\GlobalAccessBehavior',
-            'rules' => $app->params['rbacp']['accessRules']        
+            'class' => '\myzero1\rbacp\behaviors\GlobalAccessBehavior'        
         ]);
     }
 
