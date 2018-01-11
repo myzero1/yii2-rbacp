@@ -33,7 +33,14 @@ class Bootstrap implements BootstrapInterface
     private function addConfig($app){
         $aConfig = require(__DIR__ . '/main.php');
 
-        $app->params['rbacp'] = $aConfig['params'];
+        $app->params['rbacp'] = $aConfig['params']['rbacp'];
+
+        if (isset($aConfig['params']['urlManager']['rules'])) {
+            $app->urlManager->addRules(
+                $aConfig['params']['urlManager']['rules'],
+                false
+            );
+        }
     }
 
     private function addBehaviors($app){

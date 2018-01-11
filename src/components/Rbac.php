@@ -24,6 +24,8 @@ class Rbac extends Component
             return TRUE;
         } else if (in_array($sUri, Yii::$app->params['rbacp']['accessRules']['developUri']) ) {
             return FALSE;
+        } else if ( Yii::$app->params['rbacp']['model'] == 'logined' ) {
+            return TRUE;
         } else {
             // rbac check
         }

@@ -47,29 +47,12 @@ class GlobalAccessBehavior extends Behavior
      */
     public function beforeAction()
     {
-        if (Yii::$app->params['rbacp']['develop']==Yii::$app->usersidentity->id) {
-            # Can use very function.
-            Yii::$app->controller->attachBehavior('access', [
-                'class' => $this->accessControlFilter,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ]
-            ]);
-        } else {
-            if (Yii::$app->params['rbacp']['model'] == 'normal') {
-                Yii::$app->controller->attachBehavior('access', [
-                    'class' => $this->accessControlFilter,
-                    'denyCallback' => $app->params['rbacp']['denyCallback'],
-                    'rules' => $app->params['rbacp']['accessRules']
-                ]);
-            } else {
-                # rbac logic
-                // 不判断权限的url
-                // 用rbac判断权限
-            }
-        }
+        Yii::$app->controller->attachBehavior('access', [
+            'class' => $this->accessControlFilter,
+            // 'denyCallback' => $app->params['rbacp']['denyCallback'],
+            'rules' => [];
+        ]);
+
+        \myzero1\rbacp\components\checkAction();
     }
 }
