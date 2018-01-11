@@ -27,6 +27,7 @@ class Bootstrap implements BootstrapInterface
         $this->addConfig($app);
         $this->addBehaviors($app);
         $this->rewriteLibs($app);
+        $this->addRbacpModule($app);
     }
 
     private function addConfig($app){
@@ -42,9 +43,9 @@ class Bootstrap implements BootstrapInterface
     }
 
     private function rewriteLibs($app){
-        \Yii::$classMap['yii\web\Controller'] = '@rbacp/components/libs/Controller.php';
-        \Yii::$classMap['yii\db\QueryTrait'] = '@rbacp/components/libs/QueryTrait.php';
-        \Yii::$classMap['yii\grid\GridView'] = '@rbacp/components/libs/GridView.php';
-        \Yii::$classMap['yii\helpers\BaseHtml'] = '@rbacp/components/libs/BaseHtml.php';
+        // \Yii::$classMap['yii\web\Controller'] = '@rbacp/components/libs/Controller.php';
+    }
+
+    private function addRbacpModule($app){
     }
 }

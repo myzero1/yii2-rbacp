@@ -14,6 +14,12 @@ return [
         'develop' => 1,//The id of the developer
         'denyCallback' => '',// It is will working,when model==normal
         'accessRules' => [// It is will working,when model==normal
+            'excludeUri' => [
+                // 'moduleId_controllerId_actionId',
+            ],
+            'developUri' => [
+                // 'moduleId_controllerId_actionId',
+            ],
         ],
 
 
