@@ -53,6 +53,6 @@ class GlobalAccessBehavior extends Behavior
             'rules' => [];
         ]);
 
-        \myzero1\rbacp\components\checkAction();
+        return \myzero1\rbacp\components\checkAction();
     }
 }

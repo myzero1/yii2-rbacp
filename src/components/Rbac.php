@@ -38,6 +38,11 @@ class Rbac extends Component
      * @return void
      **/
     public static function checkAction(){
+        if ($this->checkAction()) {
+            return TRUE;
+        } else {
+            throw new yii\web\ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
     }
 
     /**

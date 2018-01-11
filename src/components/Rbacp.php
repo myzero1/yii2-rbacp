@@ -36,6 +36,12 @@ class Rbacp extends Component
      * @return void
      **/
     public static function checkAction(){
+        if ($this->checkAction()) {
+            return TRUE;
+        } else {
+            # code...
+        }
+        
     }
 
     /**
