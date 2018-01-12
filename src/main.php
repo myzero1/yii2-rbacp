@@ -7,15 +7,18 @@ return [
             ],
         ],
         'rbacp' => [
-            'model' => 'normal',//normal,rbac,rbacp
-            'develop' => 1,//The id of the developer
-            'denyCallback' => '',// It is will working,when model==normal
-            'accessRules' => [// It is will working,when model==normal
+            'model' => 'logined',//everyone,logined,rbac,rbacp
+            'develop' => 2,//The id of the developer
+            'denyCallbackUri' => '/admin/site/denyCallbackUri',
+            'loginUri' => '/admin/site/login',
+            'accessRules' => [
                 'excludeUri' => [
-                    // 'moduleId_controllerId_actionId',
+                    // 'app-backend/site/index',
+                    'app-backend/site/login',
                 ],
                 'developUri' => [
-                    // 'moduleId_controllerId_actionId',
+                    // 'app-backend/site/index',
+                    'app-backend/user/my-profile',
                 ],
             ],
         ],

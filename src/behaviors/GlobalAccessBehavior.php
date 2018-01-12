@@ -50,9 +50,18 @@ class GlobalAccessBehavior extends Behavior
         Yii::$app->controller->attachBehavior('access', [
             'class' => $this->accessControlFilter,
             // 'denyCallback' => $app->params['rbacp']['denyCallback'],
-            'rules' => [];
+            'rules' => [
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+                [
+                    'allow' => true,
+                    'roles' => ['?'],
+                ],
+            ],
         ]);
 
-        return \myzero1\rbacp\components\checkAction();
+        return \myzero1\rbacp\components\Rbac::checkAction();
     }
 }
