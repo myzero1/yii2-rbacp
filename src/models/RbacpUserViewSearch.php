@@ -19,8 +19,8 @@ class RbacpUserViewSearch extends RbacpUserView
     public function rules()
     {
         return [
-            [['id', 'status', 'created', 'updated', 'role_id', 'last_time'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'auth_zones', 'true_name', 'mobile', 'ip', 'last_ip', 'role_name'], 'safe'],
+            [['id'], 'integer'],
+            [['username'], 'safe'],
         ];
     }
 
@@ -75,30 +75,16 @@ class RbacpUserViewSearch extends RbacpUserView
 
         // grid filtering conditions
         $query->andFilterWhere([
-            // 'rbacp_user_view.id' => $this->id,
-            'status' => $this->status,
-            'created' => $this->created,
-            'updated' => $this->updated,
-            'role_id' => $this->role_id,
-            'last_time' => $this->last_time,
+            'rbacp_user_view.id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'auth_zones', $this->auth_zones])
-            ->andFilterWhere(['like', 'true_name', $this->true_name])
-            ->andFilterWhere(['like', 'mobile', $this->mobile])
-            ->andFilterWhere(['like', 'ip', $this->ip])
-            ->andFilterWhere(['like', 'last_ip', $this->last_ip]);
+        $query->andFilterWhere(['like', 'username', $this->username]);
 
 
-        //自定义条件
-        $query->andFilterWhere([
-            'rbacp_user_view.status' => 10,
-        ]);
+        // //自定义条件
+        // $query->andFilterWhere([
+        //     'rbacp_user_view.status' => 10,
+        // ]);
 
         // 调用数据库查询策略
         $query->andFilterWhere([
@@ -136,7 +122,7 @@ class RbacpUserViewSearch extends RbacpUserView
         $dataProvider->setSort([
             'attributes' => $attributesEnd,
             'defaultOrder' => [
-                'updated' => SORT_DESC,
+                'id' => SORT_DESC,
             ]
         ]);
 
