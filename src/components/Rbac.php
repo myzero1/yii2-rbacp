@@ -20,7 +20,7 @@ class Rbac extends \yii\base\Component
             return TRUE;
         } else if ( in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['excludeUri']) ) {
             return TRUE;
-        } else if (\Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
+        } else if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
             return TRUE;
         } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['developUri']) ) {
             return FALSE;
@@ -30,6 +30,19 @@ class Rbac extends \yii\base\Component
             // rbac check
         }
         
+    }
+
+    /**
+     * Checking
+     *
+     * @return bool
+     **/
+    public static function isDeveloper(){
+        if (\Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
     
     /**

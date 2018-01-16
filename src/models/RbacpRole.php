@@ -92,7 +92,7 @@ class RbacpRole extends RbacpActiveRecord
         $aPolicy = RbacpPolicy::find()->where(['status' => 1, 'scope' => 1])->all();
         $oRole = \myzero1\rbacp\models\RbacpUserView::findOne(Yii::$app->user->id)->role;
         if (is_null($oRole) ) {
-            if (\myzero1\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 # pass
             } else {
                 return array();
@@ -106,7 +106,7 @@ class RbacpRole extends RbacpActiveRecord
         $aPrivilegeNew = array();
         $aPolicyNew = array();
         foreach ($aPrivilege as $key => $oValue) {
-            if (\myzero1\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 $aPrivilegeNew[$key] = ArrayHelper::toArray($oValue);
             } else if (in_array($oValue->id, $aRolePrivilege) ) {
                 $aPrivilegeNew[$key] = ArrayHelper::toArray($oValue);
@@ -116,7 +116,7 @@ class RbacpRole extends RbacpActiveRecord
         }
         $aPolicyClassc = array();
         foreach ($aPolicy as $key => $oValue) {
-            if (\myzero1\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 $aTem = ArrayHelper::toArray($oValue);
                 $aPolicyNew[$key] = $aTem;
                 $aPolicyClassc[$aPolicyNew[$key]['privilege_id']][] = $aTem;

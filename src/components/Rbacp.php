@@ -6,7 +6,7 @@ namespace myzero1\rbacp\components;
  * 
  * @package myzero1\rbacp\components
  */
-class Rbacp extends Component
+class Rbacp extends \yii\base\Component
 {
     /**
      * Checking

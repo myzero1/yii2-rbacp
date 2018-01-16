@@ -25,6 +25,7 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         $this->addConfig($app);
+        $this->addTranslations($app);
         $this->addBehaviors($app);
         $this->rewriteLibs($app);
         $this->addRbacpModule($app);
@@ -54,5 +55,35 @@ class Bootstrap implements BootstrapInterface
     }
 
     private function addRbacpModule($app){
+    }
+
+    private function addTranslations($app){
+        $aParseNamespace = $this->parseNamespace();//myzero1\rbacp
+        $sTranslationKey = $aParseNamespace[1];
+        if ( !isset( $app->i18n->translations[$sTranslationKey] ) ) {
+            $app->i18n->translations[$sTranslationKey] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@vendor/myzero1/' . $sTranslationKey .'/messages',
+                'forceTranslation' => true,
+                'fileMap' => [
+                    $sTranslationKey => $sTranslationKey . '.php',
+                ],
+            ];
+
+            $app->i18n->translations[$sTranslationKey . '_init'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@@vendor/myzero1/' . $sTranslationKey .'/messages',
+                'forceTranslation' => true,
+                'fileMap' => [
+                    $sTranslationKey . '_init' => $sTranslationKey . '_init.php',
+                ],
+            ];
+        }
+    }
+
+    private function parseNamespace(){ 
+        $nameNamespace = get_class( $this );
+        $aParseNamespace = explode( '\\', $nameNamespace );
+        return $aParseNamespace;
     }
 }
