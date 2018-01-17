@@ -36,7 +36,7 @@ class RbacpRoleController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => RbacpRole::find()->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表']),
+            'query' => RbacpRole::find()->andFilterWhere(['<>', 'rbacp_role.id', '0']),
             'sort' => [
                 'defaultOrder' => [
                     'updated' => SORT_DESC,

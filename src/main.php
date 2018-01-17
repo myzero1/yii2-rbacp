@@ -8,7 +8,7 @@ return [
         ],
         'rbacp' => [
             'model' => 'logined',//everyone,logined,rbac,rbacp
-            'develop' => 2,//The id of the developer
+            'develop' => 1,//The id of the developer
             'denyCallbackUri' => '/admin/site/denyCallbackUri',
             'loginUri' => '/admin/site/login',
             'accessRules' => [
