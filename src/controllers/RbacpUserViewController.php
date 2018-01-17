@@ -86,39 +86,25 @@ class RbacpUserViewController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->updated = time();
-        $oRoles = RbacpRole::find()->where(['status' => 1])->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'])->all();
+        $oRoles = RbacpRole::find()->where(['status' => 1])->all();
         $aRoles = ArrayHelper::map($oRoles, 'id', 'name');
-        $oRole = RbacpUservRole::find()->where(['status' => 1 ,'userv_id' => $id])->one();
 
-        if ($oRole) {
-            $model->role_id = $oRole->role_id;
+        if ($oOld = RbacpUservRole::find()->where(['userv_id'=>$id])->one()) {
+            $model->role_id = $oOld->role_id;
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->role_id) {
-                if ($oRole) {
-                    $oRole->role_id = $model->role_id;
-                    $oRole->updated = time();
-                } else {
-                    $oRole = new RbacpUservRole();
-                    $oRole->role_id = $model->role_id;
-                    $oRole->userv_id = $model->id;
-                    $oRole->created = $oRole->updated = time();
-                }
-                if (!$oRole->save()) {
-                    var_dump($oRole->errors);
-                }
+            $nRoleId = Yii::$app->request->post()['RbacpUserView']['role_id'];
+            $oOld = RbacpUservRole::find()->where(['userv_id'=>$id])->one();
+            if ($oOld) {
+                $oOld->delete();
             }
+            $oTmp = new RbacpUservRole();
+            $oTmp->userv_id = $id;
+            $oTmp->role_id = $nRoleId;
+            $oTmp->save();
 
-            if ($model->save()) {
-                return $this->redirect(['index']);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                    'aRoles' => $aRoles
-                ]);
-            }
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

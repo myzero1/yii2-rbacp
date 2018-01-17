@@ -15,6 +15,7 @@ class RbacpUserView extends RbacpActiveRecord
 {
     const STATUS_ACTIVE = 10;
     public $password;
+    public $role_id;
     /**
      * @inheritdoc
      */
@@ -34,6 +35,7 @@ class RbacpUserView extends RbacpActiveRecord
     {
         return [
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['role_id', 'safe'],
         ];
     }
 
