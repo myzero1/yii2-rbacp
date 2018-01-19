@@ -28,7 +28,7 @@ use myzero1\rbacp\models\RbacpRole;
 class RbacpUserView extends RbacpActiveRecord
 {
     const STATUS_ACTIVE = 10;
-    public $password;
+    public $role_id;
     /**
      * @inheritdoc
      */
@@ -59,6 +59,8 @@ class RbacpUserView extends RbacpActiveRecord
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             [['status', 'id',], 'integer'],
+
+            [['role_id',], 'safe'],
 
 
 
