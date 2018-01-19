@@ -1,6 +1,8 @@
 <?php
 namespace myzero1\rbacp\components;
 
+use \myzero1\rbacp\models\RbacpPrivilege;
+
 /**
  * AccessConroller on before action
  * 
@@ -70,5 +72,29 @@ class Rbac extends \yii\base\Component
      * @return bool
      **/
     public static function checkMenu(){
+    }
+
+    /**
+     * Find privilege
+     *
+     * @return bool
+     **/
+    public static function getPrivilegeByUid($nUid){
+        RbacpPrivilege::find()
+            ->where(['status' => 1])
+            ->all();
+
+
+        // return RbacpRole::find()
+        //     ->join( 'LEFT OUTER JOIN', 
+        //         'rbacp_relationship',
+        //         'rbacp_relationship.id1 =rbacp_role.id'
+        //     )
+        //     ->join( 'LEFT OUTER JOIN', 
+        //         'rbacp_user_view',
+        //         '(rbacp_relationship.id2 = rbacp_user_view.id AND rbacp_relationship.type = 1)'
+        //     )
+        //     ->where(['rbacp_user_view.id'=>$this->id])
+        //     ->one();
     }
 }

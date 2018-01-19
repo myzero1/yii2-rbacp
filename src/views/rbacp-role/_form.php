@@ -42,13 +42,13 @@ use yii\helpers\BaseArrayHelper;
                             <?php foreach ($aPrivilegePolicys as $key => $value) {
                                 printf('<tr>');
                                     printf('<td>');
-                                        echo Html::checkboxList ( "RbacpRole[rbacp_privilege_ids][{$value['id']}]", explode(',', $model->privilege_ids), array($value['id'] => sprintf('%s(%s)', $value['name'], $value['url'])), $options = ['class' => "privilege-item privilege-item-{$value['id']}", 'privilege_id' => $value['id']]);
+                                        echo Html::checkboxList ( "RbacpRole[rbacp_privilege_ids][{$value['id']}]", $model->privilegeIds, array($value['id'] => sprintf('%s(%s)', $value['name'], $value['url'])), $options = ['class' => "privilege-item privilege-item-{$value['id']}", 'privilege_id' => $value['id']]);
                                         // var_dump($value);
                                     printf('</td>');
                                     printf('<td>');
                                         // echo Html::checkboxList ( "RbacpRole[rbacp_policy_ids][{$value['id']}]", explode(',', $model->policy_ids), $value['policys'], $options = [] );
 
-                                        $selectedPolicyIds = explode(',', $model->policy_ids);
+                                        $selectedPolicyIds = $model->policyIds;
                                         $selectedPolicydatas = json_decode($model->policy_datas, TRUE);
                                         foreach ($value['policys'] as $k => $v) {
                                           # code...

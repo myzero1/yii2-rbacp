@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use myzero1\rbacp\models\RbacpRelationship;
 
 /**
  * RbacpRoleController implements the CRUD actions for RbacpRole model.
@@ -94,6 +95,33 @@ class RbacpRoleController extends Controller
             $model->author = Yii::$app->user->id;
 
             if ($model->save()) {
+
+                RbacpRelationship::deleteAll(['id1'=>$id,'type'=>2]);
+                $aRelationshipKey = ['id', 'id1', 'id2', 'type'];
+                $aRelationshipVale = array();
+                foreach ($model->twoD2OneD($model->rbacp_privilege_ids) as $key => $value) {
+                    $aTmp = array();
+                    $aTmp[] = null;
+                    $aTmp[] = $model->id;
+                    $aTmp[] = $value;
+                    $aTmp[] = 2;
+                    $aRelationshipVale[] = $aTmp;
+                }
+                $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
+
+                RbacpRelationship::deleteAll(['id1'=>$id,'type'=>3]);
+                $aRelationshipKey = ['id', 'id1', 'id2', 'type'];
+                $aRelationshipVale = array();
+                foreach ($model->twoD2OneD($model->rbacp_policy_ids) as $key => $value) {
+                    $aTmp = array();
+                    $aTmp[] = null;
+                    $aTmp[] = $model->id;
+                    $aTmp[] = $value;
+                    $aTmp[] = 3;
+                    $aRelationshipVale[] = $aTmp;
+                }
+                $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
+
                 return $this->redirect(['index']);
             } else {
                 return $this->render('create', [
@@ -122,12 +150,43 @@ class RbacpRoleController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if (!is_null($model->rbacp_privilege_ids)) {
+
+                // $res= \Yii::$app->db->createCommand()->batchInsert(Users::tableName(), $userkey, $uservale)->execute();
+                // RbacpRelationship::deleteAll(['id2'=>$id,'type'=>1]);
+
+                RbacpRelationship::deleteAll(['id1'=>$id,'type'=>2]);
+                $aRelationshipKey = ['id', 'id1', 'id2', 'type'];
+                $aRelationshipVale = array();
+                foreach ($model->twoD2OneD($model->rbacp_privilege_ids) as $key => $value) {
+                    $aTmp = array();
+                    $aTmp[] = null;
+                    $aTmp[] = $id;
+                    $aTmp[] = $value;
+                    $aTmp[] = 2;
+                    $aRelationshipVale[] = $aTmp;
+                }
+                $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
+
                 $model->privilege_ids = implode(',', $model->twoD2OneD($model->rbacp_privilege_ids));
             } else {
                 $model->privilege_ids = '';
             }
 
             if (!is_null($model->rbacp_policy_ids)) {
+                RbacpRelationship::deleteAll(['id1'=>$id,'type'=>3]);
+                $aRelationshipKey = ['id', 'id1', 'id2', 'type'];
+                $aRelationshipVale = array();
+                foreach ($model->twoD2OneD($model->rbacp_policy_ids) as $key => $value) {
+                    $aTmp = array();
+                    $aTmp[] = null;
+                    $aTmp[] = $id;
+                    $aTmp[] = $value;
+                    $aTmp[] = 3;
+                    $aRelationshipVale[] = $aTmp;
+                }
+                $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
+
+
                 $model->policy_ids = implode(',', $model->twoD2OneD($model->rbacp_policy_ids));
             } else {
                 $model->policy_ids = '';

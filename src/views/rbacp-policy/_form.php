@@ -21,7 +21,15 @@ use yii\helpers\BaseArrayHelper;
         ]]); ?>
         <div class="box-body">
 
-            <?= $form->field($model, 'privilege_id')->textInput(['maxlength' => true]) ?>
+            <?php //echo $form->field($model, 'privilege_id')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'privilege_id')->dropDownList(
+                    BaseArrayHelper::map(\myzero1\rbacp\models\RbacpPrivilege::find()->all(), 'id', 'name'),
+                    [
+                        'prompt'=>'请选择功能权限',
+                    ]
+                )
+            ?>
 
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
