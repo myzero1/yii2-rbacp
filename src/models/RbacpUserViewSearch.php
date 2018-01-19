@@ -102,7 +102,16 @@ class RbacpUserViewSearch extends RbacpUserView
 
         // add role
         // $query->joinWith( $with = ['role'], $eagerLoading = true, $joinType = 'LEFT JOIN' );
-        $query->joinWith( $with = ['role']);
+        // $query->joinWith( $with = ['role']);
+        $query->join( 'LEFT OUTER JOIN', 
+                'rbacp_relationship',
+                '(rbacp_relationship.id2 = rbacp_user_view.id AND rbacp_relationship.type = 1)'
+            ); 
+
+        $query->join( 'LEFT OUTER JOIN', 
+                'rbacp_role',
+                'rbacp_relationship.id1 =rbacp_role.id'
+            ); 
 
         $query->andFilterWhere(['like', 'rbacp_role.name', $this->role_name]);
 

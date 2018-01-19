@@ -5,7 +5,7 @@ namespace myzero1\rbacp\controllers;
 use Yii;
 use myzero1\rbacp\models\RbacpUserView;
 use myzero1\rbacp\models\RbacpRole;
-use myzero1\rbacp\models\RbacpUservRole;
+use myzero1\rbacp\models\RbacpRelationship;
 use myzero1\rbacp\models\RbacpUserViewSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -89,20 +89,22 @@ class RbacpUserViewController extends Controller
         $oRoles = RbacpRole::find()->where(['status' => 1])->all();
         $aRoles = ArrayHelper::map($oRoles, 'id', 'name');
 
-        if ($oOld = RbacpUservRole::find()->where(['userv_id'=>$id])->one()) {
-            $model->role_id = $oOld->role_id;
+        if ($oRbacpRelationship = RbacpRelationship::find()->where(['id2'=>$id, 'type'=>1])->one()) {
+            $model->role_id = $oRbacpRelationship->id1;
         }
 
-        if ($model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isPost) {
             $nRoleId = Yii::$app->request->post()['RbacpUserView']['role_id'];
-            $oOld = RbacpUservRole::find()->where(['userv_id'=>$id])->one();
-            if ($oOld) {
-                $oOld->delete();
+
+            RbacpRelationship::deleteAll(['id2'=>$id,'type'=>1]);
+
+            if ($nRoleId) {
+                $oRbacpRelationship = new RbacpRelationship();
+                $oRbacpRelationship->id1 = $nRoleId;
+                $oRbacpRelationship->id2 = $id;
+                $oRbacpRelationship->type = 1;
+                $oRbacpRelationship->save();
             }
-            $oTmp = new RbacpUservRole();
-            $oTmp->userv_id = $id;
-            $oTmp->role_id = $nRoleId;
-            $oTmp->save();
 
             return $this->redirect(['index']);
         } else {
