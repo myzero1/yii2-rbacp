@@ -53,7 +53,7 @@ class DefaultController extends Controller
             $result = \Yii::$app->db->createCommand($sql)->queryOne();
 
             if ($result === false) {
-                $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s, %s FROM `user` WHERE 1 = 1;', $model->id, $model->username);
+                $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s, %s, %s FROM `user` WHERE 1 = 1;', $model->id, $model->username, $model->status);
 
                \Yii::$app->db->createCommand($viweSql)->execute();
             }

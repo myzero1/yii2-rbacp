@@ -58,15 +58,7 @@ class RbacpUserView extends RbacpActiveRecord
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.', 'on' => 'create'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            ['password', 'required', 'on' => 'create'],
-            ['password', 'string', 'min' => 6],
-
-            [['username', 'password_hash', 'password_reset_token', 'email', 'true_name', 'mobile', 'ip', 'last_ip'], 'string', 'max' => 255],
-            [['status', 'role_id', 'created', 'updated', 'last_time'], 'integer'],
-            [['auth_key'], 'string', 'max' => 32],
-            [['auth_zones'], 'safe'],
-            [['role_id'], 'required'],
-            [['password_reset_token'], 'unique'],
+            [['status', 'id',], 'integer'],
 
 
 
@@ -81,20 +73,7 @@ class RbacpUserView extends RbacpActiveRecord
         return [
             'id' => Yii::t('rbacp', '用户ID'),
             'username' => Yii::t('rbacp', '用户名称'),
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
             'status' => 'Status',
-            'created' => 'Created',
-            'updated' => 'Updated',
-            'auth_zones' => 'Auth Zones',
-            'role_id' => Yii::t('rbacp', '角色必填'),
-            'true_name' => Yii::t('rbacp', '用户真名'),
-            'mobile' => 'Mobile',
-            'ip' => 'Ip',
-            'last_ip' => 'Last Ip',
-            'last_time' => 'Last Time',
         ];
     }
 

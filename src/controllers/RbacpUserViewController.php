@@ -86,7 +86,7 @@ class RbacpUserViewController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->updated = time();
+        // $model->updated = time();
         $oRoles = RbacpRole::find()->where(['status' => 1])->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'])->all();
         $aRoles = ArrayHelper::map($oRoles, 'id', 'name');
         $oRole = RbacpUservRole::find()->where(['status' => 1 ,'userv_id' => $id])->one();
