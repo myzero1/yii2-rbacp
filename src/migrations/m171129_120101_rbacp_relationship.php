@@ -13,9 +13,9 @@ class m171129_120101_rbacp_relationship extends \yii\db\Migration
 
         $this->createTable('rbacp_relationship', [
             'id' => Schema::TYPE_PK,
-            'id1' => Schema::TYPE_INTEGER . '(11) NOT NULL COMMENT "与type有关，为type关系中的前者"',
-            'id2' => Schema::TYPE_INTEGER . '(11) NOT NULL COMMENT "与type有关，为type关系中的后者"',
-            'type' => Schema::TYPE_SMALLINT . '(4) NOT NULL COMMENT "关系类型：1角色与用户试图，2角色与privilege，3角色与policy"',
+            'id1' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,'与type有关，为type关系中的前者'),
+            'id2' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,'与type有关，为type关系中的后者'),
+            'type' => sprintf("%s(4) NOT NULL COMMENT '%s'",Schema::TYPE_SMALLINT,'关系类型：1角色与用户试图，2角色与privilege，3角色与policy'),
         ], $tableOptions);
     }
 
