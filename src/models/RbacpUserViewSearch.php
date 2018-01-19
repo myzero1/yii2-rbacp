@@ -20,7 +20,7 @@ class RbacpUserViewSearch extends RbacpUserView
     {
         return [
             [['id', 'status'], 'integer'],
-            [['username'], 'safe'],
+            [['username', 'role_name'], 'safe'],
         ];
     }
 
