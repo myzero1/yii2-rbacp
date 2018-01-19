@@ -34,7 +34,7 @@ class RbacpPolicy extends RbacpActiveRecord
     public function rules()
     {
         return [
-            [['name', 'rules', 'sku', 'type', 'scope'], 'required'],
+            [['name', 'rules', 'sku', 'type', 'scope', 'privilege_id'], 'required'],
             [['status', 'created', 'updated', 'scope', 'type', 'privilege_id'], 'integer'],
             [['name', 'sku'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 500],
