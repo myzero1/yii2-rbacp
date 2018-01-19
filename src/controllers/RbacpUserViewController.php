@@ -95,20 +95,36 @@ class RbacpUserViewController extends Controller
             $model->role_id = $oRole->role_id;
         }
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->role_id) {
+        // if (Yii::$app->request->isPost) {
+        //     $nRoleId = Yii::$app->request->post()['RbacpUserView']['role_id'];
+
+        //     RbacpRelationship::deleteAll(['id2'=>$id,'type'=>1]);
+
+        //     if ($nRoleId) {
+        //         $oRbacpRelationship = new RbacpRelationship();
+        //         $oRbacpRelationship->id1 = $nRoleId;
+        //         $oRbacpRelationship->id2 = $id;
+        //         $oRbacpRelationship->type = 1;
+        //         $oRbacpRelationship->save();
+        //     }
+        // }
+
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->request->post()['RbacpUserView']['role_id']) {
                 if ($oRole) {
-                    $oRole->role_id = $model->role_id;
+                    $oRole->role_id = Yii::$app->request->post()['RbacpUserView']['role_id'];
                     $oRole->updated = time();
                 } else {
                     $oRole = new RbacpUservRole();
-                    $oRole->role_id = $model->role_id;
+                    $oRole->role_id = Yii::$app->request->post()['RbacpUserView']['role_id'];
                     $oRole->userv_id = $model->id;
                     $oRole->created = $oRole->updated = time();
                 }
                 if (!$oRole->save()) {
                     var_dump($oRole->errors);
                 }
+            } else {
+                RbacpUservRole::deleteAll(['userv_id'=>$model->id]);
             }
 
             if ($model->save()) {
