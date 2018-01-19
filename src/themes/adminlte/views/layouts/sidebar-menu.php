@@ -10,30 +10,35 @@ use myzero1\rbacp\themes\adminlte\widgets\Menu;
 
     $items = [
         [
-            'label' => Yii::t('app', '产品管理后台首页'),
-            'url' => Yii::$app->homeUrl,
+            'label' => Yii::t('app', 'rbacp首页'),
+            'url' => '/admin/rbacp',
             'icon' => 'fa-dashboard',
-            'active' => Yii::$app->request->url === Yii::$app->homeUrl
+            'active' => Yii::$app->request->url === '/admin/rbacp'
         ],
         [
-            'label' => Yii::t('app', '产品管理'),
+            'label' => Yii::t('app', 'rbacp权限管理'),
             'url' => '#',
             'icon' => ' fa-cubes',
             'visible' => true,
             'items' => [
                 [
-                    'label' => Yii::t('app', '产品列表'),
-                    'url' => ['/product/index'],
+                    'label' => Yii::t('app', '角色管理'),
+                    'url' => ['/rbacp/rbacp-role'],
                     'visible' => true
                 ],
                 [
-                    'label' => Yii::t('app', '升级列表'),
-                    'url' => ['/upgrade/index'],
+                    'label' => Yii::t('app', '赋予角色'),
+                    'url' => ['/rbacp/rbacp-user-view'],
                     'visible' => true
                 ],
                 [
-                    'label' => Yii::t('app', '公告列表'),
-                    'url' => ['/affiche/index'],
+                    'label' => Yii::t('app', '功能权限'),
+                    'url' => ['/rbacp/rbacp-privilege'],
+                    'visible' => true
+                ],
+                [
+                    'label' => Yii::t('app', '数据策略'),
+                    'url' => ['/rbacp/rbacp-policy'],
                     'visible' => true
                 ],
             ]
