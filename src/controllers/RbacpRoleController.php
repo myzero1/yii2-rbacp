@@ -167,7 +167,7 @@ class RbacpRoleController extends Controller
                 }
                 $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
 
-                $model->privilege_ids = implode(',', $model->twoD2OneD($model->rbacp_privilege_ids));
+                // $model->privilege_ids = implode(',', $model->twoD2OneD($model->rbacp_privilege_ids));
             } else {
                 $model->privilege_ids = '';
             }
@@ -187,7 +187,7 @@ class RbacpRoleController extends Controller
                 $res= \Yii::$app->db->createCommand()->batchInsert(RbacpRelationship::tableName(), $aRelationshipKey, $aRelationshipVale)->execute();
 
 
-                $model->policy_ids = implode(',', $model->twoD2OneD($model->rbacp_policy_ids));
+                // $model->policy_ids = implode(',', $model->twoD2OneD($model->rbacp_policy_ids));
             } else {
                 $model->policy_ids = '';
             }
