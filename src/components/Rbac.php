@@ -27,7 +27,12 @@ class Rbac extends \yii\base\Component
         } else if ( \Yii::$app->params['rbacp']['model'] == 'logined' ) {
             return !\Yii::$app->user->isGuest;
         } else {
-            // rbac check
+            if (\Yii::$app->user->isGuest) {
+                return FALSE;
+            } else {
+                // privilege check
+                return self::havePrivilege(\Yii::$app->requestedRoute, \Yii::$app->user->id);
+            }
         }
         
     }
@@ -55,11 +60,23 @@ class Rbac extends \yii\base\Component
             return TRUE;
         } else {
             if ( \Yii::$app->user->isGuest ) {
-                \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
-                \Yii::$app->response->send();
+                // \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
+                // \Yii::$app->response->send();
+                if (\Yii::$app->params['rbacp']['loginUri'] != \Yii::$app->requestedRoute) {
+                    \Yii::$app
+                        ->getResponse()
+                        ->redirect(\Yii::$app->params['rbacp']['loginUri'])
+                        ->send();
+                    exit;
+                }
             } else {
-                \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['denyCallbackUri']);
-                \Yii::$app->response->send();
+                /*\Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['denyCallbackUri']);
+                \Yii::$app->response->send();*/
+                \Yii::$app
+                    ->getResponse()
+                    ->redirect(\Yii::$app->params['rbacp']['denyCallbackUri'])
+                    ->send();
+                exit;
             }
         }
     }
@@ -70,5 +87,35 @@ class Rbac extends \yii\base\Component
      * @return bool
      **/
     public static function checkMenu(){
+    }
+
+    /**
+     * is there the privilege
+     *
+     * @return void
+     **/
+    public static function havePrivilege($sUri, $iUserId){
+        $sSql = "
+            SELECT
+              COUNT(*) as count
+            FROM
+              rbacp_privilege AS rp
+            INNER JOIN rbacp_role AS rro ON find_in_set(rp.id, rro.privilege_ids) > 0
+            INNER JOIN rbacp_userv_role AS rur ON rur.role_id = rro.id
+            INNER JOIN rbacp_user_view AS ruv ON ruv.id = rur.userv_id
+            WHERE
+              ruv.id = {$iUserId}
+            AND rp.url = '{$sUri}'
+            AND rp.`status` = 1
+            AND rro.`status` = 1
+            AND rur.`status` = 1
+            AND ruv.`status` = 1
+        ";
+        $aResult = \Yii::$app->db->createCommand($sSql)->queryOne();
+        if ($aResult['count'] > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 }
