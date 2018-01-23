@@ -27,7 +27,7 @@ use myzero1\rbacp\helper\Helper;
             'label' => Yii::t('app', 'rbacp数据库'),
             // 'url' => sprintf('/admin/%s/default/index', $sRbacpModuleName),
             'url' => [sprintf('/%s/default/migrate-up', $sRbacpModuleName)],
-            'icon' => 'fa-gears',
+            'icon' => 'fa-database',
             'active' => Yii::$app->request->pathInfo === sprintf('%s/default/migrate-up', $sRbacpModuleName)
         ],
         [
