@@ -12,7 +12,7 @@ class Bootstrap implements BootstrapInterface
     /**
      * @inheritdoc
      */
-    public $moduleName = 'rbacp';
+    public $params = [];
 
     /**
      * @inheritdoc
@@ -33,10 +33,12 @@ class Bootstrap implements BootstrapInterface
 
     private function addConfig($app){
         $aConfig = require(__DIR__ . '/main.php');
+        
+        $rbacpParams = array_merge($aConfig['params'], $this->params);
 
-        $app->params['rbacp'] = $aConfig['params']['rbacp'];
+        $app->params['rbacp'] = $rbacpParams['rbacp'];
 
-        if (isset($aConfig['params']['urlManager']['rules'])) {
+        if (isset($rbacpParams['urlManager']['rules'])) {
             $app->urlManager->addRules(
                 $aConfig['params']['urlManager']['rules'],
                 false
