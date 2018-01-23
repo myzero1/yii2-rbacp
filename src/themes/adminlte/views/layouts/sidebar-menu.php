@@ -7,13 +7,28 @@
  */
 
 use myzero1\rbacp\themes\adminlte\widgets\Menu;
+use yii\helpers\Url;
+use myzero1\rbacp\helper\Helper;
+
+    $sUri = sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+    $sRbacpModuleName = Helper::getRbacpModuleName();
+
+    // var_dump(Yii::$app->request->pathInfo);exit;
 
     $items = [
         [
             'label' => Yii::t('app', 'rbacp首页'),
-            'url' => '/admin/rbacp',
+            // 'url' => sprintf('/admin/%s/default/index', $sRbacpModuleName),
+            'url' => [sprintf('/%s/default/index', $sRbacpModuleName)],
             'icon' => 'fa-dashboard',
-            'active' => Yii::$app->request->url === '/admin/rbacp'
+            'active' => $sUri === sprintf('%s/%s/default/index', \Yii::$app->homeUrl, $sRbacpModuleName)
+        ],
+        [
+            'label' => Yii::t('app', 'rbacp数据库'),
+            // 'url' => sprintf('/admin/%s/default/index', $sRbacpModuleName),
+            'url' => [sprintf('/%s/default/migrate-up', $sRbacpModuleName)],
+            'icon' => 'fa-gears',
+            'active' => Yii::$app->request->pathInfo === sprintf('%s/default/migrate-up', $sRbacpModuleName)
         ],
         [
             'label' => Yii::t('app', 'rbacp权限管理'),
@@ -23,23 +38,42 @@ use myzero1\rbacp\themes\adminlte\widgets\Menu;
             'items' => [
                 [
                     'label' => Yii::t('app', '角色管理'),
-                    'url' => ['/rbacp/rbacp-role'],
-                    'visible' => true
+                    'url' => [sprintf('/%s/rbacp-role/index', $sRbacpModuleName)],
+                    'visible' => true,
+                    'active' => in_array(Yii::$app->request->pathInfo, [
+                        sprintf('%s/rbacp-role/index', $sRbacpModuleName),
+                        sprintf('%s/rbacp-role/create', $sRbacpModuleName),
+                        sprintf('%s/rbacp-role/update', $sRbacpModuleName),
+                    ]),
                 ],
                 [
                     'label' => Yii::t('app', '赋予角色'),
-                    'url' => ['/rbacp/rbacp-user-view'],
-                    'visible' => true
+                    'url' => [sprintf('/%s/rbacp-user-view/index', $sRbacpModuleName)],
+                    'visible' => true,
+                    'active' => in_array(Yii::$app->request->pathInfo, [
+                        sprintf('%s/rbacp-user-view/index', $sRbacpModuleName),
+                        sprintf('%s/rbacp-user-view/update', $sRbacpModuleName),
+                    ]),
                 ],
                 [
                     'label' => Yii::t('app', '功能权限'),
-                    'url' => ['/rbacp/rbacp-privilege'],
-                    'visible' => true
+                    'url' => [sprintf('/%s/rbacp-privilege/index', $sRbacpModuleName)],
+                    'visible' => true,
+                    'active' => in_array(Yii::$app->request->pathInfo, [
+                        sprintf('%s/rbacp-privilege/index', $sRbacpModuleName),
+                        sprintf('%s/rbacp-privilege/create', $sRbacpModuleName),
+                        sprintf('%s/rbacp-privilege/update', $sRbacpModuleName),
+                    ]),
                 ],
                 [
                     'label' => Yii::t('app', '数据策略'),
-                    'url' => ['/rbacp/rbacp-policy'],
-                    'visible' => true
+                    'url' => [sprintf('/%s/rbacp-policy/index', $sRbacpModuleName)],
+                    'visible' => true,
+                    'active' => in_array(Yii::$app->request->pathInfo, [
+                        sprintf('%s/rbacp-policy/index', $sRbacpModuleName),
+                        sprintf('%s/rbacp-policy/create', $sRbacpModuleName),
+                        sprintf('%s/rbacp-policy/update', $sRbacpModuleName),
+                    ]),
                 ],
             ]
         ],
