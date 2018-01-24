@@ -65,12 +65,6 @@ return [
             // ],
         ],
     ],
-    'modules' => [
-        'rbacp' => [
-            'class' => '\myzero1\rbacp\Module', // for rbacp UI
-        ],
-        // ...
-    ],
     // ...
 ];
 ```

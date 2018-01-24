@@ -67,7 +67,8 @@ class Rbac extends \yii\base\Component
             if ( \Yii::$app->user->isGuest ) {
                 // \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
                 // \Yii::$app->response->send();
-                if (\Yii::$app->params['rbacp']['loginUri'] != \Yii::$app->requestedRoute) {
+                $sUri = \myzero1\rbacp\helper\Helper::getUri();
+                if (\Yii::$app->params['rbacp']['loginUri'] != $sUri) {
                     \Yii::$app
                         ->getResponse()
                         ->redirect(\Yii::$app->params['rbacp']['loginUri'])

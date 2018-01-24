@@ -57,6 +57,11 @@ class Bootstrap implements BootstrapInterface
     }
 
     private function addRbacpModule($app){
+        $app->setModule('rbacp',
+            [
+                'class' => '\myzero1\rbacp\Module'
+            ]
+        );
     }
 
     private function addTranslations($app){
