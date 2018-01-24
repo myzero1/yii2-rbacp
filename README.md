@@ -1,8 +1,7 @@
 yii2-rbacp
 ========================
 
-Simple captcha for yii2.Just add the module in config file and use the widget.
-
+Access modules,including functional access and data access.
 
 Installation
 ------------
@@ -12,13 +11,13 @@ The preferred way to install this module is through [composer](http://getcompose
 Either run
 
 ```
-php composer.phar require myzero1/yii2-captcha：1.*
+php composer.phar require myzero1/yii2-rbacp：1.*
 ```
 
 or add
 
 ```
-"myzero1/yii2-captcha": "~1"
+"myzero1/yii2-rbacp": "~1"
 ```
 
 to the require section of your `composer.json` file.
@@ -32,21 +31,43 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 return [
-	// ...
-    'bootstrap' => ['captcha',...],
+    // ...
+    'bootstrap' => [
+        'captcha',
+        ...
+        'rbacp' => [
+            'class' => \myzero1\rbacp\Bootstrap::class, // for rbacp function
+            // 'params' => [
+            //    'urlManager' => [
+            //         'rules' => [
+            //             // 'rate/area/index' => 'rate/jf-core-area/index',
+            //         ],
+            //     ],
+            //     'rbacp' => [
+            //         'model' => 'rbac',//everyone,logined,rbac,rbacp
+            //         'develop' => 1,//The id of the developer
+            //         'denyCallbackUri' => '/admin/rbacp/default/migrate-up',
+            //         'loginUri' => '/admin/site/login',
+            //         'accessRules' => [
+            //             'excludeUri' => [
+            //                 // 'app-backend/site/index',
+            //                 'app-backend/site/logout',
+            //                 'app-backend/site/login',
+            //                 'rbacp/default/index',
+            //                 'rbacp/default/migrate-up',
+            //             ],
+            //             'developUri' => [
+            //                 // 'app-backend/site/index',
+            //                 'app-backend/user/my-profile',
+            //             ],
+            //         ],
+            //     ],
+            // ],
+        ],
+    ],
     'modules' => [
-        'captcha' => [
-            'class' => 'myzero1\captcha\Module',
-            // 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            // 'backColor' => 0x605ca8,//背景颜色
-            // 'maxLength' => 3, //最大显示个数
-            // 'minLength' => 3,//最少显示个数
-            // 'padding' => 5,//间距
-            // 'height' => 40,//高度
-            // 'width' => 80,  //宽度
-            // 'foreColor' => 0xffffff,     //字体颜色
-            // 'offset' => 4,        //设置字符偏移量 有效果
-            // 'transparent' => false,        //设置字符偏移量 有效果
+        'rbacp' => [
+            'class' => '\myzero1\rbacp\Module', // for rbacp UI
         ],
         // ...
     ],
@@ -58,20 +79,11 @@ return [
 Usage
 -----
 
-Add upload widget like following:
+Use the rbac of rbacp:
 
 ```
 
-echo \myzero1\captcha\widgets\Captcha::widget([
-    'model' => new \myzero1\captcha\models\Captcha(['scenario'=>'js']),
-    // 'model' => new \myzero1\captcha\models\Captcha(['scenario'=>'jsPhp']),
-    'attribute' => 'verifyCode',
-    'imageOptions'=>[
-        'alt'=>'点击换图',
-        'title'=>'点击换图',
-        'style'=>'cursor:pointer'
-    ]
-]);
+1. Add 
 
 
 ```
