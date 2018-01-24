@@ -18,9 +18,11 @@ class Rbac extends \yii\base\Component
     public static function checkAccess($sUri=''){
         // $sUri = sprintf('%s/%s/%s', \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
 
-        $sUri = $sUri ? $sUri : sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+        // $sUri = $sUri ? $sUri : sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
 
-        // var_dump($sUri);exit;
+        $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
+
+        
         if ( \Yii::$app->params['rbacp']['model'] == 'everyone' ) {
             return TRUE;
         } else if ( in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['excludeUri']) ) {
@@ -68,11 +70,11 @@ class Rbac extends \yii\base\Component
                 // \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
                 // \Yii::$app->response->send();
                 $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
-                // var_dump($sUri);exit;
+                // var_dump(\yii\helpers\Url::to([\Yii::$app->params['rbacp']['loginUri']]));exit;
                 if (\Yii::$app->params['rbacp']['loginUri'] != $sUri) {
                     \Yii::$app
                         ->getResponse()
-                        ->redirect(\Yii::$app->params['rbacp']['loginUri'])
+                        ->redirect(\yii\helpers\Url::to([\Yii::$app->params['rbacp']['loginUri']]))
                         ->send();
                     exit;
                 }
@@ -81,7 +83,7 @@ class Rbac extends \yii\base\Component
                 \Yii::$app->response->send();*/
                 \Yii::$app
                     ->getResponse()
-                    ->redirect(\Yii::$app->params['rbacp']['denyCallbackUri'])
+                    ->redirect(\yii\helpers\Url::to([\Yii::$app->params['rbacp']['denyCallbackUri']]))
                     ->send();
                 exit;
             }

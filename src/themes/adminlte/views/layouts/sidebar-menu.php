@@ -48,7 +48,7 @@
                     ]),
                 ],
                 [
-                    'label' => Yii::t('app', '赋予角色'),
+                    'label' => Yii::t('app', '授权管理'),
                     'url' => [sprintf('/%s/rbacp-user-view/index', $sRbacpModuleName)],
                     'visible' => true,
                     'active' => in_array($sUri, [

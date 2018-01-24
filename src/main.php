@@ -10,11 +10,12 @@ return [
             'model' => 'rbac',//everyone,logined,rbac,rbacp
             'develop' => 1,//The id of the developer
             'rbacpTester' => 2,//The id of the tester of rbacp
-            'denyCallbackUri' => '/admin/rbacp/default/migrate-up',
+            'denyCallbackUri' => '/rbacp/default/rbacp403',
             'loginUri' => '/site/login',
             'accessRules' => [
                 'excludeUri' => [
                     // 'app-backend/site/index',
+                    '/rbacp/default/rbacp403',
                     'app-backend/site/logout',
                     'app-backend/site/login',
                     'rbacp/default/index',
