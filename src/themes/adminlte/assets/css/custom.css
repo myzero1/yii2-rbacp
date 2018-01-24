@@ -125,7 +125,6 @@
 .page-error-conent{
     width: 500px;
     height: 300px;
-    background: red;
     position: absolute;
     top: 50%;
     margin-top: -150px;
@@ -134,10 +133,46 @@
 }
 
 .page-error-left{
+    float: left;
+    width: 50%;
+}
+
+.page-error-icon{
+    border: solid 10px #fff;
+    border-radius: 50px;
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
 }
 
 .page-error-icon-conent{
+    font-size: 100px;
+    padding: 40px;
+    color: #fff;
+    background: red;
+    border-radius: 40px;
 }
 
 .page-error-right{
+    float: right;
+    width: 50%;
+}
+
+.page-error-right-conent{
+    padding: 50px 30px;
+    color: #fff;
+}
+
+.page-error-title{
+    font-size: 100px;
+    line-height: 100px;
+}
+
+.page-error-subtitle{
+    font-size: 30px;
+}
+
+.page-error-subtitle2{
+    font-size: 24px;
 }
