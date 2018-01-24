@@ -56,7 +56,7 @@ class Rbac extends \yii\base\Component
     }
     
     /**
-     * Checking
+     * Checking 
      *
      * @return void
      **/
@@ -67,7 +67,8 @@ class Rbac extends \yii\base\Component
             if ( \Yii::$app->user->isGuest ) {
                 // \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
                 // \Yii::$app->response->send();
-                $sUri = \myzero1\rbacp\helper\Helper::getUri();
+                $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
+                // var_dump($sUri);exit;
                 if (\Yii::$app->params['rbacp']['loginUri'] != $sUri) {
                     \Yii::$app
                         ->getResponse()

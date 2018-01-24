@@ -92,4 +92,16 @@ class DefaultController extends Controller
         }
     }
 
+
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionRbacp403()
+    {
+        $this->layout = '@vendor/myzero1/yii2-rbacp/src/themes/adminlte/views/layouts/blank.php';
+        return $this->render('rbacp403');
+    }
+
 }

@@ -11,7 +11,7 @@ return [
             'develop' => 1,//The id of the developer
             'rbacpTester' => 2,//The id of the tester of rbacp
             'denyCallbackUri' => '/admin/rbacp/default/migrate-up',
-            'loginUri' => '/admin/site/login',
+            'loginUri' => '/site/login',
             'accessRules' => [
                 'excludeUri' => [
                     // 'app-backend/site/index',

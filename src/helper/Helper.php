@@ -37,7 +37,19 @@ class Helper {
      * @return  string
      **/
     public static function getUri(){
+        return sprintf('%s%s', \Yii::$app->homeUrl, self::getShortUri());
+    }
+
+    /**
+     * Get uri,examp site/login,rbacp/default/index.
+     *
+     * 调用实例：Helper::
+     *
+     * @param   void
+     * @return  string
+     **/
+    public static function getShortUri(){
         $sCurrentModId = \Yii::$app->controller->module->id == \Yii::$app->id ? '' : '/'.\Yii::$app->controller->module->id;
-        return sprintf('%s%s/%s/%s', \Yii::$app->homeUrl, $sCurrentModId, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+        return sprintf('%s/%s/%s', $sCurrentModId, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
     }
 }

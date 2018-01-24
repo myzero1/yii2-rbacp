@@ -12,6 +12,8 @@
 
     $sUri = \myzero1\rbacp\helper\Helper::getUri();
 
+    // var_dump($sUri);exit;
+
     $sRbacpModuleName = Helper::getRbacpModuleName();
     
     $items = [
