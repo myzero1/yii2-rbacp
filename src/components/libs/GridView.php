@@ -406,7 +406,7 @@ class GridView extends BaseListView
         $options = $this->options;
         $cells = [];
         foreach ($this->columns as $key => $column) {
-            if (\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 $cells[] = $column->renderHeaderCell();
             } else if (isset($options['rbacp_policy_sku'])) {
                 if($column instanceof yii\grid\DataColumn) {
@@ -420,7 +420,7 @@ class GridView extends BaseListView
                         $sColumnName = $key;
                     }
                     $sRbacpPolicySku = trim($options['rbacp_policy_sku']);
-                    if ( \rbacp\components\Rbacp::listPrivilege($sRbacpPolicySku, $sColumnName) ) {
+                    if ( \myzero1\rbacp\components\Rbacp::listPrivilege($sRbacpPolicySku, $sColumnName) ) {
                         $cells[] = $column->renderHeaderCell();
                     } else {
                         continue;
@@ -536,7 +536,7 @@ class GridView extends BaseListView
         $options = $this->options;
         $cells = [];
         foreach ($this->columns as $key => $column) {
-            if (\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 $cells[] = $column->renderDataCell($model, $key, $index);
             } else if (isset($options['rbacp_policy_sku'])) {
                 if($column instanceof yii\grid\DataColumn) {
@@ -550,7 +550,7 @@ class GridView extends BaseListView
                         $sColumnName = $key;
                     }
                     $sRbacpPolicySku = trim($options['rbacp_policy_sku']);
-                    if ( \rbacp\components\Rbacp::listPrivilege($sRbacpPolicySku, $sColumnName) ) {
+                    if ( \myzero1\rbacp\components\Rbacp::listPrivilege($sRbacpPolicySku, $sColumnName) ) {
                         $cells[] = $column->renderDataCell($model, $key, $index);
                     } else {
                         continue;

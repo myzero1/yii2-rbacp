@@ -11,10 +11,15 @@ class Rbac extends \yii\base\Component
     /**
      * Checking
      *
+     * @param string
+     * 
      * @return bool
      **/
-    public static function checkAccess(){
-        $sUri = sprintf('%s/%s/%s', \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+    public static function checkAccess($sUri=''){
+        // $sUri = sprintf('%s/%s/%s', \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+
+        $sUri = $sUri ? $sUri : sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+
         // var_dump($sUri);exit;
         if ( \Yii::$app->params['rbacp']['model'] == 'everyone' ) {
             return TRUE;
@@ -82,11 +87,41 @@ class Rbac extends \yii\base\Component
     }
 
     /**
+     * 获取可用的菜单项
+     *
+     * 在需要获取可用的菜单项的地方调用
+     * @param        array               $aMenuItems
+     *
+     * @return       array
+     **/
+    public static function getMenuItems($aMenuItems){
+        \Yii::$app->getModule('rbacp');
+        if (!self::isDeveloper()){
+            foreach ($aMenuItems as $key => $value) {
+                if (isset($value['items']) && count($value['items'])) {
+                    foreach ($value['items'] as $k => $v) {
+                        if (!self::checkAccess($v['url'])) {
+                            unset($aMenuItems[$key]['items'][$k]);
+                        }
+                    }
+                } else {
+                    if (!self::checkAccess($value['url'])) {
+                        unset($aMenuItems[$key]);
+                    }
+                }
+            }
+        }
+
+        return $aMenuItems;
+    }
+
+    /**
      * Checking
      *
      * @return bool
      **/
     public static function checkMenu(){
+        self::checkAccess();
     }
 
     /**

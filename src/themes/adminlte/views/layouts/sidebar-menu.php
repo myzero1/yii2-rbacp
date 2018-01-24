@@ -13,8 +13,6 @@ use myzero1\rbacp\helper\Helper;
     $sUri = sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
     $sRbacpModuleName = Helper::getRbacpModuleName();
 
-    // var_dump(Yii::$app->request->pathInfo);exit;
-
     $items = [
         [
             'label' => Yii::t('app', 'rbacp首页'),
@@ -80,9 +78,9 @@ use myzero1\rbacp\helper\Helper;
     ];
 
     $sMenuItems = Yii::$app->session->get('aMenuItems');
-    if (1||is_null($sMenuItems)) {
-        if (isset(Yii::$app->modules['app'])) {
-            $itemsNew = \rbacp\components\Rbacp::getMenuItems(Yii::$app->user->id, $items);
+    if (is_null($sMenuItems)) {
+        if (isset(Yii::$app->modules[$sRbacpModuleName])) {
+            $itemsNew = \myzero1\rbacp\components\Rbac::getMenuItems($items);
         } else {
             $itemsNew = $items;
         }

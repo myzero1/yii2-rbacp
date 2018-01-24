@@ -150,10 +150,10 @@ class BaseHtml
         $html = "<$name" . static::renderTagAttributes($options) . '>';
         $sHtml = isset(static::$voidElements[strtolower($name)]) ? $html : "$html$content</$name>";
         $sResult = '';
-        if (\rbacp\components\Rbacp::isDeveloper()) {
+        if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
             $sResult = $sHtml;
         } else if ( isset( $options['rbacp_policy_sku'] ) ) {
-            $mTagPrivilege = \rbacp\components\Rbacp::tagShowPrivilege($options);
+            $mTagPrivilege = \myzero1\rbacp\components\Rbacp::tagShowPrivilege($options);
             if ($mTagPrivilege) {
                 $sResult = $sHtml;
             } else {
@@ -1738,7 +1738,7 @@ class BaseHtml
     {
         $name = isset($options['name']) ? $options['name'] : static::getInputName($model, $attribute);
         $selection = isset($options['value']) ? $options['value'] : static::getAttributeValue($model, $attribute);
-        $items = \rbacp\components\Rbacp::tagDataPrivilege($selection, $items, $options);//checkout data privilege，add by myzero1.
+        $items = \myzero1\rbacp\components\Rbacp::tagDataPrivilege($selection, $items, $options);//checkout data privilege，add by myzero1.
         if (!array_key_exists('unselect', $options)) {
             $options['unselect'] = '';
         }

@@ -186,9 +186,9 @@ trait QueryTrait
      * @see filterWhere()
      * @see orFilterWhere()
      */
-    public function andFilterWhere(array $condition)
+    public function andFilterWhere(array $condition) // rewrite it by myzero1
     {
-        if (\rbacp\components\Rbacp::isDeveloper()) {
+        if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
             $goRbacp = FALSE;
         } else {
             // var_dump($condition);exit;
