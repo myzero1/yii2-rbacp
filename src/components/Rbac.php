@@ -38,7 +38,7 @@ class Rbac extends \yii\base\Component
                 return FALSE;
             } else {
                 // privilege check
-                return self::havePrivilege(\Yii::$app->requestedRoute, \Yii::$app->user->id);
+                return self::havePrivilege(\myzero1\rbacp\helper\Helper::getShortUri(), \Yii::$app->user->id);
             }
         }
         
