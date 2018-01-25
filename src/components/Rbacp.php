@@ -139,8 +139,8 @@ class Rbacp extends \yii\base\Component
     public static function tagShowPrivilege($tagOptions){
         \Yii::$app->getModule('rbacp');
         if ( isset( $tagOptions['rbacp_policy_sku'] ) ) {
-          $sPolicySku = trim($tagOptions['rbacp_policy_sku']);
-          $aRules = self::getPolicy(\Yii::$app->requestedRoute, \Yii::$app->user->id, $sPolicySku, 1);
+          $sPolicySku = trim($tagOptions['rbacp_policy_sku']); 
+          $aRules = self::getPolicy(\myzero1\rbacp\helper\Helper::getShortUri(), \Yii::$app->user->id, $sPolicySku, 1);
           // var_dump($sPolicySku);
           // var_dump($aRules);exit;
           $aResult = current($aRules);
@@ -277,7 +277,7 @@ class Rbacp extends \yii\base\Component
             AND rpr.url = '{$sUri}'
             AND rpo.sku = '{$sPolicySku}'
             AND rpo.`status` = 1
-            AND ruv.`status` = 10
+            AND ruv.`status` = 1
             AND rro.`status` = 1
             AND rpr.`status` = 1
             AND rpo.`type` = {$iType}
@@ -316,7 +316,7 @@ class Rbacp extends \yii\base\Component
             WHERE
                 ruv.id = {$iUserId}
             AND rpo.sku = '{$sPolicySku}'
-            AND ruv.`status` = 10
+            AND ruv.`status` = 1
             AND rro.`status` = 1
             AND rpo.`status` = 1
         ";

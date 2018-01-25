@@ -25,14 +25,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            <?= GridView::widget([
+            <?= GridView::widget([ 
                 'dataProvider' => $dataProvider,
                 // 'filterModel' => $searchModel,
+                'options' => [
+                    'rbacp_policy_sku' => 'rbacp|rbacp-policy|index|rbacpPolicy|list|rbacp策略列表'
+                ],
                 'columns' => [
                     'id',
                     'name',
                     'description',
-                    'sku',
+                    'sku' =>[
+                       'class' => 'yii\grid\DataColumn',
+                       'attribute' => 'sku',
+                       'options' => [
+                            'style' => 'width:200px',
+                       ]
+                    ],
                     'type' =>[
                        'class' => 'yii\grid\DataColumn',
                        'label' => Yii::t('rbacp', '策略类型'),
@@ -57,7 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             return \myzero1\rbacp\models\RbacpPolicy::status()[$row->status];
                         },
                     ],
-                    'rules',
+                    'rules' =>[
+                       'class' => 'yii\grid\DataColumn',
+                       'attribute' => 'rules',
+                       'options' => [
+                            'style' => 'width:200px',
+                       ]
+                    ],
 
                     'operation' => [
                         // 'contentOptions' => [
