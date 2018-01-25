@@ -32,7 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => ['label'=>Yii::t('rbacp', '角色ID'), 'attribute' => 'id',  'value' => 'id' ],
                     'name',
                     'description',
-                    'status',
+                    'status' =>[
+                       'class' => 'yii\grid\DataColumn',
+                       'label' => Yii::t('rbacp', '策略状态'),
+                       'attribute' => 'status',
+                       'value' => function ($row) {
+                            return \myzero1\rbacp\models\RbacpRole::status()[$row->status];
+                        },
+                    ],
                     'created' => [
                        'class' => 'yii\grid\DataColumn',
                        'label' => Yii::t('rbacp', '创建时间'),
