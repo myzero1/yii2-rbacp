@@ -16,13 +16,9 @@ class Rbac extends \yii\base\Component
      * @return bool
      **/
     public static function checkAccess($sUri=''){
-        // $sUri = sprintf('%s/%s/%s', \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
+        $sUri = $sUri ? $sUri : \myzero1\rbacp\helper\Helper::getShortUri();
 
-        // $sUri = $sUri ? $sUri : sprintf('%s/%s/%s/%s', \Yii::$app->homeUrl, \Yii::$app->controller->module->id, \Yii::$app->controller->id, \Yii::$app->controller->action->id);
-
-        $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
-
-        
+        // var_dump($sUri);
         if ( \Yii::$app->params['rbacp']['model'] == 'everyone' ) {
             return TRUE;
         } else if ( in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['excludeUri']) ) {
@@ -38,7 +34,7 @@ class Rbac extends \yii\base\Component
                 return FALSE;
             } else {
                 // privilege check
-                return self::havePrivilege(\myzero1\rbacp\helper\Helper::getShortUri(), \Yii::$app->user->id);
+                return self::havePrivilege($sUri, \Yii::$app->user->id);
             }
         }
         
@@ -67,10 +63,7 @@ class Rbac extends \yii\base\Component
             return TRUE;
         } else {
             if ( \Yii::$app->user->isGuest ) {
-                // \Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['loginUri']);
-                // \Yii::$app->response->send();
                 $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
-                // var_dump(\yii\helpers\Url::to([\Yii::$app->params['rbacp']['loginUri']]));exit;
                 if (\Yii::$app->params['rbacp']['loginUri'] != $sUri) {
                     \Yii::$app
                         ->getResponse()
@@ -79,8 +72,6 @@ class Rbac extends \yii\base\Component
                     exit;
                 }
             } else {
-                /*\Yii::$app->controller->redirect(\Yii::$app->params['rbacp']['denyCallbackUri']);
-                \Yii::$app->response->send();*/
                 \Yii::$app
                     ->getResponse()
                     ->redirect(\yii\helpers\Url::to([\Yii::$app->params['rbacp']['denyCallbackUri']]))
@@ -99,17 +90,19 @@ class Rbac extends \yii\base\Component
      * @return       array
      **/
     public static function getMenuItems($aMenuItems){
-        \Yii::$app->getModule('rbacp');
         if (!self::isDeveloper()){
             foreach ($aMenuItems as $key => $value) {
                 if (isset($value['items']) && count($value['items'])) {
                     foreach ($value['items'] as $k => $v) {
-                        if (!self::checkAccess($v['url'])) {
+                        if (!self::checkAccess($v['url'][0])) {
                             unset($aMenuItems[$key]['items'][$k]);
                         }
                     }
+                    if (count($aMenuItems[$key]['items']) == 0) {
+                        unset($aMenuItems[$key]);
+                    }
                 } else {
-                    if (!self::checkAccess($value['url'])) {
+                    if (!self::checkAccess($value['url'][0])) {
                         unset($aMenuItems[$key]);
                     }
                 }
@@ -150,7 +143,9 @@ class Rbac extends \yii\base\Component
             AND rur.`status` = 1
             AND ruv.`status` = 1
         ";
+
         $aResult = \Yii::$app->db->createCommand($sSql)->queryOne();
+
         if ($aResult['count'] > 0) {
             return TRUE;
         } else {

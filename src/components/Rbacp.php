@@ -17,7 +17,7 @@ class Rbacp extends \yii\base\Component
     public static function paramPrivilege(){
         \Yii::$app->getModule('rbacp');
         if (!\Yii::$app->user->isGuest) {
-            if (\rbacp\components\Rbacp::isDeveloper()) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 return TRUE;
             } else {
                 $sUri = \Yii::$app->requestedRoute;
@@ -189,7 +189,9 @@ class Rbacp extends \yii\base\Component
      **/
     public static function tagDataPrivilege($selection, $items, $tagOptions){
         \Yii::$app->getModule('rbacp');
-        if (\rbacp\components\Rbacp::isDeveloper()) {
+
+
+        if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
             $aResults = $items;
         } else if ( isset( $tagOptions['rbacp_policy_sku'] ) ) {
           $sPolicySku = trim($tagOptions['rbacp_policy_sku']);
