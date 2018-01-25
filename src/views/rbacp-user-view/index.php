@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'options' => [
-                    'rbacp_policy_sku' => 'rbacp|rbacp-user-view|index|rbacpPolicy|list|赋予角色列表'
+                    'rbacp_policy_sku' => 'rbacp|rbacp-user-view|index|rbacpPolicy|list|rbacp授权列表'
                 ],
                 'columns' => [
                     'id',
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return yii\helpers\BaseHtml::tag('a', '修改', array(
                                     'href' => yii\helpers\Url::toRoute(['update', 'id' => $model->id]),
                                     'class' => 'operation btn btn-primary btn-xs delete-role list-delete',
-                                    'rbacp_policy_sku' => 'rbacp|rbacp-user-view|index|rbacpPolicy|tag|赋予角色列表修改按钮'
+                                    'rbacp_policy_sku' => 'rbacp|rbacp-user-view|index|rbacpPolicy|tag|rbacp授权列表修改按钮'
                                 ));
                             },
 

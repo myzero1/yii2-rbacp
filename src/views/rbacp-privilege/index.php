@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo yii\helpers\BaseHtml::tag('a', '创建', array(
                     'href' => yii\helpers\Url::toRoute(['create']),
                     'class' => 'btn btn-success btn-sm',
-                    'rbacp_policy_sku' => 'app|place|index|rbacpPolicy|tag|场所修改按钮'
+                    'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表创建按钮'
                 ));
             ?>
         </div>
@@ -28,6 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 // 'filterModel' => $searchModel,
+                'options' => [
+                    'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|list|rbacp权限列表'
+                ],
                 'columns' => [
                     'id',
                     'name',
@@ -73,14 +76,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return yii\helpers\BaseHtml::tag('a', '修改', array(
                                     'href' => yii\helpers\Url::toRoute(['update', 'id' => $model->id]),
                                     'class' => 'operation btn btn-primary btn-xs delete-role list-delete',
-                                    'rbacp_policy_sku' => 'app|place|index|rbacpPolicy|tag|场所修改按钮'
+                                    'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表修改按钮'
                                 ));
                             },
                             'delete' => function ($url, $model) {
                                 return yii\helpers\BaseHtml::tag('a', '删除', array(
                                     'href' => yii\helpers\Url::toRoute(['delete', 'id' => $model->id]),
                                     'class' => 'operation btn btn-primary btn-xs delete-role list-delete',
-                                    'rbacp_policy_sku' => 'app|place|index|rbacpPolicy|tag|场所修改按钮',
+                                    'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表删除按钮',
                                     'data-confirm' => Yii::t('rbacp', '请问你确定删除吗？'),
                                     'data-method' => 'post',
                                 ));

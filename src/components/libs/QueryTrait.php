@@ -215,6 +215,8 @@ trait QueryTrait
                     $aPolicySku = explode('=', $condition[2]);
                     $sPolicySku = trim($aPolicySku[1]);
                     $oPolicy = \myzero1\rbacp\models\RbacpPolicy::find()->where(['sku' => $sPolicySku, 'scope' => 2])->one();
+                    var_dump($sPolicySku);
+                    var_dump($oPolicy);exit;
                     if ($oPolicy) {
                         $aResult = json_decode($oPolicy->rules, TRUE);
                     } else {

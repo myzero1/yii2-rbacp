@@ -94,13 +94,6 @@ class RbacpUserViewSearch extends RbacpUserView
             $this->id
         ]);
 
-        $query->andFilterWhere([
-            '<>',
-            'rbacp_user_view.id',
-            'rbacp_policy_sku=rbacp|rbacp-user-view|index|rbacpPolicy|read|赋予角色列表'
-        ]);
-
-
         // add role
         // $query->joinWith( $with = ['role'], $eagerLoading = true, $joinType = 'LEFT JOIN' );
         $query->joinWith( $with = ['role']);
