@@ -191,7 +191,6 @@ trait QueryTrait
         if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
             $goRbacp = FALSE;
         } else {
-            // var_dump($condition);exit;
             $bHaveId = FALSE;
             foreach ($condition as $key => $value) {
                 if (strpos($value, '.id') !== FALSE) {
@@ -202,21 +201,16 @@ trait QueryTrait
             }
 
             if ($bHaveId) {
-                // var_dump($condition);exit;
                 if (strpos($condition[2], 'rbacpPolicy') !== FALSE) {
                     $goRbacp = TRUE;
 
                     $oldWhere = $this->where;
                     $this->where = null;
-                    // $this->where = array();
-
-                    // var_dump($condition);exit;
 
                     $aPolicySku = explode('=', $condition[2]);
                     $sPolicySku = trim($aPolicySku[1]);
                     $oPolicy = \myzero1\rbacp\models\RbacpPolicy::find()->where(['sku' => $sPolicySku, 'scope' => 2])->one();
-                    var_dump($sPolicySku);
-                    var_dump($oPolicy);exit;
+
                     if ($oPolicy) {
                         $aResult = json_decode($oPolicy->rules, TRUE);
                     } else {
