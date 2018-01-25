@@ -213,20 +213,13 @@ trait QueryTrait
                     // var_dump($condition);exit;
 
                     $aPolicySku = explode('=', $condition[2]);
-                    // var_dump($aPolicySku);exit;
                     $sPolicySku = trim($aPolicySku[1]);
-                    // $aRules = \rbacp\components\Rbacp::getPolicy(\Yii::$app->requestedRoute, \Yii::$app->user->id, $sPolicySku, 3);
-                    // var_dump($aRules);exit;
-                    $oPolicy = \rbacp\models\RbacpPolicy::find()->where(['sku' => $sPolicySku, 'scope' => 2])->one();
+                    $oPolicy = \myzero1\rbacp\models\RbacpPolicy::find()->where(['sku' => $sPolicySku, 'scope' => 2])->one();
                     if ($oPolicy) {
                         $aResult = json_decode($oPolicy->rules, TRUE);
-                        // var_dump($aResult);
-                        // var_dump($oPolicy);exit;
                     } else {
                         exit('权限策略配置错误');
                     }
-                    // var_dump($oPolicy);exit;
-                    // $aResult = current($aRules);
                     if (!$aResult) {
                         # code...
                     } else {

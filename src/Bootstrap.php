@@ -55,6 +55,7 @@ class Bootstrap implements BootstrapInterface
     private function rewriteLibs($app){
         \Yii::$classMap['yii\grid\GridView'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/GridView.php';
         \Yii::$classMap['yii\helpers\BaseHtml'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/BaseHtml.php';
+        \Yii::$classMap['yii\db\QueryTrait'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/QueryTrait.php';
     }
 
     private function addRbacpModule($app){
