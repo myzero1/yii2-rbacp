@@ -44,6 +44,6 @@ class m171129_120101_rbacp_userv_role extends \yii\db\Migration
 
     public function down()
     {
-        $this->dropTable('rbacp_userv_role1');
+        $this->dropTable('rbacp_userv_role');
     }
 }

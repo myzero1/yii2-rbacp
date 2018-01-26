@@ -49,10 +49,6 @@ use yii\widgets\ActiveForm;
                     <br>
                     <br>
                     <br>
-
-                    <?= $form->field($model,'id')->textInput() ?>
-                    <?= $form->field($model,'username')->textInput() ?>
-                    <?= $form->field($model,'status')->textInput() ?>
                 </div>
             </div>
 
@@ -62,7 +58,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="box-footer">
             <div class="form-group form-group-box">
-                    <?= Html::submitButton('migration up', ['class' => 'btn btn-success']) ?>
+                    <?= Html::submitButton('migration down', ['class' => 'btn btn-danger']) ?>
             </div>
         </div>
         <?php ActiveForm::end(); ?>
