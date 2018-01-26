@@ -19,6 +19,27 @@ class m171129_120101_rbacp_userv_role extends \yii\db\Migration
             'created' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,'创建时间戳'),
             'updated' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,'修改时间戳'),
         ], $tableOptions);
+
+
+        $this->batchInsert ( $table = 'rbacp_userv_role', 
+            $columns = [
+                'id',
+                'role_id',
+                'userv_id',
+                'status',
+                'created',
+                'updated',
+            ], 
+            $rows = [
+                [
+                    '1', 
+                    '1', 
+                    '2', 
+                    '1', 
+                    '1516893167', 
+                    '1516893167', 
+                ],
+            ] );
     }  
 
     public function down()
