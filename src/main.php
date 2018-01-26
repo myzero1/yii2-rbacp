@@ -14,16 +14,11 @@ return [
             'loginUri' => '/site/login',
             'accessRules' => [
                 'excludeUri' => [
-                    // 'app-backend/site/index',
+                    '/rbacp/default/index',
                     '/rbacp/default/rbacp403',
-                    'app-backend/site/logout',
-                    'app-backend/site/login',
-                    'rbacp/default/index',
-                    'rbacp/default/migrate-up',
                 ],
                 'developUri' => [
-                    // 'app-backend/site/index',
-                    'app-backend/user/my-profile',
+                    '/rbacp/default/migrate-up',
                 ],
             ],
         ],

@@ -23,6 +23,46 @@ class m171129_120101_rbacp_role extends \yii\db\Migration
             'updated' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,''),
             'author' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,'更新者id'),
         ], $tableOptions);
+
+        $this->batchInsert ( $table = 'rbacp_role', 
+            $columns = [
+                'id',
+                'name',
+                'description',
+                'policy_ids',
+                'privilege_ids',
+                'policy_datas',
+                'status',
+                'created',
+                'updated',
+                'author',
+            ], 
+            $rows = [
+                [
+                    '1', 
+                    'rbacpRoleTester', 
+                    'This is a test role', 
+                    '1,3,10,11,12,6,7,8,14,15', 
+                    '15,2,4,1,3,6,8,5,7,12,14,11,13,9,10', 
+                    '{\"1\":[\"id\",\"name\",\"description\",\"sku\",\"type\",\"scope\",\"status\"],\"10\":[\"id\",\"name\",\"url\",\"status\",\"description\",\"updated\"],\"6\":[\"id\",\"name\",\"description\",\"status\",\"updated\",\"author\"],\"14\":[\"username\",\"role_name\"]}', 
+                    '1', 
+                    '1516802360', 
+                    '1516896471', 
+                    '1'
+                ],
+                [
+                    '2', 
+                    'rbacpRoleTester2', 
+                    '  This is a test role', 
+                    '', 
+                    '15', 
+                    '[]', 
+                    '1', 
+                    '1516893167', 
+                    '1516893167', 
+                    '2'
+                ],
+            ] );
     }
 
     public function down()
