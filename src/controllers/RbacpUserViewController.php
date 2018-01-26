@@ -87,7 +87,7 @@ class RbacpUserViewController extends Controller
     {
         $model = $this->findModel($id);
         // $model->updated = time();
-        $oRoles = RbacpRole::find()->where(['status' => 1])->andFilterWhere(['<>', 'rbacp_role.id', 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'])->all();
+        $oRoles = RbacpRole::find()->where(['status' => 1])->all();
         $aRoles = ArrayHelper::map($oRoles, 'id', 'name');
         $oRole = RbacpUservRole::find()->where(['status' => 1 ,'userv_id' => $id])->one();
 
@@ -165,7 +165,7 @@ class RbacpUserViewController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = RbacpUserView::find()->where(['id' => $id])->andFilterWhere(['<>', 'rbacp_user_view.id', 'rbacp_policy_sku=rbacp|rbacp-user-view|index|rbacpPolicy|read|赋予角色列表'])->one()) !== null) {
+        if (($model = RbacpUserView::find()->where(['id' => $id])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
