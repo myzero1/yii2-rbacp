@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 <div class="affiche-form">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Run the migration of rbacp </h3>
+            <h3 class="box-title">Down the migration of rbacp </h3>
         </div>
         <?php $form = ActiveForm::begin([
           'options' => ['class' => 'form-horizontal'],
@@ -39,11 +39,11 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="panel-body">
                     <ol>
-                        <li>Create table rbacp_policy.</li>
-                        <li>Create table rbacp_privilege.</li>
-                        <li>Create table rbacp_role.</li>
-                        <li>Create table rbacp_userv_role.</li>
-                        <li>Create view rbacp_user_view.</li>
+                        <li>Drop table rbacp_policy.</li>
+                        <li>Drop table rbacp_privilege.</li>
+                        <li>Drop table rbacp_role.</li>
+                        <li>Drop table rbacp_userv_role.</li>
+                        <li>Drop view rbacp_user_view.</li>
                     </ol>
 
                     <br>

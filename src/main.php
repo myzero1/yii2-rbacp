@@ -19,6 +19,7 @@ return [
                 ],
                 'developUri' => [
                     '/rbacp/default/migrate-up',
+                    '/rbacp/default/migrate-down',
                 ],
             ],
         ],

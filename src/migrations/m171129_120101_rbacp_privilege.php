@@ -169,9 +169,18 @@ class m171129_120101_rbacp_privilege extends \yii\db\Migration
                 ],
                 [
                     '16',
-                    'rbacp数据库',
+                    'rbacp添加数据 ',
                     '',
                     '/rbacp/default/migrate-up',
+                    '1',
+                    '1516885929',
+                    '1516885929'
+                ],
+                [
+                    '17',
+                    'rbacp删除数据 ',
+                    '',
+                    '/rbacp/default/migrate-down',
                     '1',
                     '1516885929',
                     '1516885929'

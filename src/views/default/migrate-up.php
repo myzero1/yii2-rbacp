@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 <div class="affiche-form">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Run the migration of rbacp </h3>
+            <h3 class="box-title">Up the migration of rbacp </h3>
         </div>
         <?php $form = ActiveForm::begin([
           'options' => ['class' => 'form-horizontal'],

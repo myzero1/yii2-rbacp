@@ -29,7 +29,19 @@
             // 'url' => sprintf('/admin/%s/default/index', $sRbacpModuleName),
             'url' => [sprintf('/%s/default/migrate-up', $sRbacpModuleName)],
             'icon' => 'fa-database',
-            'active' => $sUri === sprintf('%s/%s/default/migrate-up', \Yii::$app->homeUrl, $sRbacpModuleName)
+            'active' => true,
+            'items' => [
+                [
+                    'label' => Yii::t('app', 'rbacp添加数据'),
+                    'url' => [sprintf('/%s/default/migrate-up', $sRbacpModuleName)],
+                    'visible' => true,
+                ],
+                [
+                    'label' => Yii::t('app', 'rbacp删除数据'),
+                    'url' => [sprintf('/%s/default/migrate-down', $sRbacpModuleName)],
+                    'visible' => true,
+                ],
+            ]
         ],
         [
             'label' => Yii::t('app', 'rbacp权限管理'),
