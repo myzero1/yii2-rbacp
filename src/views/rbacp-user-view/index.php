@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     'id',
-                    'username',
+                    'username', 
                     'role_name' => [
                         'label'=>Yii::t('rbacp', '角色名称'),
                         'attribute' => 'role_name',

@@ -13,12 +13,12 @@ class m171129_120101_rbacp_privilege extends \yii\db\Migration
 
         $this->createTable('rbacp_privilege', [
             'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . '(255) NOT NULL',
-            'description' => Schema::TYPE_STRING . '(500)',
-            'url' => Schema::TYPE_STRING . '(500) NOT NULL',
-            'status' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 1',
-            'created' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'updated' => Schema::TYPE_INTEGER . '(11) NOT NULL',
+            'name' => sprintf("%s(255) NOT NULL COMMENT '%s'",Schema::TYPE_STRING,'功能权限名称及action名称'),
+            'description' => sprintf("%s(500) COMMENT '%s'",Schema::TYPE_STRING,'描述'),
+            'url' => sprintf("%s(500) NOT NULL COMMENT '%s'",Schema::TYPE_STRING,'请求url，如/rate/area/add,若为all标示全局设置'),
+            'status' => sprintf("%s(4) NOT NULL DEFAULT 1 COMMENT '%s'",Schema::TYPE_SMALLINT,'状态：1为启用，2不启用'),
+            'created' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,''),
+            'updated' => sprintf("%s(11) NOT NULL COMMENT '%s'",Schema::TYPE_INTEGER,''),
         ], $tableOptions);
     }
 

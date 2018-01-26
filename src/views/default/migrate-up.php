@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
                         <li>Create table rbacp_policy.</li>
                         <li>Create table rbacp_privilege.</li>
                         <li>Create table rbacp_role.</li>
-                        <li>Create table rbacp_userv_role.</li>
+                        <li>Create table rbacp_relationship.</li>
                         <li>Create view rbacp_user_view.</li>
                     </ol>
 

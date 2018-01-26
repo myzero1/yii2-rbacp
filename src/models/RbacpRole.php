@@ -6,6 +6,7 @@ use Yii;
 use myzero1\rbacp\models\RbacpPrivilege;
 use myzero1\rbacp\models\RbacpPolicy;
 use yii\helpers\ArrayHelper;
+use myzero1\rbacp\models\RbacpRelationship;
 
 /**
  * This is the model class for table "rbacp_role".
@@ -86,6 +87,36 @@ class RbacpRole extends RbacpActiveRecord
     /**
      * @inheritdoc
      */
+    public function getPrivilegeIds()
+    {
+        $aPrivilege = RbacpRelationship::find()
+                        ->where(['type' => 2, 'id1' => $this->id])
+                        ->all();
+        if (count($aPrivilege)) {
+            return array_column($aPrivilege, 'id2');
+        } else {
+            return array();
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPolicyIds()
+    {
+        $aPrivilege = RbacpRelationship::find()
+                        ->where(['type' => 3, 'id1' => $this->id])
+                        ->all();
+        if (count($aPrivilege)) {
+            return array_column($aPrivilege, 'id2');
+        } else {
+            return array();
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getPrivilegePolicy()
     {
         $aPrivilege = RbacpPrivilege::find()->where(['status' => 1])->orderBy('url')->all();
@@ -98,8 +129,11 @@ class RbacpRole extends RbacpActiveRecord
                 return array();
             }
         } else {
-            $aRolePrivilege = explode(',', $oRole->privilege_ids);
-            $aRolePlicy = explode(',', $oRole->policy_ids);
+            // $aRolePrivilege = explode(',', $oRole->privilege_ids);
+            // $aRolePlicy = explode(',', $oRole->policy_ids);
+
+            $aRolePrivilege = $this->privilegeIds;
+            $aRolePlicy = $this->policyIds;
         }
 
         $aPrivilegePolicy = array();
