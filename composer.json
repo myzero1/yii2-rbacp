@@ -2,7 +2,7 @@
     "name": "myzero1/yii2-rbacp",
     "description": "Simple captcha for yii2.Just add the module in config file and use the widget.",
     "type": "yii2-module",
-    "license": "MIT",
+	"license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Xuanwu Qin",
