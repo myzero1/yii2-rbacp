@@ -11,7 +11,6 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\jui\JuiAsset;
 use yii\widgets\InputWidget;
 
 /**
