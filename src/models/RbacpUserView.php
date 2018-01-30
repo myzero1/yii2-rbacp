@@ -87,4 +87,17 @@ class RbacpUserView extends RbacpActiveRecord
         return $this->hasOne(RbacpRole::className(), ['id' => 'role_id'])
             ->viaTable('rbacp_userv_role', ['userv_id' => 'id']);
     }
+
+    /**
+     * 更具用户id获取他的username
+     *
+     * @param int $id   用户ip
+     *
+     * @return mixed
+     */
+    public static function getUsernameById($id)
+    {
+        $oUser = self::findOne($id);
+        return $oUser ? $oUser->username : '';
+    }
 }
