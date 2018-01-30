@@ -77,7 +77,7 @@ Use the rbac of rbacp:
 
 ```
 
-1. Setting 'model' => 'rbac',//everyone,logined,rbac,rbacp
+Setting 'model' => 'rbac',//everyone,logined,rbac,rbacp
     everyone: veryone can access.
     logined: Only the logined can access.
     rbac: Control access by rbac,you should to setting more.
@@ -89,30 +89,41 @@ Use the rbac of rbacp:
 
 ```
 
-With ActiveForm
+Use the rbacp of rbacp:
 
 ```
 
-echo  $form
-// ->field(new \myzero1\captcha\models\Captcha(['scenario'=>'php']),'verifyCode')
-->field(new \myzero1\captcha\models\Captcha(['scenario'=>'jsPhp']),'verifyCode')
-->widget(
-    myzero1\captcha\widgets\Captcha::className(),
-    [
-        'imageOptions'=>[
-            'alt'=>'点击换图',
-            'title'=>'点击换图',
-            'style'=>'cursor:pointer'
-        ]
-    ]
-)
-
+Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
+    rbacp: Control access by rbacp,you should to setting more.
+        Add tables by "/rbacp/default/migrate-up".
+        Add privilege by "rbacp-privilege/index".
+        Add policy by "rbacp/rbacp-policy/index".//to control the access of data
+        Add role by "rbacp/rbacp-role/index".
+        Assign role by "rbacp/rbacp-user-view/index".
+    You can use rbacp as flow.
+        Use it by andFilterWhere
+            RbacpRole::find()->andFilterWhere([
+                '<>', 
+                'rbacp_role.id', 
+                'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'// to use rbacp, set policy_sku.
+            ])
+        Use it by GridView::widget
+            GridView::widget([
+                'dataProvider' => $dataProvider,
+                'options' => [
+                    'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|list|角色列表'// to use rbacp, set policy_sku.
+                ],
+                'columns' => [...],
+            ]);
+        Use it by BaseHtml::tag
+            yii\helpers\BaseHtml::tag('a', '创建', array(
+                    'href' => yii\helpers\Url::toRoute(['create']),
+                    'class' => 'btn btn-success btn-sm',
+                    'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|tag|角色列表创建按钮'// to use rbacp, set policy_sku.
+                ));
+            
 
 ```
-
-The scenario discretion
-- php: Just validate by PHP.
-- jsPhp: validate by JS and PHP
 
 You can access Demo through the following URL:
 
