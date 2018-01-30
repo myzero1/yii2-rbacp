@@ -78,13 +78,13 @@ Usage
 You can access Demo through the following URL:
 
 ```
-http://localhost/path/to/index.php?r=captcha/default/demo
+http://localhost/path/to/index.php?r=rbacp/default/index
 ```
 
 or if you have enabled pretty URLs, you may use the following URL:
 
 ```
-http://localhost/path/to/index.php/captcha/default/demo
+http://localhost/path/to/index.php/rbacp/default/index
 ```
 
 Use the rbac of rbacp:
