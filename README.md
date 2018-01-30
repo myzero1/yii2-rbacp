@@ -3,6 +3,12 @@ yii2-rbacp
 
 Access modules,including functional access and data access.
 
+Screenshot
+------------
+
+The preferred way to install this module is through [composer](http://getcomposer.org/download/).
+
+
 Installation
 ------------
 
