@@ -26,10 +26,8 @@
         ],
         [
             'label' => Yii::t('app', 'rbacp数据库'),
-            // 'url' => sprintf('/admin/%s/default/index', $sRbacpModuleName),
-            'url' => [sprintf('/%s/default/migrate-up', $sRbacpModuleName)],
+            'url' => '#',
             'icon' => 'fa-database',
-            'active' => true,
             'items' => [
                 [
                     'label' => Yii::t('app', 'rbacp添加数据'),
@@ -47,7 +45,6 @@
             'label' => Yii::t('app', 'rbacp权限管理'),
             'url' => '#',
             'icon' => ' fa-cubes',
-            'visible' => true,
             'items' => [
                 [
                     'label' => Yii::t('app', '角色管理'),
