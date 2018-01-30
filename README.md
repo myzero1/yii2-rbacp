@@ -77,8 +77,15 @@ Use the rbac of rbacp:
 
 ```
 
-1. Add 
-
+1. Setting 'model' => 'rbac',//everyone,logined,rbac,rbacp
+    everyone: veryone can access.
+    logined: Only the logined can access.
+    rbac: Control access by rbac,you should to setting more.
+        Add tables by "/rbacp/default/migrate-up".
+        Add privilege by "rbacp-privilege/index".
+        Add role by "rbacp/rbacp-role/index".
+        Assign role by "rbacp/rbacp-user-view/index".
+    The rbac it working,now.
 
 ```
 
