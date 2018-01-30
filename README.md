@@ -6,8 +6,17 @@ Access modules,including functional access and data access.
 Screenshot
 ------------
 
-The preferred way to install this module is through [composer](http://getcomposer.org/download/).
-
+![](screenshot/1.png)
+![](screenshot/2.png)
+![](screenshot/3.png)
+![](screenshot/4.png)
+![](screenshot/5.png)
+![](screenshot/6.png)
+![](screenshot/7.png)
+![](screenshot/8.png)
+![](screenshot/9.png)
+![](screenshot/10.png)
+![](screenshot/11.png)
 
 Installation
 ------------
