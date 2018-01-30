@@ -143,7 +143,6 @@ class Rbac extends \yii\base\Component
             AND rp.`status` = 1
             AND rro.`status` = 1
             AND rur.`status` = 1
-            AND ruv.`status` = 1
         ";
 
         $aResult = \Yii::$app->db->createCommand($sSql)->queryOne();

@@ -36,7 +36,6 @@ class Rbacp extends \yii\base\Component
                         ruv.id = {$iUserId}
                     AND rpr.url = '{$sUri}'
                     AND rpo.`status` = 1
-                    AND ruv.`status` = 10
                     AND rro.`status` = 1
                     AND rpr.`status` = 1
                     AND rpo.`type` = 4
@@ -277,7 +276,6 @@ class Rbacp extends \yii\base\Component
             AND rpr.url = '{$sUri}'
             AND rpo.sku = '{$sPolicySku}'
             AND rpo.`status` = 1
-            AND ruv.`status` = 1
             AND rro.`status` = 1
             AND rpr.`status` = 1
             AND rpo.`type` = {$iType}
@@ -316,7 +314,6 @@ class Rbacp extends \yii\base\Component
             WHERE
                 ruv.id = {$iUserId}
             AND rpo.sku = '{$sPolicySku}'
-            AND ruv.`status` = 1
             AND rro.`status` = 1
             AND rpo.`status` = 1
         ";
