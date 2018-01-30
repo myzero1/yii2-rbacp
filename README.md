@@ -73,6 +73,20 @@ return [
 Usage
 -----
 
+
+
+You can access Demo through the following URL:
+
+```
+http://localhost/path/to/index.php?r=captcha/default/demo
+```
+
+or if you have enabled pretty URLs, you may use the following URL:
+
+```
+http://localhost/path/to/index.php/captcha/default/demo
+```
+
 Use the rbac of rbacp:
 
 ```
@@ -123,16 +137,4 @@ Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
                 ));
             
 
-```
-
-You can access Demo through the following URL:
-
-```
-http://localhost/path/to/index.php?r=captcha/default/demo
-```
-
-or if you have enabled pretty URLs, you may use the following URL:
-
-```
-http://localhost/path/to/index.php/captcha/default/demo
 ```
