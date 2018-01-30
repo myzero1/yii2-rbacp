@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label'=>Yii::t('rbacp', '作者'),
                         'attribute' => 'author',
                         'value' => function($row){
-                            return \backend\models\User::getUsernameById($row->author);
+                            return \myzero1\rbacp\models\RbacpUserView::getUsernameById($row->author);
                         }
                     ],
 

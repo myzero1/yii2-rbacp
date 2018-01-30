@@ -20,7 +20,6 @@ class AdminLte extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\jui\JuiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         '\myzero1\rbacp\themes\adminlte\assets\common\FontAwesome',
         '\myzero1\rbacp\themes\adminlte\assets\common\JquerySlimScroll',
