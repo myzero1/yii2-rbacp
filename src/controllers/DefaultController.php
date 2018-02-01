@@ -53,7 +53,7 @@ class DefaultController extends Controller
             $result = \Yii::$app->db->createCommand($sql)->queryOne();
 
             if ($result === false) {
-                $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s, %s, %s FROM `%s` WHERE 1 = 1;', $model->id, $model->username, $model->status, $model->table);
+                $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s AS id, %s AS username, %s AS status FROM `%s` WHERE 1 = 1;', $model->id, $model->username, $model->status, $model->table);
 
                \Yii::$app->db->createCommand($viweSql)->execute();
             }
@@ -98,6 +98,7 @@ class DefaultController extends Controller
      */
     public function actionMigrateDown()
     {
+        $message = '';
         if (\Yii::$app->request->isPost) {
             $sql = "SELECT
                         1
