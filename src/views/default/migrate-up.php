@@ -50,6 +50,7 @@ use yii\widgets\ActiveForm;
                     <br>
                     <br>
 
+                    <?= $form->field($model,'table')->textInput() ?>
                     <?= $form->field($model,'id')->textInput() ?>
                     <?= $form->field($model,'username')->textInput() ?>
                     <?= $form->field($model,'status')->textInput() ?>

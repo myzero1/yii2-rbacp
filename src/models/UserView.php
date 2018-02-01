@@ -9,6 +9,7 @@ use yii\base\Model;
  */
 class UserView extends Model
 {
+    public $table;
     public $id;
     public $username;
     public $status;
@@ -20,7 +21,7 @@ class UserView extends Model
     public function rules()
     {
         return [
-            [['id', 'username', 'status'], 'required'],
+            [['table','id', 'username', 'status'], 'required'],
         ];
     }
 
@@ -30,9 +31,10 @@ class UserView extends Model
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', ' rbacp_user_view中的"用户ID"字段(user.id)'),
-            'username' => Yii::t('app', ' rbacp_user_view中的"用户名称"字段(user.username)'),
-            'status' => Yii::t('app', ' rbacp_user_view中的"用户状态"字段(user.status)'),
+            'table' => Yii::t('app', '原始数据库中需要映射的"表名"字段(user)'),
+            'id' => Yii::t('app', ' rbacp_user_view中的"用户ID"字段(id)'),
+            'username' => Yii::t('app', ' rbacp_user_view中的"用户名称"字段(username)'),
+            'status' => Yii::t('app', ' rbacp_user_view中的"用户状态"字段(status)'),
         ];
     }
 }
