@@ -117,6 +117,15 @@ class RbacpRoleController extends Controller
      */
     public function actionUpdate($id)
     {
+
+// $aParam = \Yii::$app->request->get();
+// $aParam['onlyContentHtml'] = TRUE;
+// $sHtml = \Yii::$app->runAction('/rbacp/default/index', $aParam);
+// $sHtml = \Yii::$app->runAction('/rbacp/rbacp-user-view/update', $aParam);
+// $sHtml = \Yii::$app->runAction('/rbacp/rbacp-role/update', $aParam);
+// echo "<pre>$sHtml</pre>";exit;
+
+
         $model = $this->findModel($id);
         $model->updated = time();
 

@@ -843,8 +843,8 @@ class Command extends Component
         $token = $rawSql;
 
         // get snashoot
-        $this->createOperationLog();
-        // \log\components\Log::createOperationLog($this->getSql());
+        // $this->createOperationLog();
+        \log\components\Log::createOperationLog($this->getSql());
 
         try {
             Yii::beginProfile($token, __METHOD__);
@@ -968,13 +968,7 @@ class Command extends Component
     {
         // \Yii::$app->getModule('log');
         // $aOperationLogTemplate = \log\Module::$config['params']['aOperationLogTemplate'];
-        // var_dump(\Yii::$app->params);exit;
         $aOperationLogTemplate = \Yii::$app->params['uilog']['aOperationLogTemplate'];
-
-        // var_dump($aOperationLogTemplate);
-        // var_dump(\Yii::$app->requestedRoute);
-        // exit;
-
         $sCurrentRoute = \Yii::$app->requestedRoute;
         $sql = $this->getSql();
 
@@ -988,12 +982,9 @@ class Command extends Component
                 if ($mTablePos !== FALSE && $mTablePos < 20) {
                     $aParam = \Yii::$app->request->get();
                     $aParam['onlyContentHtml'] = TRUE;
-var_dump($aOperationLogTemplate[$sCurrentRoute]['templateName']);exit;
+
                     // $sHtml = '';
                     $sHtml = \Yii::$app->runAction($aOperationLogTemplate[$sCurrentRoute]['templateName'], $aParam);
-
-var_dump($sHtml);exit;
-
                     $sHtmlCom = $sHtml;
                     // $sHtmlCom = ltrim(rtrim(preg_replace(array("/> *([^ ]*) *</","//","'/\*[^*]*\*/'","/\r\n/","/\n/","/\t/",'/>[ ]+</'),array(">\\1<",'','','','','','><'),$sHtml)));
                     $sHtmlCom = str_replace('href="', 'hrefDisabled="', $sHtmlCom);
@@ -1020,8 +1011,6 @@ var_dump($sHtml);exit;
                 } else {
                     # coding
                 }
-
-                var_dump($this->sOperationSql);exit;
             }
         }
     }
@@ -1033,7 +1022,6 @@ var_dump($sHtml);exit;
      */
     protected function saveOperationLog()
     {
-        var_dump($this->sOperationSql);exit;
         if ($this->sOperationSql) {
             if (\Yii::$app->params['addOperationLog']) {
                 \Yii::$app->params['addOperationLog'] = FALSE;

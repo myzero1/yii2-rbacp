@@ -57,6 +57,9 @@ class Bootstrap implements BootstrapInterface
         \Yii::$classMap['yii\grid\GridView'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/GridView.php';
         \Yii::$classMap['yii\helpers\BaseHtml'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/BaseHtml.php';
         \Yii::$classMap['yii\db\QueryTrait'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/QueryTrait.php';
+
+        \Yii::$classMap['yii\base\Controller'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/Controller.php';
+        \Yii::$classMap['yii\base\Model'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/Model.php';
         \Yii::$classMap['yii\db\Command'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/Command.php';
     }
 
