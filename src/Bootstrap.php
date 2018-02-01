@@ -37,6 +37,7 @@ class Bootstrap implements BootstrapInterface
         $rbacpParams = array_merge($aConfig['params'], $this->params);
 
         $app->params['rbacp'] = $rbacpParams['rbacp'];
+        $app->params['uilog'] = $rbacpParams['uilog'];
 
         if (isset($rbacpParams['urlManager']['rules'])) {
             $app->urlManager->addRules(
@@ -56,6 +57,7 @@ class Bootstrap implements BootstrapInterface
         \Yii::$classMap['yii\grid\GridView'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/GridView.php';
         \Yii::$classMap['yii\helpers\BaseHtml'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/BaseHtml.php';
         \Yii::$classMap['yii\db\QueryTrait'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/QueryTrait.php';
+        \Yii::$classMap['yii\db\Command'] = '@vendor/myzero1/yii2-rbacp/src/components/libs/Command.php';
     }
 
     private function addRbacpModule($app){

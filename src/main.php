@@ -23,5 +23,16 @@ return [
                 ],
             ],
         ],
+        'uilog' => [
+            'aOperationLogTemplate' => [
+                // 'route' => 'template',
+                'rbacp/rbacp-role/update' => [
+                    'templateName' => '/rbacp/rbacp-role/update',
+                    'operationName' => '修改角色',
+                    'identifyingTable' => 'rbacp_role',
+                    'useTransaction' => FALSE,
+                ],
+            ],
+        ],
     ],
 ];
