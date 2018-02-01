@@ -16,16 +16,7 @@ ThemingAsset::register($this);
 
 $profile = [
     'avatarUrl' => '',
-    'username' => Yii::$app->user->identity->username,
-    'trueName' => "",
-    'lastTime' => 0,
-    'lastIp' => "",
-    'profileUrl' => '#',
-];
-
-$profile = [
-    'avatarUrl' => '',
-    'username' => Yii::$app->user->identity->username,
+    'username' => Yii::$app->user->isGuest ? '未登陆' : '已登陆',
     'trueName' => "",
     'lastTime' => 0,
     'lastIp' => "",
