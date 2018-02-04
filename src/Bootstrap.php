@@ -24,10 +24,10 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+        $this->rewriteLibs($app); // should on the first.
         $this->addConfig($app);
         $this->addTranslations($app);
-        // $this->addBehaviors($app);
-        $this->rewriteLibs($app);
+        $this->addBehaviors($app);
         $this->addRbacpModule($app);
     }
 
