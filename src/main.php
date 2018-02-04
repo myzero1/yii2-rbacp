@@ -34,5 +34,24 @@ return [
                 ],
             ],
         ],
+        'beforeAction' => function() {
+            Yii::$app->controller->attachBehavior('access', [
+                'class' => yii\filters\AccessControl::class,
+                // 'denyCallback' => $app->params['rbacp']['denyCallback'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ]);
+            \myzero1\rbacp\components\Rbac::checkAction();
+
+            echo "rbacp before action\n";
+        },
     ],
 ];

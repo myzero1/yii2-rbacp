@@ -47,21 +47,27 @@ class GlobalAccessBehavior extends Behavior
      */
     public function beforeAction()
     {
-        Yii::$app->controller->attachBehavior('access', [
-            'class' => $this->accessControlFilter,
-            // 'denyCallback' => $app->params['rbacp']['denyCallback'],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
-                ],
-                [
-                    'allow' => true,
-                    'roles' => ['?'],
-                ],
-            ],
-        ]);
+        // Yii::$app->controller->attachBehavior('access', [
+        //     'class' => $this->accessControlFilter,
+        //     // 'denyCallback' => $app->params['rbacp']['denyCallback'],
+        //     'rules' => [
+        //         [
+        //             'allow' => true,
+        //             'roles' => ['@'],
+        //         ],
+        //         [
+        //             'allow' => true,
+        //             'roles' => ['?'],
+        //         ],
+        //     ],
+        // ]);
 
-        return \myzero1\rbacp\components\Rbac::checkAction();
+        // return \myzero1\rbacp\components\Rbac::checkAction();
+
+        // \Yii::$app->params['myzero1BeforeAction']['rbacpBeforeAction']();
+        // var_dump(\Yii::$app->params['myzero1BeforeAction']['rbacpBeforeAction']);exit;
+        foreach (\Yii::$app->params['myzero1BeforeAction'] as $key => $value) {
+            $value();
+        }
     }
 }

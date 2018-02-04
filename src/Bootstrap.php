@@ -39,6 +39,8 @@ class Bootstrap implements BootstrapInterface
         $app->params['rbacp'] = $rbacpParams['rbacp'];
         $app->params['uilog'] = $rbacpParams['uilog'];
 
+        $app->params['myzero1BeforeAction']['rbacpBeforeAction'] = $rbacpParams['beforeAction'];
+
         if (isset($rbacpParams['urlManager']['rules'])) {
             $app->urlManager->addRules(
                 $aConfig['params']['urlManager']['rules'],
