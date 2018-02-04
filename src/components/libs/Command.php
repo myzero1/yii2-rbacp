@@ -844,7 +844,7 @@ class Command extends Component
 
         // get snashoot
         // $this->createOperationLog();
-        \log\components\Log::createOperationLog($this->getSql());
+        self::createOperationLog($this->getSql());
 
         try {
             Yii::beginProfile($token, __METHOD__);
@@ -852,7 +852,7 @@ class Command extends Component
             // 放在这里为了避免log的id覆盖主model的id，同时可能在没有执行成功，就加了日志。暂时不处理这个问题。
             // save to db
             // $this->saveOperationLog();
-            \log\components\Log::saveOperationLog();
+            self::saveOperationLog();
 
             $this->pdoStatement->execute();
             $n = $this->pdoStatement->rowCount();
@@ -995,8 +995,9 @@ class Command extends Component
 
                     $sql = sprintf('INSERT INTO log_operation (id, user_id, user_name, operation, ip, snapshoot, created, updated_table, url) VALUES(NULL, %d, "%s", "%s", "%s", "%s", %d, "%s", "%s")',
                         \Yii::$app->user->Identity->id,
-                        \Yii::$app->user->Identity->username,
-                        \Yii::t('log',
+                        // \Yii::$app->user->Identity->username,
+                        'username',
+                        \Yii::t('app',
                             '操作了[{operationName}]',
                             [
                                 'operationName' => $aOperationLogTemplate[$sCurrentRoute]['operationName'],

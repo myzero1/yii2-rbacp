@@ -284,7 +284,6 @@ class Controller extends Component implements ViewContextInterface
 
         // 给beforeSave设置记录日志的表示
         Yii::$app->params['addOperationLog'] = TRUE;
-var_dump(Yii::$app->params['onlyContentHtml']);exit;
         $event = new ActionEvent($action);
         $this->trigger(self::EVENT_BEFORE_ACTION, $event);
         return $event->isValid;

@@ -26,7 +26,7 @@ class Bootstrap implements BootstrapInterface
     {
         $this->addConfig($app);
         $this->addTranslations($app);
-        $this->addBehaviors($app);
+        // $this->addBehaviors($app);
         $this->rewriteLibs($app);
         $this->addRbacpModule($app);
     }
