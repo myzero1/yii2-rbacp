@@ -48,7 +48,7 @@ class Rbac extends \yii\base\Component
      * @return bool
      **/
     public static function isDeveloper(){
-        if (\Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
+        if (!\Yii::$app->user->isGuest && \Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
             return TRUE;
         } else {
             return FALSE;
