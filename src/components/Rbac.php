@@ -25,21 +25,17 @@ class Rbac extends \yii\base\Component
             return TRUE;
         } else if ( in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['excludeUri']) ) {
             return TRUE;
-        } else if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
-            return TRUE;
-        } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['developUri']) ) {
+        } else if (\Yii::$app->user->isGuest) {
             return FALSE;
-        } else if ( \Yii::$app->params['rbacp']['model'] == 'logined' ) {
-            return !\Yii::$app->user->isGuest;
         } else {
-            if (\Yii::$app->user->isGuest) {
+            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
+                return TRUE;
+            } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['developUri']) ) {
                 return FALSE;
             } else {
-                // privilege check
                 return self::havePrivilege($sUri, \Yii::$app->user->id);
             }
         }
-        
     }
 
     /**
@@ -48,7 +44,7 @@ class Rbac extends \yii\base\Component
      * @return bool
      **/
     public static function isDeveloper(){
-        if (\Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
+        if (!\Yii::$app->user->isGuest && \Yii::$app->params['rbacp']['develop']==\Yii::$app->user->identity->id) {
             return TRUE;
         } else {
             return FALSE;
