@@ -24,11 +24,12 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
-        \Yii::$app->view->theme = new \yii\base\Theme([
-            'pathMap' => ['@app/views' => '@vendor/myzero1/yii2-rbacp/src/themes/adminlte/views'],
-            'baseUrl' => '@web/themes/adminlte',
-        ]);
+        if (is_null(\Yii::$app->controller)) { // 解决在使用dropDownList的时会非法的实例化rbacp模块，从而修改theme
+            \Yii::$app->view->theme = new \yii\base\Theme([
+                'pathMap' => ['@app/views' => '@vendor/myzero1/yii2-rbacp/src/themes/adminlte/views'],
+                'baseUrl' => '@web/themes/adminlte',
+            ]);
+        }
     }
 
 }
