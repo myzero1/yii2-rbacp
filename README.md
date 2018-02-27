@@ -61,19 +61,19 @@ return [
             //     'rbacp' => [
             //         'model' => 'rbac',//everyone,logined,rbac,rbacp
             //         'develop' => 1,//The id of the developer
-            //         'denyCallbackUri' => '/admin/rbacp/default/migrate-up',
-            //         'loginUri' => '/admin/site/login',
+            //         'rbacpTester' => 2,//The id of the tester of rbacp
+            //         'denyCallbackUri' => '/rbacp/default/rbacp403',
+            //         'loginUri' => '/site/login',
             //         'accessRules' => [
             //             'excludeUri' => [
-            //                 // 'app-backend/site/index',
-            //                 'app-backend/site/logout',
-            //                 'app-backend/site/login',
-            //                 'rbacp/default/index',
-            //                 'rbacp/default/migrate-up',
+            //                 '/rbacp/default/index',
+            //                 '/rbacp/default/rbacp403',
+            //                 '/site/captcha',
+            //                 '/site/login-ajax',
             //             ],
             //             'developUri' => [
-            //                 // 'app-backend/site/index',
-            //                 'app-backend/user/my-profile',
+            //                 '/rbacp/default/migrate-up',
+            //                 '/rbacp/default/migrate-down',
             //             ],
             //         ],
             //     ],
