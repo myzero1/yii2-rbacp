@@ -18,7 +18,7 @@ class GlobalAccessBehavior extends Behavior
     /**
      * @var string
      */
-    public $accessControlFilter = AccessControl::class;
+    public $accessControlFilter = 'yii\filters\AccessControl';
     /**
      * @var callable a callback that will be called if the access should be denied
      * to the current user. If not set, [[denyAccess()]] will be called.
