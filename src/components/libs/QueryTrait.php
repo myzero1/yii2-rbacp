@@ -193,10 +193,10 @@ trait QueryTrait
         } else {
             $bHaveId = FALSE;
             foreach ($condition as $key => $value) {
-                if (strpos($value, '.id') !== FALSE) {
-                    $bHaveId = TRUE;
-                } else {
-                    # code...
+                if (is_string($value)) {
+                    if (strpos($value, '.id') !== FALSE) {
+                        $bHaveId = TRUE;
+                    }
                 }
             }
 
