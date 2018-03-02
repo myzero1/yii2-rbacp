@@ -20,7 +20,7 @@ class Rbac extends \yii\base\Component
     public static function checkAccess($sUri=''){
         $sUri = $sUri ? $sUri : \myzero1\rbacp\helper\Helper::getShortUri();
 
-        // var_dump($sUri);
+        // var_dump($sUri);exit;
         if ( \Yii::$app->params['rbacp']['model'] == 'everyone' ) {
             return TRUE;
         } else if ( in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['excludeUri']) ) {
@@ -29,6 +29,8 @@ class Rbac extends \yii\base\Component
             return FALSE;
         } else {
             if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
+                return TRUE;
+            } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['loginedExcludeUri']) ) {
                 return TRUE;
             } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['developUri']) ) {
                 return FALSE;
