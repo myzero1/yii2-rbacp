@@ -28,7 +28,9 @@ class Rbac extends \yii\base\Component
         } else if (\Yii::$app->user->isGuest) {
             return FALSE;
         } else {
-            if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
+            if ( \Yii::$app->params['rbacp']['model'] == 'logined' ) {
+                return TRUE;
+            } else if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 return TRUE;
             } else if (in_array($sUri, \Yii::$app->params['rbacp']['accessRules']['loginedExcludeUri']) ) {
                 return TRUE;
