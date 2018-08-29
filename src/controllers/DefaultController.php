@@ -60,7 +60,8 @@ class DefaultController extends Controller
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
             if (!defined('STDOUT')) {
-                define('STDOUT', fopen('/tmp/stdout', 'w'));
+                $stdout = \Yii::getAlias('@runtime/stdout');
+                define('STDOUT', fopen($stdout, 'w'));
             }
 
             //migration command begin
@@ -72,7 +73,7 @@ class DefaultController extends Controller
              * open the STDOUT output file for reading
              * @var $message collects the resulting messages of the migrate command to be displayed in a view
              */
-            $handle = fopen('/tmp/stdout', 'r');
+            $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
                 $message.=$buffer . "<br>";
@@ -118,6 +119,7 @@ class DefaultController extends Controller
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
             if (!defined('STDOUT')) {
+                $stdout = \Yii::getAlias('@runtime/stdout');
                 define('STDOUT', fopen('/tmp/stdout', 'w'));
             }
 
@@ -133,7 +135,7 @@ class DefaultController extends Controller
              * open the STDOUT output file for reading
              * @var $message collects the resulting messages of the migrate command to be displayed in a view
              */
-            $handle = fopen('/tmp/stdout', 'r');
+            $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
                 $message.=$buffer . "<br>";

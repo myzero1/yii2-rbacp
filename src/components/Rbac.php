@@ -155,6 +155,30 @@ class Rbac extends \yii\base\Component
     }
 
     /**
+     * Find role
+     *
+     * @return int
+     **/
+    public static function getRoleByUid($nUid){
+        RbacpPrivilege::find()
+            ->where(['status' => 1])
+            ->all();
+
+
+        // return RbacpRole::find()
+        //     ->join( 'LEFT OUTER JOIN', 
+        //         'rbacp_relationship',
+        //         'rbacp_relationship.id1 =rbacp_role.id'
+        //     )
+        //     ->join( 'LEFT OUTER JOIN', 
+        //         'rbacp_user_view',
+        //         '(rbacp_relationship.id2 = rbacp_user_view.id AND rbacp_relationship.type = 1)'
+        //     )
+        //     ->where(['rbacp_user_view.id'=>$this->id])
+        //     ->one();
+    }
+
+    /**
      * Find privilege
      *
      * @return bool
