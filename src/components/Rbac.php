@@ -160,7 +160,7 @@ class Rbac extends \yii\base\Component
      * @return int
      **/
     public static function getRoleByUid($nUid){
-        RbacpPrivilege::find()
+        RbacpUservRole::find()
             ->where(['status' => 1])
             ->all();
 
