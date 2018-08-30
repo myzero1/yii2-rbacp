@@ -2,6 +2,7 @@
 namespace myzero1\rbacp\components;
 
 use \myzero1\rbacp\models\RbacpPrivilege;
+use \myzero1\rbacp\models\RbacpUservRole;
 
 /**
  * AccessConroller on before action
@@ -129,6 +130,22 @@ class Rbac extends \yii\base\Component
      * @return void
      **/
     public static function havePrivilege($sUri, $iUserId){
+        $roleId = self::getRoleByUid($iUserId);
+        // $sSql = "
+        //     SELECT
+        //       COUNT(*) as count
+        //     FROM
+        //       rbacp_privilege AS rp
+        //     INNER JOIN rbacp_role AS rro ON find_in_set(rp.id, rro.privilege_ids) > 0
+        //     INNER JOIN rbacp_userv_role AS rur ON rur.role_id = rro.id
+        //     INNER JOIN rbacp_user_view AS ruv ON ruv.id = rur.userv_id
+        //     WHERE
+        //       ruv.id = {$iUserId}
+        //     AND rp.url = '{$sUri}'
+        //     AND rp.`status` = 1
+        //     AND rro.`status` = 1
+        //     AND rur.`status` = 1
+        // ";
         $sSql = "
             SELECT
               COUNT(*) as count
@@ -136,9 +153,8 @@ class Rbac extends \yii\base\Component
               rbacp_privilege AS rp
             INNER JOIN rbacp_role AS rro ON find_in_set(rp.id, rro.privilege_ids) > 0
             INNER JOIN rbacp_userv_role AS rur ON rur.role_id = rro.id
-            INNER JOIN rbacp_user_view AS ruv ON ruv.id = rur.userv_id
             WHERE
-              ruv.id = {$iUserId}
+              rur.role_id = {$roleId}
             AND rp.url = '{$sUri}'
             AND rp.`status` = 1
             AND rro.`status` = 1
@@ -155,26 +171,38 @@ class Rbac extends \yii\base\Component
     }
 
     /**
-     * Find privilege
+     * Find role
      *
-     * @return bool
+     * @return int
      **/
-    public static function getPrivilegeByUid($nUid){
-        RbacpPrivilege::find()
-            ->where(['status' => 1])
-            ->all();
+    public static function getRoleByUid($nUid){
+        if (isset(\Yii::$app->session['rbacp_session']['current_user']['role_id'])) {
+            return \Yii::$app->session['rbacp_session']['current_user']['role_id'];
+        } else {
+            $role = RbacpUservRole::find()
+                ->where(['userv_id' => $nUid])
+                ->one();
 
+            if ($role) {
+                \Yii::$app->session['rbacp_session'] = [
+                    'current_user' => [
+                        'id' => $nUid,
+                        'role_id' => $role['role_id'],
+                    ],
+                ];
+                return $role->role_id;
+            } else {
+                exit('No found role_id');
+            }
+        }
+    }
 
-        // return RbacpRole::find()
-        //     ->join( 'LEFT OUTER JOIN', 
-        //         'rbacp_relationship',
-        //         'rbacp_relationship.id1 =rbacp_role.id'
-        //     )
-        //     ->join( 'LEFT OUTER JOIN', 
-        //         'rbacp_user_view',
-        //         '(rbacp_relationship.id2 = rbacp_user_view.id AND rbacp_relationship.type = 1)'
-        //     )
-        //     ->where(['rbacp_user_view.id'=>$this->id])
-        //     ->one();
+    /**
+     * set role id
+     *
+     * @return voild
+     **/
+    public static function setRoleId($roleId){
+        \Yii::$app->session['rbacp_session']['current_user']['role_id'];
     }
 }

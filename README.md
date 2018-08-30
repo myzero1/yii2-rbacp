@@ -102,7 +102,7 @@ or if you have enabled pretty URLs, you may use the following URL:
 http://localhost/path/to/index.php/rbacp/default/index
 ```
 
-Use the rbac of rbacp:
+##### Use the rbac of rbacp: #####
 
 ```
 
@@ -118,7 +118,7 @@ Setting 'model' => 'rbac',//everyone,logined,rbac,rbacp
 
 ```
 
-Use the rbacp of rbacp:
+##### Use the rbacp of rbacp: ##### 
 
 ```
 
@@ -151,5 +151,20 @@ Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
                     'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|tag|角色列表创建按钮'// to use rbacp, set policy_sku.
                 ));
             
+
+```
+
+##### Set the role id: ##### 
+
+```
+\myzero1\rbacp\components\Rbac::setRoleId($roleId);
+
+```
+
+
+##### Set and get the role id by user id: ##### 
+
+```
+\myzero1\rbacp\components\Rbac::getRoleByUid($userId);
 
 ```

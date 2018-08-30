@@ -42,25 +42,37 @@ class DefaultController extends Controller
         $message = '';
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            // mysql:host=localhost;dbname=yii2advanced
+            // \Yii::$app->db->dsn
+            // get dbname
+            $dsnA = explode(';', \Yii::$app->db->dsn);
+            foreach ($dsnA as $key => $value) {
+                if (strpos($value,'dbname=') !== false) {
+                    $dbnameA = explode('=', $value);
+                    $dbname = $dbnameA[1];
+                }
+            }
+
             $sql = "SELECT
                         1
                     FROM
-                        INFORMATION_SCHEMA. TABLES
+                        INFORMATION_SCHEMA.TABLES
                     WHERE
-                        TABLE_NAME = 'rbacp_user_view';
+                        TABLE_NAME = 'rbacp_user_view'
+                        AND TABLE_SCHEMA = '{$dbname}';
                     ";
 
             $result = \Yii::$app->db->createCommand($sql)->queryOne();
 
             if ($result === false) {
                 $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s AS id, %s AS username, %s AS status FROM `%s` WHERE 1 = 1;', $model->id, $model->username, $model->status, $model->table);
-
                \Yii::$app->db->createCommand($viweSql)->execute();
             }
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
             if (!defined('STDOUT')) {
-                define('STDOUT', fopen('/tmp/stdout', 'w'));
+                $stdout = \Yii::getAlias('@runtime/stdout');
+                define('STDOUT', fopen($stdout, 'w'));
             }
 
             //migration command begin
@@ -72,7 +84,7 @@ class DefaultController extends Controller
              * open the STDOUT output file for reading
              * @var $message collects the resulting messages of the migrate command to be displayed in a view
              */
-            $handle = fopen('/tmp/stdout', 'r');
+            $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
                 $message.=$buffer . "<br>";
@@ -118,6 +130,7 @@ class DefaultController extends Controller
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
             if (!defined('STDOUT')) {
+                $stdout = \Yii::getAlias('@runtime/stdout');
                 define('STDOUT', fopen('/tmp/stdout', 'w'));
             }
 
@@ -133,7 +146,7 @@ class DefaultController extends Controller
              * open the STDOUT output file for reading
              * @var $message collects the resulting messages of the migrate command to be displayed in a view
              */
-            $handle = fopen('/tmp/stdout', 'r');
+            $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
                 $message.=$buffer . "<br>";
