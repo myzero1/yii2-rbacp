@@ -188,10 +188,10 @@ class RbacpRoleController extends Controller
         if (count($mResult)==0) {
             $this->findModel($id)->delete();
             Yii::$app->session->setFlash('success', \Yii::t('rbacp', '保存成功'));
-            return $this->redirectParent(['index']);
+            return $this->redirect(['index']);
         } else {
             Yii::$app->session->setFlash('error', \Yii::t('rbacp', '有其他用户正在使用不能删除'));
-            return $this->redirectParent(['index']);
+            return $this->redirect(['index']);
         }
     }
 
