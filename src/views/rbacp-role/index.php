@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group aciotns">
             <?= Html::a('添加', '#', [
                 'class' => 'btn btn-success use-layer',
-                'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', '添加', Url::to(['create'])) ,
+                'layer-config' => sprintf('{area:["735px","400px"],type:2,title:"%s",content:"%s",shadeClose:false}', '添加', Url::to(['create'])) ,
             ]); ?>
 
             <?= Html::a('批量删除', '#', [
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model) {
                         return yii\helpers\BaseHtml::tag('a', '修改', array(
                             'class'=>'btn btn-primary btn-xs use-layer',
-                            'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', '修改', yii\helpers\Url::toRoute(['update', 'id' => $model->id])) ,
+                            'layer-config' => sprintf('{area:["735px","400px"],type:2,title:"%s",content:"%s",shadeClose:false}', '修改', yii\helpers\Url::toRoute(['update', 'id' => $model->id])) ,
                             'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|tag|角色列表修改按钮'
                         ));
                     },

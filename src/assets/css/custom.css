@@ -113,6 +113,7 @@
 .policy-item-data label{
     margin: 5px 10px;
     width: 120px;
+    display: block;
 }
 
 .page-error-wrap{

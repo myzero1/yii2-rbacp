@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * RbacpRoleController implements the CRUD actions for RbacpRole model.
@@ -94,7 +95,8 @@ class RbacpRoleController extends Controller
             $model->author = Yii::$app->user->id;
 
             if ($model->save()) {
-                return $this->redirect(['index']);
+                Yii::$app->session->setFlash('success', \Yii::t('rbacp', '保存成功'));
+                return $this->redirectParent(['index']);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -144,7 +146,8 @@ class RbacpRoleController extends Controller
             // var_dump($model);exit;
 
             if ($model->save()) {
-                return $this->redirect(['index']);
+                Yii::$app->session->setFlash('success', \Yii::t('rbacp', '保存成功'));
+                return $this->redirectParent(['index']);
             } else {
                 return $this->render('update', [
                     'model' => $model,
@@ -184,10 +187,11 @@ class RbacpRoleController extends Controller
         $mResult = Yii::$app->db->createCommand($sSqlQuery)->queryAll();
         if (count($mResult)==0) {
             $this->findModel($id)->delete();
-            return $this->redirect(['index']);
+            Yii::$app->session->setFlash('success', \Yii::t('rbacp', '保存成功'));
+            return $this->redirectParent(['index']);
         } else {
             Yii::$app->session->setFlash('error', \Yii::t('rbacp', '有其他用户正在使用不能删除'));
-            return $this->redirect(['index']);
+            return $this->redirectParent(['index']);
         }
     }
 
@@ -206,5 +210,15 @@ class RbacpRoleController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * redirect parent window.
+     * @param array ['user/delete',['id'=>1]]
+     * @return string
+     */
+    protected function redirectParent(array $params)
+    {
+        return sprintf('<script type="text/javascript">parent.location.href="%s"</script>',Url::to($params));
     }
 }
