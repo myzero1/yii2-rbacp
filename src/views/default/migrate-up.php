@@ -7,6 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\Affiche */
 /* @var $form yii\widgets\ActiveForm */
 
+\myzero1\adminlteiframe\gii\GiiAsset::register($this);
+
 ?>
 
 <div class="affiche-form">
@@ -14,11 +16,8 @@ use yii\widgets\ActiveForm;
         <div class="box-header with-border">
             <h3 class="box-title">Up the migration of rbacp </h3>
         </div>
-        <?php $form = ActiveForm::begin([
-          'options' => ['class' => 'form-horizontal'],
-          'fieldConfig' => [
-              'template' => "<div class='col-xs-3 col-sm-3 text-right'>{label}</div><div class='col-xs-5 col-sm-5'>{input}</div><div class='col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0'>{error}</div>",
-        ]]); ?>
+
+        <?php $form = ActiveForm::begin(['id'=> 'layer-form-' . $this->context->action->id, 'options' => ['class' => 'adminlteiframe-form']]) ?>
 
         <div class="box-body">
 
@@ -70,3 +69,9 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 </div>
+
+<style type="text/css">
+    .adminlteiframe-form .form-group{
+        width: 100% !important;
+    }
+</style>
