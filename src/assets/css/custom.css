@@ -1,0 +1,178 @@
+.filter-form {
+    overflow: hidden;
+    padding: 30px 0;
+    border-bottom: 1px dashed #e5e5e5;
+    margin-bottom: 30px;
+}
+.filter-form .form-group {
+    float: left;
+    margin: 0 5px;
+}
+.filter-form .field-lable {
+    float: left;
+    margin: 0 5px;
+}
+.filter-form .field-input {
+    float: left;
+}
+.filter-form .field-input input {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.box .box-header {
+    border-bottom: 1px solid #f4f4f4;
+}
+.box .box-header a {
+    margin: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+    float: right;
+}
+.text-center {
+    text-align: center;
+}
+.box .form-group-box {
+    margin: 0;
+}
+.box {
+    overflow-x: auto;
+}
+.form-horizontal .form-group{
+    margin-right: 0;
+    margin-left: 0;
+}
+.filter-form.form-horizontal .form-group{
+    margin: 0 5px;
+}
+
+/*---------custom.----------------*/
+.filter-form{
+    overflow: hidden;
+    padding: 30px 0;
+    border-bottom: 1px dashed #e5e5e5;
+    margin-bottom: 30px;
+}
+
+.filter-form .form-group{
+    float: left;
+    margin: 0 5px;
+}
+
+.filter-form .field-lable{
+    float: left;
+    margin: 0 5px;
+}
+
+.filter-form .field-input{
+    float: left;
+}
+
+.filter-form .field-input input{
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.filter-form .field-input select{
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.box .box-header{
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.box .box-header a{
+    margin: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+    float: right;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.box .form-group-box{
+    margin: 0;
+}
+
+.policy-item-data{
+    padding-left: 20px;
+    background: #f9f9f9;
+}
+
+.policy-item-data label{
+    margin: 5px 10px;
+    width: 120px;
+}
+
+.page-error-wrap{
+    background: #8ac1c8;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page-error-conent{
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -250px;
+}
+
+.page-error-left{
+    float: left;
+    width: 50%;
+}
+
+.page-error-icon{
+    border: solid 10px #fff;
+    border-radius: 50px;
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+}
+
+.page-error-icon-conent{
+    font-size: 100px;
+    padding: 40px;
+    color: #fff;
+    background: red;
+    border-radius: 40px;
+}
+
+.page-error-right{
+    float: right;
+    width: 50%;
+}
+
+.page-error-right-conent{
+    padding: 50px 30px;
+    color: #fff;
+}
+
+.page-error-title{
+    font-size: 100px;
+    line-height: 100px;
+}
+
+.page-error-subtitle{
+    font-size: 30px;
+}
+
+.page-error-subtitle2{
+    font-size: 24px;
+}
