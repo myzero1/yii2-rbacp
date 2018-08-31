@@ -32,10 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'options' => [
-            'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|list|角色列表',
-            'class' => 'adminlteiframe-gridview',
-        ],
         'columns' => [
             [
                 'class' => yii\grid\CheckboxColumn::className(),
@@ -98,6 +94,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ]
             ],
+        ],
+        'options' => [
+            'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|list|角色列表',
+            'class' => 'adminlteiframe-gridview',
         ],
         'tableOptions' => [
             'class' => 'gridview-table table table-bordered table-hover dataTable'

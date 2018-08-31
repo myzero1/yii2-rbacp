@@ -1,22 +1,19 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model custom_components\modules\myzero1\rbacp\models\RbacpUserViewSearch */
+/* @var $model backend\models\User2Search */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="rbacp-user-view-search">
+<div class="adminlteiframe-action-box user2-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-        'options' => ['class' => 'form-horizontal filter-form'],
-        'fieldConfig' => [
-            'template' => "<div class='field-lable'>{label}</div><div class='field-input'>{input}</div>",
-        ]
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
@@ -25,8 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'role_name') ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('rbacp', '查询'), ['class' => 'btn btn-primary btn-sm']) ?>
+    <div class="form-group aciotns">
+        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
