@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="affiche-form">
-    <div class="box box-primary">
+
+    <div class="box box-primary box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">Up the migration of rbacp </h3>
         </div>
@@ -55,10 +56,6 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model,'status')->textInput() ?>
                 </div>
             </div>
-
-
-
-
         </div>
         <div class="box-footer">
             <div class="form-group form-group-box">

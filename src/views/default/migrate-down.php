@@ -10,15 +10,11 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="affiche-form">
-    <div class="box box-primary">
+    <div class="box box-primary box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">Down the migration of rbacp </h3>
         </div>
-        <?php $form = ActiveForm::begin([
-          'options' => ['class' => 'form-horizontal'],
-          'fieldConfig' => [
-              'template' => "<div class='col-xs-3 col-sm-3 text-right'>{label}</div><div class='col-xs-5 col-sm-5'>{input}</div><div class='col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0'>{error}</div>",
-        ]]); ?>
+        <?php $form = ActiveForm::begin(); ?>
 
         <div class="box-body">
 
@@ -51,10 +47,6 @@ use yii\widgets\ActiveForm;
                     <br>
                 </div>
             </div>
-
-
-
-
         </div>
         <div class="box-footer">
             <div class="form-group form-group-box">
