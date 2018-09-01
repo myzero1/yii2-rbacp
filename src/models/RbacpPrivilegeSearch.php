@@ -49,7 +49,7 @@ class RbacpPrivilegeSearch extends RbacpPrivilege
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'updated' => SORT_DESC,
                 ]
             ],
         ]);
