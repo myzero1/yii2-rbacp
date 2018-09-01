@@ -125,12 +125,12 @@ class RbacpPrivilegeController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDeleteSelected($ids)
+    public function actionDeleteSelected($z1selected)
     {
-        if (empty($ids)) {
-            return 'ids 不能为空。';
+        if (empty($z1selected)) {
+            return 'z1selected 不能为空。';
         } else {
-            RbacpPrivilege::deleteAll(['id' => explode(',', $ids)]); 
+            RbacpPrivilege::deleteAll(['id' => explode(',', $z1selected)]); 
 
             return \myzero1\adminlteiframe\helpers\Tool::redirectParent(['index']);
         }

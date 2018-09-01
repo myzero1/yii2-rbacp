@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
 
         <?= Html::a('批量删除', '#', [
                 'id'=>'delete-selected',
-                'url'=>Url::to(['delete-selected','ids' => '']),
+                'url'=>Url::to(['delete-selected','z1selected' => '']),
                 'class'=>'btn btn-danger use-layer',
                 'layer-config' => sprintf('{icon:3,area:["500px","200px"],type:0,title:"%s",content:"%s",shadeClose:false,btn:["确定","取消"],yes:function(index,layero){var url=$("#delete-selected").attr("url");$.post(url, {}, function(str){$(layero).find(".layui-layer-content").html(str);});},btn2:function(index, layero){layer.close(index);}}', '批量删除', '一旦删除，无法恢复，是否删除选定的数据？') 
             ]); ?>

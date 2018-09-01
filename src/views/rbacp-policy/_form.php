@@ -7,29 +7,21 @@ use yii\helpers\BaseArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model custom_components\modules\myzero1\rbacp\models\RbacpRole */
 /* @var $form yii\widgets\ActiveForm */
+
+myzero1\adminlteiframe\gii\GiiAsset::register($this);
+
 ?>
 
 <div class="rbacp-role-form">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?=$sBoxTile?></h3>
-        </div>
-        <?php $form = ActiveForm::begin([
-          'options' => ['class' => 'form-horizontal'],
-          'fieldConfig' => [
-              'template' => "<div class='col-xs-3 col-sm-2 text-right'>{label}</div><div class='col-xs-9 col-sm-7'>{input}</div><div class='col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0'>{error}</div>",
-        ]]); ?>
-        <div class="box-body">
+    <?php $form = ActiveForm::begin(['id'=> 'layer-form-' . $this->context->action->id, 'options' => ['class' => 'adminlteiframe-form']]) ?>
 
-            <?php //echo $form->field($model, 'privilege_id')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'privilege_id')->dropDownList(
-                    BaseArrayHelper::map(\myzero1\rbacp\models\RbacpPrivilege::find()->all(), 'id', 'name'),
-                    [
-                        'prompt'=>'请选择功能权限',
-                    ]
-                )
-            ?>
+        <?= $form->field($model, 'privilege_id')->dropDownList(
+                BaseArrayHelper::map(\myzero1\rbacp\models\RbacpPrivilege::find()->all(), 'id', 'name'),
+                [
+                    'prompt'=>'请选择功能权限',
+                ]
+            )
+        ?>
 
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -54,12 +46,10 @@ use yii\helpers\BaseArrayHelper;
             ?>
 
             <?= $form->field($model, 'rules')->textarea(['maxlength' => true]) ?>
-        </div>
-        <div class="box-footer">
+
             <div class="form-group form-group-box">
                 <?= Html::submitButton($model->isNewRecord ? Yii::t('rbacp', '创建') : Yii::t('rbacp', '修改'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
-        </div>
         <?php ActiveForm::end(); ?>
     </div>
 </div>

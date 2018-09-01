@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'headerOptions' => ['width'=>'30'],
                 'class' => yii\grid\CheckboxColumn::className(),
-                'name' => 'id',
+                'name' => 'z1selected',
                 'checkboxOptions' => function ($model, $key, $index, $column) {
                     return ['value' => $model->id];
                 },
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model, $key) {
                         $options = array_merge([
                             'class'=>'btn btn-primary btn-xs use-layer',
-                            'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', Yii::t('yii', 'Update'), yii\helpers\Url::toRoute(['update', 'id' => $model->id])) ,
+                            'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', Yii::t('yii', 'Update'), $url) ,
                             'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表修改按钮'
                         ]);
                         return Html::a(Yii::t('yii', 'Update'), '#', $options);
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'delete' => function ($url, $model, $key) {
                         $options = array_merge([
                             'class'=>'btn btn-danger btn-xs use-layer',
-                            'layer-config' => sprintf('{icon:3,area:["500px","200px"],type:0,title:"%s",content:"%s",shadeClose:false,btn:["确定","取消"],yes:function(index,layero){$.post("%s", {}, function(str){$(layero).find(".layui-layer-content").html(str);});},btn2:function(index, layero){layer.close(index);}}', Yii::t('yii', 'Delete'), '一旦删除，不能找回，你确定删除吗？',yii\helpers\Url::toRoute(['delete', 'id' => $model->id])) ,
+                            'layer-config' => sprintf('{icon:3,area:["500px","200px"],type:0,title:"%s",content:"%s",shadeClose:false,btn:["确定","取消"],yes:function(index,layero){$.post("%s", {}, function(str){$(layero).find(".layui-layer-content").html(str);});},btn2:function(index, layero){layer.close(index);}}', Yii::t('yii', 'Delete'), '一旦删除，不能找回，你确定删除吗？',$url) ,
                             'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表删除按钮',
                         ]);
                         return Html::a(Yii::t('yii', 'Delete'), '#', $options);

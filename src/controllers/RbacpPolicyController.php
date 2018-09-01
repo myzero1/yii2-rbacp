@@ -66,7 +66,7 @@ class RbacpPolicyController extends Controller
         $model = new RbacpPolicy();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return \myzero1\adminlteiframe\helpers\Tool::redirectParent(['index']);
         } else {
             // var_dump($model->errors);exit;
             return $this->render('create', [
@@ -86,7 +86,7 @@ class RbacpPolicyController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return \myzero1\adminlteiframe\helpers\Tool::redirectParent(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -107,6 +107,23 @@ class RbacpPolicyController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * Deletes an existing User2 model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteSelected($z1selected)
+    {
+        if (empty($z1selected)) {
+            return 'z1selected 不能为空。';
+        } else {
+            RbacpPolicy::deleteAll(['id' => explode(',', $z1selected)]); 
+
+            return \myzero1\adminlteiframe\helpers\Tool::redirectParent(['index']);
+        }
+    }
+    
     /**
      * Finds the RbacpPolicy model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
