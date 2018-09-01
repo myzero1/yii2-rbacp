@@ -6,17 +6,17 @@ Access modules,including functional access and data access.
 Screenshot
 ------------
 
-![](screenshot/1.png)
-![](screenshot/2.png)
-![](screenshot/3.png)
-![](screenshot/4.png)
-![](screenshot/5.png)
-![](screenshot/6.png)
-![](screenshot/7.png)
-![](screenshot/8.png)
-![](screenshot/9.png)
-![](screenshot/10.png)
-![](screenshot/11.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/1.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/2.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/3.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/4.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/5.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/6.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/7.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/8.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/9.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/10.png)
+![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/11.png)
 
 Installation
 ------------
@@ -161,10 +161,11 @@ Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
 
 ```
 
-
 ##### Set and get the role id by user id: ##### 
 
 ```
 \myzero1\rbacp\components\Rbac::getRoleByUid($userId);
 
 ```
+
+` Notice:` The rbacp module will call ` \myzero1\rbacp\components\Rbac::getRoleByUid(\Yii::$app->user->id); ` to set role by default.
