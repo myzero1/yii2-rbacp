@@ -148,7 +148,7 @@
 }
 
 .page-error-icon-conent{
-    font-size: 100px;
+    font-size: 100px !important;
     padding: 40px;
     color: #fff;
     background: red;

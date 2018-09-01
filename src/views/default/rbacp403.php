@@ -1,5 +1,7 @@
 <?php
-    $this->title = '403没有访问权限（403 forbidden）'
+    $this->title = '403没有访问权限（403 forbidden）';
+
+    \myzero1\rbacp\assets\RbacpAsset::register($this);
 ?>
 
 <div class="page-error-wrap">

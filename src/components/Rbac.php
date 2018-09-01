@@ -185,7 +185,7 @@ class Rbac extends \yii\base\Component
 
             if ($role) {
                 \Yii::$app->session['rbacp_session-current_user-role_id'] = $role['role_id'];
-                \Yii::$app->session['rbacp_session-current_user-user-id'] = $nUid];
+                \Yii::$app->session['rbacp_session-current_user-user-id'] = $nUid;
                 return $role->role_id;
             } else {
                 exit('No found role_id');
