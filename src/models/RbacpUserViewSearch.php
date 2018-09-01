@@ -32,6 +32,7 @@ class RbacpUserViewSearch extends RbacpUserView
     {
         $aLabelNew = [
             'role_name' => Yii::t('rbacp', '角色名称'),
+            'role_updated' => Yii::t('rbacp', '角色更新时间'),
         ];
 
         $aLabelOld = parent::attributeLabels();
@@ -116,13 +117,18 @@ class RbacpUserViewSearch extends RbacpUserView
                 'desc' => ['rbacp_role.name' => SORT_DESC],
                 'label' => self::attributeLabels()['role_name']
             ],
+            'role_updated' => [
+                'asc' => ['rbacp_role.updated' => SORT_ASC],
+                'desc' => ['rbacp_role.updated' => SORT_DESC],
+                'label' => self::attributeLabels()['role_updated']
+            ],
         ];
         $attributesEnd = array_merge($attributesOld, $attributesNew);
         $dataProvider->setSort([
             'attributes' => $attributesEnd,
-            // 'defaultOrder' => [
-            //     'id' => SORT_DESC,
-            // ]
+            'defaultOrder' => [
+                'role_updated' => SORT_DESC,
+            ]
         ]);
 
         // var_dump($dataProvider->getSort());exit;
