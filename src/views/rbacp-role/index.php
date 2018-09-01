@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('添加', '#', [
                 'class' => 'btn btn-success use-layer',
                 'layer-config' => sprintf('{area:["735px","400px"],type:2,title:"%s",content:"%s",shadeClose:false}', '添加', Url::to(['create'])) ,
+                 'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|tag|角色列表创建按钮',
             ]); ?>
 
             <?= Html::a('批量删除', '#', [

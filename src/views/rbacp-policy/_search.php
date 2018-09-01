@@ -44,6 +44,7 @@ use yii\widgets\ActiveForm;
         <?= Html::a('添加', '#', [
             'class' => 'btn btn-success use-layer',
             'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', '添加', Url::to(['create'])) ,
+            'rbacp_policy_sku' => 'rbacp|rbacp-policy|index|rbacpPolicy|tag|rbacp策略列表创建按钮',
         ]); ?>
 
 
