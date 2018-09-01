@@ -49,7 +49,7 @@ class RbacpPolicySearch extends RbacpPolicy
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'updated' => SORT_DESC,
                 ]
             ],
         ]);

@@ -68,7 +68,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'style' => 'width:200px',
                ]
             ],
-
+            'updated' => [
+               'class' => 'yii\grid\DataColumn',
+               'label' => Yii::t('rbacp', '更新时间'),
+               'attribute' => 'updated',
+               'value' => function ($row) {
+                    return date('Y-m-d H:i:s', $row->updated);
+                },
+            ],
             'operation' => [
                 // 'contentOptions' => [
                 //     'width'=>'100'

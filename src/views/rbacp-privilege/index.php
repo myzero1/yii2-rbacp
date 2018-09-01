@@ -54,7 +54,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return date('Y-m-d H:i:s', $row->updated);
                 },
             ],
-
             [
                 // 'contentOptions' => [
                 //     'width'=>'100'
