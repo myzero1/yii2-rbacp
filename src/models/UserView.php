@@ -13,6 +13,7 @@ class UserView extends Model
     public $id;
     public $username;
     public $status;
+    public $updated;
 
 
     /**
@@ -21,7 +22,7 @@ class UserView extends Model
     public function rules()
     {
         return [
-            [['table','id', 'username', 'status'], 'required'],
+            [['table','id', 'username', 'status', 'updated'], 'required'],
         ];
     }
 
@@ -35,6 +36,7 @@ class UserView extends Model
             'id' => Yii::t('app', ' rbacp_user_view中的"用户ID"字段(id)'),
             'username' => Yii::t('app', ' rbacp_user_view中的"用户名称"字段(username)'),
             'status' => Yii::t('app', ' rbacp_user_view中的"用户状态"字段(status)'),
+            'updated' => Yii::t('app', ' rbacp_user_view中的"更新时间"字段(updated)'),
         ];
     }
 }

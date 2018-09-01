@@ -63,6 +63,11 @@ class RbacpUserViewSearch extends RbacpUserView
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'updated' => SORT_DESC,
+                ]
+            ],
         ]);
 
         $this->load($params);
@@ -115,9 +120,9 @@ class RbacpUserViewSearch extends RbacpUserView
         $attributesEnd = array_merge($attributesOld, $attributesNew);
         $dataProvider->setSort([
             'attributes' => $attributesEnd,
-            'defaultOrder' => [
-                'id' => SORT_DESC,
-            ]
+            // 'defaultOrder' => [
+            //     'id' => SORT_DESC,
+            // ]
         ]);
 
         // var_dump($dataProvider->getSort());exit;
