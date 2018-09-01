@@ -176,20 +176,16 @@ class Rbac extends \yii\base\Component
      * @return int
      **/
     public static function getRoleByUid($nUid){
-        if (isset(\Yii::$app->session['rbacp_session']['current_user']['role_id'])) {
-            return \Yii::$app->session['rbacp_session']['current_user']['role_id'];
+        if (isset(\Yii::$app->session['rbacp_session-current_user-role_id'])) {
+            return \Yii::$app->session['rbacp_session-current_user-role_id'];
         } else {
             $role = RbacpUservRole::find()
                 ->where(['userv_id' => $nUid])
                 ->one();
 
             if ($role) {
-                \Yii::$app->session['rbacp_session'] = [
-                    'current_user' => [
-                        'id' => $nUid,
-                        'role_id' => $role['role_id'],
-                    ],
-                ];
+                \Yii::$app->session['rbacp_session-current_user-role_id'] = $role['role_id'];
+                \Yii::$app->session['rbacp_session-current_user-user-id'] = $nUid];
                 return $role->role_id;
             } else {
                 exit('No found role_id');
@@ -203,6 +199,6 @@ class Rbac extends \yii\base\Component
      * @return voild
      **/
     public static function setRoleId($roleId){
-        \Yii::$app->session['rbacp_session']['current_user']['role_id'];
+        \Yii::$app->session['rbacp_session-current_user-role_id'] = $roleId;
     }
 }

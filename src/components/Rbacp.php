@@ -1,6 +1,8 @@
 <?php
 namespace myzero1\rbacp\components;
 
+use myzero1\rbacp\components\Rbac;
+
 /**
  * AccessConroller on before action
  * 
@@ -23,17 +25,17 @@ class Rbacp extends \yii\base\Component
                 $sUri = \Yii::$app->requestedRoute;
                 $iUserId = \Yii::$app->user->id;
 
+                $roleId = Rbac::getRoleByUid($iUserId);
+
                 $sSql = "
                     SELECT
                       rpo.rules AS rules
                     FROM
-                      rbacp_user_view AS ruv
-                    INNER JOIN rbacp_userv_role AS rur ON ruv.id = rur.userv_id
-                    INNER JOIN rbacp_role AS rro ON rur.role_id = rro.id
+                      rbacp_role AS rro
                     INNER JOIN rbacp_privilege AS rpr ON find_in_set(rpr.id, rro.privilege_ids) > 0
                     INNER JOIN rbacp_policy AS rpo ON rpo.privilege_id = rpr.id
                     WHERE
-                        ruv.id = {$iUserId}
+                        rro.id = {$roleId}
                     AND rpr.url = '{$sUri}'
                     AND rpo.`status` = 1
                     AND rro.`status` = 1
@@ -262,17 +264,18 @@ class Rbacp extends \yii\base\Component
             AND ruc.`status` = 1
             AND rpo.`type` = {$iType}
         ";*/
+
+        $roleId = Rbac::getRoleByUid($iUserId);
+
         $sSql = "
             SELECT
               rpo.rules AS rules
             FROM
-              rbacp_user_view AS ruv
-            INNER JOIN rbacp_userv_role AS rur ON ruv.id = rur.userv_id
-            INNER JOIN rbacp_role AS rro ON rur.role_id = rro.id
+              rbacp_role AS rro
             INNER JOIN rbacp_policy AS rpo  ON find_in_set(rpo.id, rro.policy_ids) > 0
             INNER JOIN rbacp_privilege AS rpr  ON find_in_set(rpr.id, rro.privilege_ids) > 0
             WHERE
-                ruv.id = {$iUserId}
+                rro.id = {$roleId}
             AND rpr.url = '{$sUri}'
             AND rpo.sku = '{$sPolicySku}'
             AND rpo.`status` = 1
@@ -302,17 +305,18 @@ class Rbacp extends \yii\base\Component
      **/
     public static function getPolicyData($iUserId, $sPolicySku){
         \Yii::$app->getModule('rbacp');
+
+        $roleId = Rbac::getRoleByUid($iUserId);
+        
         $sSql = "
             SELECT
               rro.policy_datas AS policy_datas,
               rpo.id AS policy_id
             FROM
-              rbacp_user_view AS ruv
-            INNER JOIN rbacp_userv_role AS rur ON rur.userv_id = ruv.id
-            INNER JOIN rbacp_role AS rro ON rro.id = rur.role_id
+              rbacp_role AS rro
             INNER JOIN rbacp_policy AS rpo  ON find_in_set(rpo.id, rro.policy_ids) > 0
             WHERE
-                ruv.id = {$iUserId}
+                rro.id = {$roleId}
             AND rpo.sku = '{$sPolicySku}'
             AND rro.`status` = 1
             AND rpo.`status` = 1
