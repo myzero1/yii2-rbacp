@@ -130,7 +130,7 @@ class RbacpPrivilegeController extends Controller
         if (empty($ids)) {
             return 'ids 不能为空。';
         } else {
-            User2::deleteAll(['id' => explode(',', $ids)]); 
+            RbacpPrivilege::deleteAll(['id' => explode(',', $ids)]); 
 
             return \myzero1\adminlteiframe\helpers\Tool::redirectParent(['index']);
         }
