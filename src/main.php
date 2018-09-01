@@ -21,6 +21,9 @@ return [
                     '/rbacp/default/migrate-up',
                     '/rbacp/default/migrate-down',
                 ],
+                'loginedExcludeUri' => [
+                    '/site/logout',
+                ],
             ],
         ],
     ],
