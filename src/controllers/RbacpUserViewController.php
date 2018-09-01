@@ -172,7 +172,6 @@ class RbacpUserViewController extends Controller
         }
     }
 
-
     /**
      * redirect parent window.
      * @param array ['user/delete',['id'=>1]]

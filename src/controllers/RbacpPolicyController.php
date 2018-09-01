@@ -122,4 +122,15 @@ class RbacpPolicyController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+    /**
+     * redirect parent window.
+     * @param array ['user/delete',['id'=>1]]
+     * @return string
+     */
+    protected function redirectParent(array $params)
+    {
+        return sprintf('<script type="text/javascript">parent.location.href="%s"</script>',\yii\helpers\Url::to($params));
+    }
 }
