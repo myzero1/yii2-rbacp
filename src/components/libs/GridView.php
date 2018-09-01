@@ -535,7 +535,7 @@ class GridView extends BaseListView
         /* @var $column Column */
         $options = $this->options;
         $cells = [];
-        foreach ($this->columns as $key => $column) {
+        foreach ($this->columns as $k => $column) {
             if (\myzero1\rbacp\components\Rbac::isDeveloper()) {
                 $cells[] = $column->renderDataCell($model, $key, $index);
             } else if (isset($options['rbacp_policy_sku'])) {
