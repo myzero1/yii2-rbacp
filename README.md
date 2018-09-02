@@ -3,7 +3,7 @@ yii2-rbacp
 
 Access modules,including functional access and data access.
 
-Screenshot
+Show time
 ------------
 
 ![](https://github.com/myzero1/show-time/blob/master/yii2-rbacp/screenshot/1.png)
@@ -39,6 +39,65 @@ to the require section of your `composer.json` file.
 
 
 
+
+
+
+Recommended Setting
+-----
+
+Once the extension is installed, simply modify your application configuration as follows:
+
+```php
+return [
+    ......
+    'bootstrap' => [
+        ......
+        'rbacp',
+        ......
+    ],
+    'modules' => [
+        ......
+        'rbacp' => [
+            'class' => '\myzero1\rbacp\ModuleBootstrap', // for rbacp function
+            'params' => [
+               'urlManager' => [
+                    'rules' => [
+                        // 'rate/area/index' => 'rate/jf-core-area/index',
+                    ],
+                ],
+                'rbacp' => [
+                    'model' => 'rbac',//everyone,logined,rbac,rbacp
+                    'develop' => 1,//The id of the developer
+                    'rbacpTester' => 2,//The id of the tester of rbacp
+                    'denyCallbackUri' => '/rbacp/default/rbacp403',
+                    'loginUri' => '/site/login',
+                    'accessRules' => [
+                        'excludeUri' => [
+                            '/rbacp/default/index',
+                            '/rbacp/default/rbacp403',
+                            '/site/captcha',
+                            '/site/login-ajax',
+                        ],
+                        'developUri' => [
+                            '/rbacp/default/migrate-up',
+                            '/rbacp/default/migrate-down',
+                        ],
+                        'loginedExcludeUri' => [
+                            '/site/logout',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        ......
+    ],
+    ......
+];
+```
+
+
+
+
 Setting
 -----
 
@@ -46,9 +105,8 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 return [
-    // ...
+    ...
     'bootstrap' => [
-        'captcha',
         ...
         'rbacp' => [
             'class' => \myzero1\rbacp\Bootstrap::class, // for rbacp function
@@ -82,8 +140,9 @@ return [
             //     ],
             // ],
         ],
+        ...
     ],
-    // ...
+    ...
 ];
 ```
 
@@ -101,7 +160,7 @@ http://localhost/path/to/index.php?r=rbacp/default/index
 
 or if you have enabled pretty URLs, you may use the following URL:
 
-```
+```z1log
 http://localhost/path/to/index.php/rbacp/default/index
 ```
 
