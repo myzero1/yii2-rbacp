@@ -71,6 +71,8 @@ return [
                     'rbacpTester' => 2,//The id of the tester of rbacp
                     'denyCallbackUri' => '/rbacp/default/rbacp403',
                     'loginUri' => '/site/login',
+                    // 'beforeCheckActionFunc' => function(){},
+                    // 'afterCheckActionFunc' => function(){},
                     'accessRules' => [
                         'excludeUri' => [
                             '/rbacp/default/index',

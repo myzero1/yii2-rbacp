@@ -62,9 +62,11 @@ class Rbac extends \yii\base\Component
      * @return void
      **/
     public static function checkAction(){
-        if (self::checkAccess()) {
-            return TRUE;
-        } else {
+        if (isset(\Yii::$app->params['rbacp']['beforeCheckActionFunc'])) {
+            \Yii::$app->params['rbacp']['beforeCheckActionFunc']();
+        }
+
+        if (!self::checkAccess()) {
             if ( \Yii::$app->user->isGuest ) {
                 $sUri = \myzero1\rbacp\helper\Helper::getShortUri();
                 if (\Yii::$app->params['rbacp']['loginUri'] != $sUri) {
@@ -82,6 +84,12 @@ class Rbac extends \yii\base\Component
                 exit;
             }
         }
+
+        if (isset(\Yii::$app->params['rbacp']['afterCheckActionFunc'])) {
+            \Yii::$app->params['rbacp']['afterCheckActionFunc']();
+        }
+
+        return TRUE;
     }
 
     /**
