@@ -71,7 +71,18 @@ return [
                     'rbacpTester' => 2,//The id of the tester of rbacp
                     'denyCallbackUri' => '/rbacp/default/rbacp403',
                     'loginUri' => '/site/login',
-                    // 'beforeCheckActionFunc' => function(){},
+                    // 'beforeCheckActionFunc' => function(){
+                    //     $url = \yii\helpers\Url::to(['/site/error403','isLocked'=>1], true);
+                    //     $uri = '/site/error403';
+                    //     if ( strpos($_SERVER['REQUEST_URI'], $uri) === false) {
+                    //         if (!\Yii::$app->user->isGuest && Yii::$app->user->identity->isLocked) {
+                    //             \Yii::$app
+                    //             ->getResponse()
+                    //             ->redirect($url)
+                    //             ->send();
+                    //         }
+                    //     }
+                    // },
                     // 'afterCheckActionFunc' => function(){},
                     'accessRules' => [
                         'excludeUri' => [
