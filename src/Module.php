@@ -35,6 +35,7 @@ class Module extends \yii\base\Module
 
         $routeA =  explode('/', \Yii::$app->requestedRoute);
         $moduleId = $routeA[0];
+        $requestedRoute = trim(\Yii::$app->requestedRoute,'/');
 
         $this->params['menu'] = [
             // [
@@ -51,6 +52,7 @@ class Module extends \yii\base\Module
                 'urlType' => 'abosulte',
                 'url' => "/$moduleId/default/home",
                 'isHome' => true,
+                'active' => in_array($requestedRoute, ["$moduleId","$moduleId/default","$moduleId/default/index","$moduleId/default/home"]),
             ],
             [
                 'id' => "rbacp数据库",
