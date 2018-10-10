@@ -42,7 +42,7 @@ to the require section of your `composer.json` file.
 
 
 
-Recommended Setting
+Setting
 -----
 
 Once the extension is installed, simply modify your application configuration as follows:
@@ -52,13 +52,8 @@ return [
     ......
     'bootstrap' => [
         ......
-        'rbacp',
-        ......
-    ],
-    'modules' => [
-        ......
         'rbacp' => [
-            'class' => '\myzero1\rbacp\ModuleBootstrap', // for rbacp function
+            'class' => '\myzero1\rbacp\Bootstrap', // for rbacp function
             'params' => [
                'urlManager' => [
                     'rules' => [
@@ -104,66 +99,20 @@ return [
         ],
         ......
     ],
+    'modules' => [
+        ......
+        'rbacp' => [ // you should seting it,when you are developing.
+            'class' => '\myzero1\rbacp\Module',
+            'theme' => 'adminlte', // adminlteiframe, adminlte
+        ],
+        ......
+    ],
     ......
 ];
 ```
 
-
-
-
-Setting
------
-
-Once the extension is installed, simply modify your application configuration as follows:
-
-```php
-return [
-    ...
-    'bootstrap' => [
-        ...
-        'rbacp' => [
-            'class' => \myzero1\rbacp\Bootstrap::class, // for rbacp function
-            // 'params' => [
-            //    'urlManager' => [
-            //         'rules' => [
-            //             // 'rate/area/index' => 'rate/jf-core-area/index',
-            //         ],
-            //     ],
-            //     'rbacp' => [
-            //         'model' => 'rbac',//everyone,logined,rbac,rbacp
-            //         'develop' => 1,//The id of the developer
-            //         'rbacpTester' => 2,//The id of the tester of rbacp
-            //         'denyCallbackUri' => '/rbacp/default/rbacp403',
-            //         'loginUri' => '/site/login',
-            //         'accessRules' => [
-            //             'excludeUri' => [
-            //                 '/rbacp/default/index',
-            //                 '/rbacp/default/rbacp403',
-            //                 '/site/captcha',
-            //                 '/site/login-ajax',
-            //             ],
-            //             'developUri' => [
-            //                 '/rbacp/default/migrate-up',
-            //                 '/rbacp/default/migrate-down',
-            //             ],
-            //             'loginedExcludeUri' => [
-            //                 '/site/logout',
-            //             ],
-            //         ],
-            //     ],
-            // ],
-        ],
-        ...
-    ],
-    ...
-];
-```
-
-
 Usage
 -----
-
-
 
 You can access Demo through the following URL:
 
@@ -193,7 +142,7 @@ Setting 'model' => 'rbac',//everyone,logined,rbac,rbacp
 
 ```
 
-##### Use the rbacp of rbacp: ##### 
+##### Use the rbacp of rbacp: #####
 
 ```
 
@@ -207,8 +156,8 @@ Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
     You can use rbacp as flow.
         Use it by andFilterWhere
             RbacpRole::find()->andFilterWhere([
-                '<>', 
-                'rbacp_role.id', 
+                '<>',
+                'rbacp_role.id',
                 'rbacp_policy_sku=rbacp|rbacp-role|index|rbacpPolicy|read|角色列表'// to use rbacp, set policy_sku.
             ])
         Use it by GridView::widget
@@ -225,18 +174,18 @@ Setting 'model' => 'rbacp',//everyone,logined,rbac,rbacp
                     'class' => 'btn btn-success btn-sm',
                     'rbacp_policy_sku' => 'rbacp|rbacp-role|index|rbacpPolicy|tag|角色列表创建按钮'// to use rbacp, set policy_sku.
                 ));
-            
+
 
 ```
 
-##### Set the role id: ##### 
+##### Set the role id: #####
 
 ```
 \myzero1\rbacp\components\Rbac::setRoleId($roleId);
 
 ```
 
-##### Set and get the role id by user id: ##### 
+##### Set and get the role id by user id: #####
 
 ```
 \myzero1\rbacp\components\Rbac::getRoleByUid($userId);
