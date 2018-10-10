@@ -28,12 +28,12 @@ class Bootstrap implements BootstrapInterface
         $this->addTranslations($app);
         $this->addBehaviors($app);
         $this->rewriteLibs($app);
-        $this->addRbacpModule($app);
+        // $this->addRbacpModule($app);
     }
 
     private function addConfig($app){
         $aConfig = require(__DIR__ . '/main.php');
-        
+
         $rbacpParams = array_merge($aConfig['params'], $this->params);
 
         $app->params['rbacp'] = $rbacpParams['rbacp'];
@@ -48,7 +48,7 @@ class Bootstrap implements BootstrapInterface
 
     private function addBehaviors($app){
         $app->attachBehavior ( 'GlobalAccessBehavior', [
-            'class' => '\myzero1\rbacp\behaviors\GlobalAccessBehavior'        
+            'class' => '\myzero1\rbacp\behaviors\GlobalAccessBehavior'
         ]);
     }
 
@@ -90,7 +90,7 @@ class Bootstrap implements BootstrapInterface
         }
     }
 
-    private function parseNamespace(){ 
+    private function parseNamespace(){
         $nameNamespace = get_class( $this );
         $aParseNamespace = explode( '\\', $nameNamespace );
         return $aParseNamespace;
