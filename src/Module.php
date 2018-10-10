@@ -11,6 +11,7 @@ use yii\web\ForbiddenHttpException;
  */
 class Module extends \yii\base\Module
 {
+    public $theme = 'adminlteiframe'; // adminlteiframe,adminlte
 
     /**
      * @inheritdoc
@@ -25,9 +26,12 @@ class Module extends \yii\base\Module
         parent::init();
 
         \Yii::$app->view->theme = new \yii\base\Theme([
-            'pathMap' => ['@app/views' => '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/adminlteiframe'],
+            'pathMap' => ['@app/views' => '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/'.$this->theme],
             // 'baseUrl' => '@web/themes/adminlte',
         ]);
+
+        // \Yii::$app->layoutPath = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/'.$this->theme.'/layouts';
+        // \Yii::$app->layout = 'main'; // default
 
         $routeA =  explode('/', \Yii::$app->requestedRoute);
         $moduleId = $routeA[0];

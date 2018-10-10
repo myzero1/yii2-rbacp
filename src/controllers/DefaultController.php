@@ -15,8 +15,12 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/adminlteiframe/layouts/layout';
-        return $this->render('index');
+        // $this->layout = 'layout'; // using the view of module
+        if ($this->module->theme == 'adminlteiframe') {
+            $this->layout = '//layout'; // using the view of app
+        }
+        return $this->render('index'); // using the view of module
+        // return $this->render('//index');  // using the view of app
     }
 
     /**
