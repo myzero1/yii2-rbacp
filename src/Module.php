@@ -37,12 +37,12 @@ class Module extends \yii\base\Module
         $moduleId = $routeA[0];
 
         $this->params['menu'] = [
-            [
-                'id' => "-2",
-                'text' => "header",
-                'icon' => "",
-                'isHeader' => true,
-            ],
+            // [
+            //     'id' => "-2",
+            //     'text' => "header",
+            //     'icon' => "",
+            //     'isHeader' => true,
+            // ],
             [
                 'id' => "-1",
                 'text' => "rbacp首页",
@@ -56,6 +56,7 @@ class Module extends \yii\base\Module
                 'id' => "rbacp数据库",
                 'text' => "rbacp数据库",
                 'icon' => "fa fa-database",
+                'url' => '#',
                 'children' => [
                     [
                         'id' => "rbacp添加数据",
@@ -79,6 +80,7 @@ class Module extends \yii\base\Module
                 'id' => "rbacp权限管理",
                 'text' => "rbacp权限管理",
                 'icon' => "fa fa-cubes",
+                'url' => '#',
                 'children' => [
                     [
                         'id' => "角色管理",
