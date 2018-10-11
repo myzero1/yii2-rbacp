@@ -103,13 +103,13 @@ class Rbac extends \yii\base\Component
     public static function getMenuItems($aMenuItems){
         if (!self::isDeveloper()){
             foreach ($aMenuItems as $key => $value) {
-                if (isset($value['items']) && count($value['items'])) {
-                    foreach ($value['items'] as $k => $v) {
+                if (isset($value['children']) && count($value['children'])) {
+                    foreach ($value['children'] as $k => $v) {
                         if (!self::checkAccess($v['url'][0])) {
-                            unset($aMenuItems[$key]['items'][$k]);
+                            unset($aMenuItems[$key]['children'][$k]);
                         }
                     }
-                    if (count($aMenuItems[$key]['items']) == 0) {
+                    if (count($aMenuItems[$key]['children']) == 0) {
                         unset($aMenuItems[$key]);
                     }
                 } else {

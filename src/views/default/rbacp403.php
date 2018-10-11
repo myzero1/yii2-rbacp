@@ -26,3 +26,10 @@
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .content.list-content{
+        padding: 0;
+        margin: 0;
+    }
+</style>
