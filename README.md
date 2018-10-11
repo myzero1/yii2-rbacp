@@ -103,7 +103,7 @@ return [
         ......
         'rbacp' => [ // you should seting it,when you are developing.
             'class' => '\myzero1\rbacp\Module',
-            'theme' => 'adminlte', // adminlteiframe, adminlte
+            'theme' => 'adminlteiframe', // adminlteiframe, adminlte
         ],
         ......
     ],
