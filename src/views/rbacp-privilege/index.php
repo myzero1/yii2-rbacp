@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => [
             'class' => 'gridview-table table table-bordered table-hover dataTable',
             'data-provide' => 'z1table',
-            'data-z1table-config' => '{"fixedColumns":true,"subtraction1":220,"subtraction2Selector":[".adminlteiframe-action-box"]}',
+            'data-z1table-config' => '{"fixedColumns":true,"subtraction1":60,"subtraction2Selector":[".adminlteiframe-action-box"]}',
         ],
         'summary' => '
             <div class="admlteiframe-gv-summary">
