@@ -66,7 +66,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/default/migrate-up",
+                        'url' => ["/$moduleId/default/migrate-up"],
                     ],
                     [
                         'id' => "rbacp删除数据",
@@ -74,7 +74,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/default/migrate-down",
+                        'url' => ["/$moduleId/default/migrate-down"],
                     ],
                 ],
             ],
@@ -90,7 +90,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/rbacp-role/index",
+                        'url' => ["/$moduleId/rbacp-role/index"],
                     ],
                     [
                         'id' => "授权管理",
@@ -98,7 +98,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/rbacp-user-view/index",
+                        'url' => ["/$moduleId/rbacp-user-view/index"],
                     ],
                     [
                         'id' => "功能权限",
@@ -106,7 +106,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/rbacp-privilege/index",
+                        'url' => ["/$moduleId/rbacp-privilege/index"],
                     ],
                     [
                         'id' => "数据策略",
@@ -114,7 +114,7 @@ class Module extends \yii\base\Module
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
-                        'url' => "/$moduleId/rbacp-policy/index",
+                        'url' => ["/$moduleId/rbacp-policy/index"],
                     ],
                 ],
             ],

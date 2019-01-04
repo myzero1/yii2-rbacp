@@ -1,23 +1,28 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel custom_components\modules\myzero1\rbacp\models\RbacpUserViewSearch */
+/* @var $searchModel backend\models\searchs\User3Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 myzero1\adminlteiframe\gii\GiiAsset::register($this);
 
-$this->title = Yii::t('rbacp', '策略管理');
-$this->params['breadcrumbs'][] = $this->title; 
+$this->title = Yii::t('rbacp', '数据策略');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rbacp-user-view-index">
+<div class="user2-index">
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+<!--     <h1><?= Html::encode($this->title) ?></h1> -->
 
-    <?= GridView::widget([ 
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        // 'filterModel' => $searchModel,
         'columns' => [
             [
                 'headerOptions' => ['width'=>'30'],
@@ -94,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'layer-config' => sprintf('{type:2,title:"%s",content:"%s",shadeClose:false}', Yii::t('yii', 'Update'), $url) ,
                             'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表修改按钮'
                         ]);
-                        return Html::a(Yii::t('yii', 'Update'), '#', $options);
+                        return Html::a(Yii::t('yii', '修改'), '#', $options);
                     },
                     'delete' => function ($url, $model, $key) {
                         $options = array_merge([
@@ -102,17 +107,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             'layer-config' => sprintf('{icon:3,area:["500px","200px"],type:0,title:"%s",content:"%s",shadeClose:false,btn:["确定","取消"],yes:function(index,layero){$.post("%s", {}, function(str){$(layero).find(".layui-layer-content").html(str);});},btn2:function(index, layero){layer.close(index);}}', Yii::t('yii', 'Delete'), '一旦删除，不能找回，你确定删除吗？',$url) ,
                             'rbacp_policy_sku' => 'rbacp|rbacp-privilege|index|rbacpPolicy|tag|rbacp权限列表删除按钮',
                         ]);
-                        return Html::a(Yii::t('yii', 'Delete'), '#', $options);
+                        return Html::a(Yii::t('yii', '删除'), '#', $options);
                     }
                 ],
             ],
         ],
         'options' => [
-            'rbacp_policy_sku' => 'rbacp|rbacp-policy|index|rbacpPolicy|list|rbacp策略列表',
             'class' => 'adminlteiframe-gridview',
         ],
         'tableOptions' => [
-            'class' => 'gridview-table table table-bordered table-hover dataTable'
+            'class' => 'gridview-table table table-bordered table-hover dataTable',
+            'data-provide' => 'z1table',
+            'data-z1table-config' => '{"fixedColumns":true,"subtraction1":220,"subtraction2Selector":[".adminlteiframe-action-box"]}',
         ],
         'summary' => '
             <div class="admlteiframe-gv-summary">
@@ -139,42 +145,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
-</div>
-
-<?php 
-$js=<<<eof
-    function getTableHeight(){
-        var heightToal = window.parent.$('html').outerHeight(true);
-        var filterHeight = $(".adminlteiframe-action-box").height();
-        height = heightToal - $(".adminlteiframe-action-box").height();// subtract filters
-        height = height - 260;// subtract others
-        return height;
-    }
-
-    function fixTable(){
-        if (!($(".gridview-table .empty").length > 0 || $(".gridview-table tbody tr").length == 0)) {
-                if(typeof mybootstrapTable!="undefined"){
-                    mybootstrapTable.bootstrapTable('destroy');
-                }
-
-                mybootstrapTable = $(".gridview-table").bootstrapTable('destroy').bootstrapTable({
-                    height: getTableHeight(),
-                    fixedColumns: true
-                });
-        }
-    }
-
-    fixTable();
-
-    $(window).resize(function(){
-        fixTable();
-    });
-
-eof;
-
-$this->registerJs($js);
-
-?>
 
 </div>
