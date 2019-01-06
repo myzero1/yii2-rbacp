@@ -30,6 +30,13 @@ class Module extends \yii\base\Module
             // 'baseUrl' => '@web/themes/adminlte',
         ]);
 
+        if ($this->theme == 'adminlteiframe') {
+            $this->defaultRoute = 'adminlteiframe/layout'; // for adminlteiframe theme
+            $this->controllerMap['adminlteiframe'] = [ // for adminlteiframe theme
+                'class' => 'myzero1\adminlteiframe\controllers\SiteController'
+            ];
+        }
+
         // \Yii::$app->layoutPath = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/'.$this->theme.'/layouts';
         // \Yii::$app->layout = 'main'; // default
 
@@ -38,31 +45,27 @@ class Module extends \yii\base\Module
         $requestedRoute = trim(\Yii::$app->requestedRoute,'/');
 
         $this->params['menu'] = [
-            // [
-            //     'id' => "-2",
-            //     'text' => "header",
-            //     'icon' => "",
-            //     'isHeader' => true,
-            // ],
             [
-                'id' => "-1",
+                'id' => "rbacp首页",
                 'text' => "rbacp首页",
+                'title' => "rbacp首页",
                 'icon' => "fa fa-dashboard",
                 'targetType' => 'iframe-tab',
                 'urlType' => 'abosulte',
-                'url' => "/$moduleId/default/home",
+                'url' => ["/$moduleId/default/index"],
                 'isHome' => true,
-                'active' => in_array($requestedRoute, ["$moduleId","$moduleId/default","$moduleId/default/index","$moduleId/default/home"]),
             ],
             [
                 'id' => "rbacp数据库",
                 'text' => "rbacp数据库",
+                'title' => "rbacp数据库",
                 'icon' => "fa fa-database",
-                'url' => '#',
+                'url' => ['#'],
                 'children' => [
                     [
                         'id' => "rbacp添加数据",
                         'text' => "rbacp添加数据",
+                        'title' => "rbacp添加数据",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
@@ -71,6 +74,7 @@ class Module extends \yii\base\Module
                     [
                         'id' => "rbacp删除数据",
                         'text' => "rbacp删除数据",
+                        'title' => "rbacp删除数据",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
@@ -81,12 +85,14 @@ class Module extends \yii\base\Module
             [
                 'id' => "rbacp权限管理",
                 'text' => "rbacp权限管理",
+                'title' => "rbacp权限管理",
                 'icon' => "fa fa-cubes",
-                'url' => '#',
+                'url' => ['#'],
                 'children' => [
                     [
                         'id' => "角色管理",
                         'text' => "角色管理",
+                        'title' => "角色管理",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
@@ -95,6 +101,7 @@ class Module extends \yii\base\Module
                     [
                         'id' => "授权管理",
                         'text' => "授权管理",
+                        'title' => "授权管理",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
@@ -103,6 +110,7 @@ class Module extends \yii\base\Module
                     [
                         'id' => "功能权限",
                         'text' => "功能权限",
+                        'title' => "功能权限",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
@@ -111,6 +119,7 @@ class Module extends \yii\base\Module
                     [
                         'id' => "数据策略",
                         'text' => "数据策略",
+                        'title' => "数据策略",
                         'icon' => "fa fa-angle-double-right",
                         'targetType' => 'iframe-tab',
                         'urlType' => 'abosulte',
