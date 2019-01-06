@@ -92,6 +92,8 @@ return [
                         ],
                         'loginedExcludeUri' => [
                             '/site/logout',
+                            '/site/index',
+                            '/adminlteiframe/layout',
                         ],
                     ],
                 ],
