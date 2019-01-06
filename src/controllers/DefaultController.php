@@ -15,12 +15,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        // $this->layout = 'layout'; // using the view of module
-        if ($this->module->theme == 'adminlteiframe') {
-            $this->layout = '//layout'; // using the view of app
-        }
         return $this->render('index'); // using the view of module
-        // return $this->render('//index');  // using the view of app
     }
 
     /**

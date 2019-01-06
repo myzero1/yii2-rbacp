@@ -30,6 +30,13 @@ class Module extends \yii\base\Module
             // 'baseUrl' => '@web/themes/adminlte',
         ]);
 
+        if ($this->theme == 'adminlteiframe') {
+            $this->defaultRoute = 'adminlteiframe/layout'; // for adminlteiframe theme
+            $this->controllerMap['adminlteiframe'] = [ // for adminlteiframe theme
+                'class' => 'myzero1\adminlteiframe\controllers\SiteController'
+            ];
+        }
+
         // \Yii::$app->layoutPath = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/'.$this->theme.'/layouts';
         // \Yii::$app->layout = 'main'; // default
 
