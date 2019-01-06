@@ -17,16 +17,7 @@ class DefaultController extends Controller
     {
         return $this->render('index'); // using the view of module
     }
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionHome()
-    {
-        return $this->render('index');
-    }
-
+    
     /**
      * Renders the index view for the module
      * @return string
