@@ -17,7 +17,7 @@ class DefaultController extends Controller
     {
         return $this->render('index'); // using the view of module
     }
-    
+
     /**
      * Renders the index view for the module
      * @return string
@@ -25,11 +25,11 @@ class DefaultController extends Controller
     public function actionDemo()
     {
         if (\Yii::$app->request->isPost) {
-            var_dump('Captcha is validated.');exit;
+            var_dump('Captcha is validated.');
+            exit;
         } else {
             return $this->render('demo');
         }
-
     }
 
     /**
@@ -47,10 +47,23 @@ class DefaultController extends Controller
             // get dbname
             $dsnA = explode(';', \Yii::$app->db->dsn);
             foreach ($dsnA as $key => $value) {
-                if (strpos($value,'dbname=') !== false) {
+                if (strpos($value, 'dbname=') !== false) {
                     $dbnameA = explode('=', $value);
                     $dbname = $dbnameA[1];
                 }
+            }
+
+            if ('1' == $model->createDefaultTable) {
+                //default console commands outputs to STDOUT so this needs to be declared for wep app
+                if (!defined('STDOUT')) {
+                    $stdout = \Yii::getAlias('@runtime/stdout');
+                    define('STDOUT', fopen($stdout, 'w'));
+                }
+
+                //migration command begin
+                $migration = new \yii\console\controllers\MigrateController('migrate', \Yii::$app);
+                $migration->runAction('up', ['migrationPath' => '@vendor/myzero1/yii2-rbacp/src/migrations/', 'interactive' => false]);
+                //migration command end
             }
 
             $sql = "SELECT
@@ -66,7 +79,7 @@ class DefaultController extends Controller
 
             if ($result === false) {
                 $viweSql = sprintf('CREATE VIEW `rbacp_user_view` AS SELECT %s AS id, %s AS username, %s AS status FROM `%s` WHERE 1 = 1;', $model->id, $model->username, $model->status, $model->table);
-               \Yii::$app->db->createCommand($viweSql)->execute();
+                \Yii::$app->db->createCommand($viweSql)->execute();
             }
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
@@ -87,7 +100,7 @@ class DefaultController extends Controller
             $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
-                $message.=$buffer . "<br>";
+                $message .= $buffer . "<br>";
             }
             fclose($handle);
             // var_dump($message);exit;
@@ -125,7 +138,7 @@ class DefaultController extends Controller
             if ($result !== false) {
                 $viweSql = 'DROP VIEW `rbacp_user_view`';
 
-               \Yii::$app->db->createCommand($viweSql)->execute();
+                \Yii::$app->db->createCommand($viweSql)->execute();
             }
 
             //default console commands outputs to STDOUT so this needs to be declared for wep app
@@ -149,7 +162,7 @@ class DefaultController extends Controller
             $handle = fopen($stdout, 'r');
             $message = '';
             while (($buffer = fgets($handle, 4096)) !== false) {
-                $message.=$buffer . "<br>";
+                $message .= $buffer . "<br>";
             }
             fclose($handle);
             // var_dump($message);exit;
@@ -174,5 +187,4 @@ class DefaultController extends Controller
     {
         return $this->render('rbacp403');
     }
-
 }

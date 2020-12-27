@@ -9,6 +9,11 @@ use yii\widgets\ActiveForm;
 
 \myzero1\adminlteiframe\gii\GiiAsset::register($this);
 
+$model->table = "rbacp_user";
+$model->id = "id";
+$model->username = "username";
+$model->status = "status";
+
 ?>
 
 <div class="affiche-form">
@@ -18,19 +23,19 @@ use yii\widgets\ActiveForm;
             <h3 class="box-title">Up the migration of rbacp </h3>
         </div>
 
-        <?php $form = ActiveForm::begin(['id'=> 'layer-form-' . $this->context->action->id, 'options' => ['class' => 'adminlteiframe-form']]) ?>
+        <?php $form = ActiveForm::begin(['id' => 'layer-form-' . $this->context->action->id, 'options' => ['class' => 'adminlteiframe-form']]) ?>
 
         <div class="box-body">
 
             <?php if (!empty($message)) { ?>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    The message of the running
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        The message of the running
+                    </div>
+                    <div class="panel-body">
+                        <?php echo $message; ?>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <?php echo $message; ?>
-                </div>
-            </div>
             <?php } ?>
 
             <div class="panel panel-default">
@@ -50,16 +55,17 @@ use yii\widgets\ActiveForm;
                     <br>
                     <br>
 
-                    <?= $form->field($model,'table')->textInput() ?>
-                    <?= $form->field($model,'id')->textInput() ?>
-                    <?= $form->field($model,'username')->textInput() ?>
-                    <?= $form->field($model,'status')->textInput() ?>
+                    <?= $form->field($model, 'createDefaultTable')->checkbox([])  ?>
+                    <?= $form->field($model, 'table')->textInput() ?>
+                    <?= $form->field($model, 'id')->textInput() ?>
+                    <?= $form->field($model, 'username')->textInput() ?>
+                    <?= $form->field($model, 'status')->textInput() ?>
                 </div>
             </div>
         </div>
         <div class="box-footer">
             <div class="form-group form-group-box">
-                    <?= Html::submitButton('migration up', ['class' => 'btn btn-success']) ?>
+                <?= Html::submitButton('migration up', ['class' => 'btn btn-success']) ?>
             </div>
         </div>
         <?php ActiveForm::end(); ?>
@@ -68,7 +74,7 @@ use yii\widgets\ActiveForm;
 </div>
 
 <style type="text/css">
-    .adminlteiframe-form .form-group{
+    .adminlteiframe-form .form-group {
         width: 100% !important;
     }
 </style>
