@@ -2,7 +2,7 @@
 
 use yii\db\Schema;
 
-class m171129_120101_rbacp_user extends \yii\db\Migration
+class m171129_120101_user extends \yii\db\Migration
 {
     public function up()
     {
@@ -11,7 +11,7 @@ class m171129_120101_rbacp_user extends \yii\db\Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('rbacp_user', [
+        $this->createTable('user', [
             'id' => Schema::TYPE_PK,
             'username' => sprintf("%s(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '%s'", Schema::TYPE_STRING, '用户名'),
             'auth_key' => sprintf("%s(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '%s'", Schema::TYPE_STRING, '授权密钥'),
@@ -25,7 +25,7 @@ class m171129_120101_rbacp_user extends \yii\db\Migration
         ], $tableOptions);
 
         $this->batchInsert(
-            $table = 'rbacp_user',
+            $table = 'user',
             $columns = [
                 'id',
                 'username',
@@ -69,6 +69,6 @@ class m171129_120101_rbacp_user extends \yii\db\Migration
 
     public function down()
     {
-        $this->dropTable('rbacp_user');
+        $this->dropTable('user');
     }
 }

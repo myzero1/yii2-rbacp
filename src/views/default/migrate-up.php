@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 \myzero1\adminlteiframe\gii\GiiAsset::register($this);
 
-$model->table = "rbacp_user";
+$model->table = "user";
 $model->id = "id";
 $model->username = "username";
 $model->status = "status";
