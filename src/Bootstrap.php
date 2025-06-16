@@ -7,6 +7,8 @@ use yii\base\BootstrapInterface;
 /**
  * Rbacp module bootstrap class.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class Bootstrap implements BootstrapInterface
 {
     /**
@@ -24,6 +26,8 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+        require __DIR__ . '/components/CompatiblePHP/PHP8/functions.php';
+        
         $this->addConfig($app);
         $this->addTranslations($app);
         $this->addBehaviors($app);

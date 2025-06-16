@@ -13,6 +13,8 @@ use yii\helpers\Url;
 /**
  * RbacpRoleController implements the CRUD actions for RbacpRole model.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpRoleController extends Controller
 {
     /**

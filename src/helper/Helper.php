@@ -7,6 +7,8 @@ namespace myzero1\rbacp\helper;
  * @author qinxuanwu
  *
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class Helper {
     /**
      * Get the module's name of rbacp.
