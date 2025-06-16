@@ -10,6 +10,8 @@ use Yii;
  * @property integer $role_id
  * @property integer $userv_id
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpUservRole extends \yii\db\ActiveRecord
 {
     /**

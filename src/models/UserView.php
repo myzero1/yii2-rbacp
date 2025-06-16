@@ -8,6 +8,8 @@ use yii\base\Model;
 /**
  * Login form
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class UserView extends Model
 {
     public $createDefaultTable;

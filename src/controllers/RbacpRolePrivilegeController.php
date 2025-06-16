@@ -12,6 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * RbacpRolePrivilegeController implements the CRUD actions for RbacpRolePrivilege model.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpRolePrivilegeController extends Controller
 {
     /**

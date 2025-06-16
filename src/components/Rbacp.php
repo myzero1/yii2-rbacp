@@ -8,6 +8,8 @@ use myzero1\rbacp\components\Rbac;
  * 
  * @package myzero1\rbacp\components
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class Rbacp extends \yii\base\Component
 {
     /**
