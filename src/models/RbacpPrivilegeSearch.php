@@ -10,6 +10,8 @@ use myzero1\rbacp\models\RbacpPrivilege;
 /**
  * RbacpPrivilegeSearch represents the model behind the search form about `custom_components\modules\myzero1\rbacp\models\RbacpPrivilege`.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpPrivilegeSearch extends RbacpPrivilege
 {
     /**

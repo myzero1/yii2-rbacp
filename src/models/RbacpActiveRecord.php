@@ -13,6 +13,8 @@ use yii\db\ActiveRecord;
  * Setting the default vaules
  *
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpActiveRecord extends \yii\db\ActiveRecord
 {
     /**

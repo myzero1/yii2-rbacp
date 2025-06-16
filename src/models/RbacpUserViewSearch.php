@@ -10,6 +10,8 @@ use myzero1\rbacp\models\RbacpUserView;
 /**
  * RbacpUserViewSearch represents the model behind the search form about `custom_components\modules\myzero1\rbacp\models\RbacpUserView`.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpUserViewSearch extends RbacpUserView
 {
     public $role_name;

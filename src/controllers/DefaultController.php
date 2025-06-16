@@ -7,6 +7,8 @@ use yii\web\Controller;
 /**
  * Default controller for the `captcha` module
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class DefaultController extends Controller
 {
     /**

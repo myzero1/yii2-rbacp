@@ -15,6 +15,8 @@ use yii\helpers\ArrayHelper;
 /**
  * RbacpUserViewController implements the CRUD actions for RbacpUserView model.
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpUserViewController extends Controller
 {
     /**

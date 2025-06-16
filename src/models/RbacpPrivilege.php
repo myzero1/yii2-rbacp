@@ -15,6 +15,8 @@ use Yii;
  * @property integer $created
  * @property integer $updated
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpPrivilege extends RbacpActiveRecord
 {
     /**

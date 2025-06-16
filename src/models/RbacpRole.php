@@ -21,6 +21,8 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated
  * @property integer $author
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpRole extends RbacpActiveRecord
 {
     public $rbacp_privilege_ids;

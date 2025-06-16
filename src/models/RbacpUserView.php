@@ -25,6 +25,8 @@ use myzero1\rbacp\models\RbacpRole;
  * @property string $last_ip
  * @property integer $last_time
  */
+use function \myzero1\rbacp\components\CompatiblePHP\PHP8\{strlen,trim,ltrim,rtrim,strpos,str_replace,implode,htmlspecialchars};
+
 class RbacpUserView extends RbacpActiveRecord
 {
     const STATUS_ACTIVE = 10;
